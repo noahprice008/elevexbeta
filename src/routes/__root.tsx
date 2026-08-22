@@ -92,7 +92,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
@@ -108,6 +112,11 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("elevex-theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark");var a=localStorage.getItem("elevex-a11y");if(a){var s=JSON.parse(a),r=document.documentElement;if(s.fontScale&&s.fontScale!==100){r.style.setProperty("--a11y-font-scale",s.fontScale+"%");r.classList.add("a11y-font-scale");}s.contrast&&r.classList.add("a11y-contrast");s.grayscale&&r.classList.add("a11y-grayscale");s.underlineLinks&&r.classList.add("a11y-underline");s.readableFont&&r.classList.add("a11y-readable");s.reduceMotion&&r.classList.add("a11y-reduce-motion");s.bigCursor&&r.classList.add("a11y-cursor");s.spacing&&r.classList.add("a11y-spacing");}}catch(e){}})();`,
+          }}
+        />
         {children}
         <Scripts />
       </body>

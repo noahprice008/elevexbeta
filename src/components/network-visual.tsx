@@ -10,7 +10,10 @@ export function NetworkVisual() {
     const context = canvas?.getContext("2d");
     if (!canvas || !context) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isReduced = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.documentElement.classList.contains("a11y-reduce-motion");
+    let reducedMotion = isReduced();
     let animationFrame = 0;
     let width = 0;
     let height = 0;
@@ -65,11 +68,22 @@ export function NetworkVisual() {
       if (!reducedMotion) animationFrame = requestAnimationFrame(draw);
     };
 
+    const onPreferenceChange = () => {
+      const next = isReduced();
+      if (next === reducedMotion) return;
+      reducedMotion = next;
+      cancelAnimationFrame(animationFrame);
+      if (reducedMotion) draw(0);
+      else animationFrame = requestAnimationFrame(draw);
+    };
+
     resize();
     window.addEventListener("resize", resize);
+    window.addEventListener("elevex-a11y-change", onPreferenceChange);
     draw(0);
     return () => {
       window.removeEventListener("resize", resize);
+      window.removeEventListener("elevex-a11y-change", onPreferenceChange);
       cancelAnimationFrame(animationFrame);
     };
   }, []);
