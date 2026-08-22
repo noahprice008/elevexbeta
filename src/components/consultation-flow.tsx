@@ -187,7 +187,7 @@ export function ConsultationFlow() {
         area: block.need,
         question: block.title,
         selected: details[block.key] ?? [],
-        ...(detailNotes[block.key]?.trim() ? { additionalDetail: detailNotes[block.key].trim() } : {}),
+        ...(detailNotes[block.key]?.trim() ? { additionalDetail: (detailNotes[block.key] ?? "").trim() } : {}),
         ...(block.key === "integrations" && integrationTools.trim() ? { toolsListed: integrationTools.trim() } : {}),
       })),
       biggestChallenge: challenge,
