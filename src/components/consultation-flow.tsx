@@ -1,296 +1,355 @@
-import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
+import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, type LucideIcon } from "lucide-react";
 
-type Choice = { title: string; description?: string };
+/* ---------------------------------- data --------------------------------- */
 
-const needs: Choice[] = [
-  { title: "Website & Digital Presence", description: "I need a new website or want to improve my current one." },
-  { title: "Automation", description: "I want to reduce manual work or automate processes." },
-  { title: "AI", description: "I want to explore practical AI solutions for my business." },
-  { title: "Lead Generation", description: "I want to generate, capture or manage more leads." },
-  { title: "Integrations", description: "I need my systems and tools to work better together." },
-  { title: "Not Sure", description: "I know something needs to improve, but I'm not sure what solution I need." },
+type Pillar = { id: string; title: string; description: string; icon: LucideIcon };
+
+const pillars: Pillar[] = [
+  { id: "digital", title: "Digital Presence", icon: Globe, description: "I need a professional website, landing page, or want to modernize my current outdated web experience." },
+  { id: "automation", title: "Business Automation", icon: Workflow, description: "I want to reduce repetitive admin, manual work, and connect our daily business tools." },
+  { id: "ai", title: "Practical AI", icon: Bot, description: "I want to explore custom AI assistants, customer support chatbots, or automated workflows." },
+  { id: "growth", title: "Growth Systems", icon: TrendingUp, description: "I need better ways to generate, qualify, and automatically follow up with incoming leads." },
+  { id: "unsure", title: "Not Sure", icon: HelpCircle, description: "I know we have operational bottlenecks holding us back, but I'm not sure which technology fits." },
 ];
 
-const challenges: Choice[] = [
-  { title: "Too much manual work", description: "Repetitive tasks are taking time away from the business." },
-  { title: "Not enough leads", description: "We need a better way to attract and manage opportunities." },
-  { title: "Poor digital presence", description: "Our online presence no longer reflects our business." },
-  { title: "Disconnected systems", description: "Our tools and information don't work well together." },
-  { title: "Slow processes", description: "Important work takes longer than it should." },
-  { title: "We want to use AI", description: "We need clarity on where AI can create real value." },
-  { title: "Something else", description: "Our challenge doesn't fit neatly into these options." },
+type FeatureGroup = { pillar: string; title: string; features: { title: string; description: string }[] };
+
+const featureGroups: FeatureGroup[] = [
+  { pillar: "digital", title: "Digital Presence", features: [
+    { title: "Professional Website / Landing Page", description: "A clean, mobile-responsive home base for your business." },
+    { title: "Dynamic Service Catalog", description: "A structured showcase of your services or past projects." },
+    { title: "Secure Client Intake Forms", description: "Tailored forms that capture inquiry details from day one." },
+  ]},
+  { pillar: "automation", title: "Business Automation", features: [
+    { title: "Instant Lead Notifications", description: "Receive alerts via email, Slack, Teams, or SMS." },
+    { title: "CRM Auto-Syncing", description: "Push new leads automatically into your CRM." },
+    { title: "Automated Document Generation", description: "Instant creation of quotes, agreements, or onboarding paperwork." },
+  ]},
+  { pillar: "ai", title: "Practical AI", features: [
+    { title: "24/7 AI Customer Support Chatbot", description: "Answer customer questions automatically." },
+    { title: "AI Administrative Assistant", description: "Generate follow-ups, reports, summaries, and internal admin tasks." },
+  ]},
+  { pillar: "growth", title: "Growth Systems", features: [
+    { title: "Online Booking & Calendar Systems", description: "Allow your customers to book appointments automatically." },
+    { title: "Intake & Qualification Screening Flow", description: "Filter unqualified leads before they consume staff time." },
+    { title: "Multi-Day Lead Nurturing Campaign", description: "Automated follow-up sequences that keep prospects engaged." },
+  ]},
 ];
 
-const timelines: Choice[] = [
-  { title: "As soon as possible" }, { title: "Within 1–3 months" },
-  { title: "Within 3–6 months" }, { title: "Just exploring" },
+const integrationGroups: { title: string; items: string[] }[] = [
+  { title: "Productivity & Calendars", items: ["Google Workspace", "Microsoft 365", "Calendly"] },
+  { title: "CRM Platforms", items: ["HubSpot", "Zoho", "Salesforce", "ActiveCampaign"] },
+  { title: "Communication", items: ["Slack", "Microsoft Teams", "WhatsApp", "Discord"] },
+  { title: "Cloud Storage", items: ["Google Drive", "Dropbox", "OneDrive"] },
 ];
 
-const OTHER = "Something else";
+const aesthetics = [
+  { title: "Modern & Professional", description: "Clean, trustworthy, professional." },
+  { title: "Warm & Approachable", description: "Friendly, welcoming, human-centered." },
+  { title: "Minimalist & Premium", description: "Luxury-inspired, spacious, refined." },
+  { title: "Bold & High-Contrast", description: "Energetic, modern, technology-forward." },
+];
 
-type DetailBlock = {
-  need: string;
-  key: string;
-  title: string;
-  options: string[];
-  freeText?: { label: string; placeholder: string };
+const industries = [
+  "Tradesmen & Contractors",
+  "Consultants & Professional Services",
+  "Security & Facilities Firms",
+  "Wellness Studios & Clinics",
+  "Growing Local Businesses",
+];
+
+const stageTitles = ["Core Growth Pillars", "MVP Prioritization", "Integrations & Brand Direction", "Business Profile"];
+
+type FormData = {
+  growthPillars: string[];
+  mustHaveFeatures: string[];
+  integrations: string[];
+  brandAesthetic: string[];
+  fullName: string;
+  jobTitle: string;
+  businessName: string;
+  email: string;
+  website: string;
+  industry: string;
+  operationalBottleneck: string;
 };
 
-const detailBlocks: DetailBlock[] = [
-  {
-    need: "Website & Digital Presence",
-    key: "website",
-    title: "What does your website need to do?",
-    options: [
-      "Book appointments or reservations",
-      "Accept online payments",
-      "Let customers log in / view an account",
-      "Sell products (e-commerce)",
-      "Showcase a portfolio or gallery",
-      "Publish blog or content updates",
-      "Provide instant quotes or estimates",
-      "Just needs a modern redesign, no new functionality",
-      OTHER,
-    ],
-  },
-  {
-    need: "Automation",
-    key: "automation",
-    title: "Which manual tasks are you hoping to automate?",
-    options: [
-      "Following up with leads or customers",
-      "Sending appointment reminders",
-      "Routing/assigning incoming enquiries",
-      "Invoicing or billing",
-      "Syncing data between tools you already use",
-      "Generating reports",
-      OTHER,
-    ],
-  },
-  {
-    need: "AI",
-    key: "ai",
-    title: "Where do you want AI involved?",
-    options: [
-      "Answering customer questions (chatbot/support)",
-      "Qualifying or following up with leads",
-      "Creating content (marketing, social, etc.)",
-      "Summarizing or analyzing business data",
-      "Internal assistant for your team",
-      "Not sure yet — want recommendations",
-      OTHER,
-    ],
-  },
-  {
-    need: "Lead Generation",
-    key: "leadGeneration",
-    title: "What's the goal for lead generation?",
-    options: [
-      "Get more enquiries from a landing page or campaign",
-      "Let customers book a call or appointment directly",
-      "Automatically follow up with new leads",
-      "Connect leads into a CRM or spreadsheet",
-      "Track which sources generate the best leads",
-      OTHER,
-    ],
-  },
-  {
-    need: "Integrations",
-    key: "integrations",
-    title: "Which tools do you need connected?",
-    options: ["Google Workspace", "Shopify", "QuickBooks", "HubSpot", "Calendly", "Mailchimp", "Zapier", "Other"],
-    freeText: {
-      label: "List the tools/software you currently use",
-      placeholder: "e.g. QuickBooks, Calendly, Shopify, Mailchimp, Google Sheets",
-    },
-  },
-];
+const initialData: FormData = {
+  growthPillars: [], mustHaveFeatures: [], integrations: [], brandAesthetic: [],
+  fullName: "", jobTitle: "", businessName: "", email: "", website: "", industry: "", operationalBottleneck: "",
+};
 
-function StepContainer({ children }: { children: ReactNode }) {
-  return <div className="animate-step-in" role="group">{children}</div>;
-}
+const toggle = (list: string[], value: string) =>
+  list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
 
-function ProgressBar({ step, total }: { step: number; total: number }) {
+const emailValid = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+/* -------------------------------- primitives ------------------------------- */
+
+function ProgressHeader({ step, total }: { step: number; total: number }) {
   return (
-    <div className="mb-10" aria-label={`Step ${step} of ${total}`}>
-      <div className="mb-3 flex justify-between text-xs font-bold uppercase text-muted-foreground">
-        <span>Consultation request</span><span>{step} / {total}</span>
+    <div className="mb-10">
+      <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+        <div>
+          <p className="text-xs font-extrabold uppercase tracking-widest text-primary">Step {step} of {total}</p>
+          <p className="mt-1 text-sm font-bold text-foreground">Business Growth Assessment</p>
+        </div>
+        <p className="text-xs font-semibold text-muted-foreground">{stageTitles[step - 1]}</p>
       </div>
-      <div className="h-1 bg-border"><div className="h-full bg-primary transition-all duration-500" style={{ width: `${(step / total) * 100}%` }} /></div>
+      <div className="h-1.5 overflow-hidden rounded-full bg-border" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={total} aria-label="Assessment progress">
+        <div className="h-full rounded-full bg-primary transition-all duration-500" style={{ width: `${(step / total) * 100}%` }} />
+      </div>
     </div>
   );
 }
 
-function AnswerCard({ choice, selected, onClick, multi = false }: { choice: Choice; selected: boolean; onClick: () => void; multi?: boolean }) {
+function SelectCard({ title, description, selected, onClick, icon: Icon }: { title: string; description?: string; selected: boolean; onClick: () => void; icon?: LucideIcon }) {
   return (
-    <button type="button" aria-pressed={selected} onClick={onClick} className={`w-full rounded-md border p-5 text-left transition-all hover:-translate-y-0.5 hover:border-primary focus-visible:outline-2 ${selected ? "border-primary bg-secondary" : "border-border bg-background"}`}>
+    <button type="button" aria-pressed={selected} onClick={onClick}
+      className={`group h-full w-full rounded-xl border p-5 text-left shadow-sm backdrop-blur transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-secondary shadow-md" : "border-border bg-background/70"}`}>
       <span className="flex items-start justify-between gap-4">
-        <span><strong className="block text-sm text-foreground">{choice.title}</strong>{choice.description && <span className="mt-1 block text-sm text-muted-foreground">{choice.description}</span>}</span>
-        <span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center border ${multi ? "rounded-sm" : "rounded-full"} ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border"}`} aria-hidden="true">{selected ? "✓" : ""}</span>
+        <span className="flex items-start gap-3">
+          {Icon && <span className={`mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg ${selected ? "bg-primary text-primary-foreground" : "bg-secondary text-primary"}`}><Icon className="size-4" aria-hidden="true" /></span>}
+          <span>
+            <strong className="block text-sm font-extrabold text-foreground">{title}</strong>
+            {description && <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{description}</span>}
+          </span>
+        </span>
+        <span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border"}`} aria-hidden="true">
+          {selected && <Check className="size-3.5" />}
+        </span>
       </span>
     </button>
   );
 }
 
+function CheckboxPill({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
+  return (
+    <button type="button" aria-pressed={selected} onClick={onClick}
+      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background text-muted-foreground"}`}>
+      <span className={`flex size-4 items-center justify-center rounded-sm border ${selected ? "border-primary-foreground/60" : "border-border"}`} aria-hidden="true">{selected && <Check className="size-3" />}</span>
+      {label}
+    </button>
+  );
+}
+
+function StepHeading({ title, copy }: { title: string; copy?: string }) {
+  return <div className="mb-8"><h3 className="text-2xl font-extrabold md:text-4xl">{title}</h3>{copy && <p className="mt-3 max-w-2xl text-muted-foreground">{copy}</p>}</div>;
+}
+
+function StepShell({ children }: { children: ReactNode }) { return <div className="animate-step-in">{children}</div>; }
+
+function Field({ label, value, onChange, type = "text", placeholder, error, required = true, maxLength }: { label: string; value: string; onChange: (value: string) => void; type?: string; placeholder?: string; error?: string; required?: boolean; maxLength?: number }) {
+  return (
+    <label className="block text-sm font-bold">
+      {label}{!required && <span className="font-normal text-muted-foreground"> (optional)</span>}
+      <input type={type} value={value} maxLength={maxLength} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} aria-invalid={Boolean(error)}
+        className={`mt-2 h-12 w-full rounded-lg border bg-background px-4 font-normal transition-colors focus:outline-none ${error ? "border-destructive" : "border-border focus:border-primary"}`} />
+      {error && <span role="alert" className="mt-1.5 block text-xs font-semibold text-destructive">{error}</span>}
+    </label>
+  );
+}
+
+/* --------------------------------- flow ---------------------------------- */
+
+const TOTAL = 4;
+
 export function ConsultationFlow() {
   const [step, setStep] = useState(1);
-  const [selectedNeeds, setSelectedNeeds] = useState<string[]>([]);
-  const [details, setDetails] = useState<Record<string, string[]>>({});
-  const [detailNotes, setDetailNotes] = useState<Record<string, string>>({});
-  const [integrationTools, setIntegrationTools] = useState("");
-  const [challenge, setChallenge] = useState("");
-  const [timeline, setTimeline] = useState("");
+  const [formData, setFormData] = useState<FormData>(initialData);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [submitting, setSubmitting] = useState(false);
   const [complete, setComplete] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const firstRender = useRef(true);
 
-  // Keep the top of the current step in view when moving between stages.
   useEffect(() => {
     if (firstRender.current) { firstRender.current = false; return; }
     const node = containerRef.current;
     if (!node) return;
-    const reduce = typeof document !== "undefined" && document.documentElement.classList.contains("a11y-reduce-motion");
+    const reduce = document.documentElement.classList.contains("a11y-reduce-motion");
     const top = node.getBoundingClientRect().top + window.scrollY - 96;
     window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
   }, [step, complete]);
 
-  const activeBlocks = useMemo(
-    () => detailBlocks.filter((block) => selectedNeeds.includes(block.need)),
-    [selectedNeeds],
+  const update = <K extends keyof FormData>(key: K, value: FormData[K]) => setFormData((current) => ({ ...current, [key]: value }));
+
+  const activeGroups = useMemo(
+    () => featureGroups.filter((group) => formData.growthPillars.includes(group.pillar)),
+    [formData.growthPillars],
   );
-  const hasDetailStep = activeBlocks.length > 0;
-  const total = hasDetailStep ? 5 : 4;
-  // Logical step ids in order
-  const stepIds = hasDetailStep
-    ? (["needs", "detail", "challenge", "timeline", "contact"] as const)
-    : (["needs", "challenge", "timeline", "contact"] as const);
-  const currentId = stepIds[Math.min(step, total) - 1];
 
-  const toggleDetail = (key: string, option: string) =>
-    setDetails((current) => {
-      const chosen = current[key] ?? [];
-      return { ...current, [key]: chosen.includes(option) ? chosen.filter((item) => item !== option) : [...chosen, option] };
-    });
-
-  const advance = (valid: boolean) => {
-    if (!valid) { setError("Please choose an option to continue."); return; }
-    setError(""); setStep((current) => Math.min(total, current + 1));
+  const goNext = () => {
+    if (step === 1 && formData.growthPillars.length === 0) { setError("Select at least one area to continue."); return; }
+    if (step === 2 && activeGroups.length > 0 && formData.mustHaveFeatures.length === 0) { setError("Select at least one must-have feature to continue."); return; }
+    setError("");
+    setStep((current) => Math.min(TOTAL, current + 1));
   };
   const goBack = () => { setError(""); setStep((current) => Math.max(1, current - 1)); };
 
-  const detailStepValid = activeBlocks.every((block) => {
-    const chosen = details[block.key] ?? [];
-    if (block.key === "integrations") return chosen.length > 0 || integrationTools.trim().length > 0;
-    return chosen.length > 0;
-  });
+  const validateProfile = () => {
+    const errors: Record<string, string> = {};
+    if (!formData.fullName.trim()) errors.fullName = "Please enter your full name.";
+    if (!formData.jobTitle.trim()) errors.jobTitle = "Please enter your job title.";
+    if (!formData.businessName.trim()) errors.businessName = "Please enter your business name.";
+    if (!emailValid(formData.email)) errors.email = "Please enter a valid business email.";
+    if (!formData.industry) errors.industry = "Please select your primary audience or industry.";
+    const bottleneck = formData.operationalBottleneck.trim();
+    if (bottleneck.length < 50) errors.operationalBottleneck = `Please add a little more detail (${bottleneck.length}/50 characters minimum).`;
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    const data = new FormData(form);
-    const value = (name: string) => String(data.get(name) ?? "").trim();
-
-    const submission = {
-      areasOfInterest: selectedNeeds,
-      requirements: activeBlocks.map((block) => ({
-        area: block.need,
-        question: block.title,
-        selected: details[block.key] ?? [],
-        ...(detailNotes[block.key]?.trim() ? { additionalDetail: (detailNotes[block.key] ?? "").trim() } : {}),
-        ...(block.key === "integrations" && integrationTools.trim() ? { toolsListed: integrationTools.trim() } : {}),
-      })),
-      biggestChallenge: challenge,
-      timeline,
-      contact: {
-        firstName: value("firstName"),
-        lastName: value("lastName"),
-        company: value("company"),
-        email: value("email"),
-        phone: value("phone"),
-        website: value("website"),
-        message: value("message"),
-        teamSize: value("teamSize"),
-        currentTools: integrationTools.trim() || value("currentTools"),
-        designInspiration: value("designInspiration"),
-        hearAboutUs: value("hearAboutUs"),
-      },
-      submittedAt: new Date().toISOString(),
-    };
-
-    // Structured payload, ready to forward to email/webhook/database.
-    console.info("[ELEVEX consultation request]", submission);
-    setComplete(true);
+  const submit = async () => {
+    if (!validateProfile()) { setError("Please fix the highlighted fields."); return; }
+    setError(""); setSubmitting(true);
+    const payload = { ...formData, submittedAt: new Date().toISOString() };
+    const webhook = import.meta.env["VITE_LEAD_WEBHOOK_URL"] as string | undefined;
+    try {
+      if (webhook) {
+        await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      } else {
+        console.info("[ELEVEX discovery submission]", payload);
+      }
+    } catch (submissionError) {
+      console.error("[ELEVEX discovery submission failed]", submissionError);
+    } finally {
+      setSubmitting(false);
+      setComplete(true);
+    }
   };
 
   if (complete) return (
-    <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in py-10 text-center">
-      <span className="mb-6 inline-flex size-12 items-center justify-center rounded-full bg-secondary text-xl text-primary">✓</span>
-      <h3 className="text-3xl font-extrabold md:text-5xl">Thanks. We've got it.</h3>
-      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Your request was sent successfully. We'll review your information and email you to arrange a date and time for your 30-minute online video consultation.</p>
-      <div className="mt-8 flex flex-col items-center gap-4"><a href="#top" className="text-sm font-semibold text-muted-foreground hover:text-primary">Back to top</a></div>
+    <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
+      <span className="mb-6 inline-flex size-14 items-center justify-center rounded-full bg-secondary text-primary"><Check className="size-6" aria-hidden="true" /></span>
+      <h3 className="text-3xl font-extrabold md:text-5xl">Thanks — We've Got Everything We Need</h3>
+      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Your requirements have been submitted successfully. Our team will review your goals, priorities, and technology stack before creating a tailored ELEVEX demo experience designed around your business.</p>
+      <ul className="mx-auto mt-8 grid max-w-md gap-3 text-left text-sm">
+        {["A custom demo concept", "Recommended automation opportunities", "Suggested technology stack", "A follow-up link to discuss next steps"].map((item) => (
+          <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" /><span className="text-muted-foreground">{item}</span></li>
+        ))}
+      </ul>
+      <p className="mt-8 text-sm font-bold">Expected review time: 24–48 business hours.</p>
+      <div className="mt-8"><Button asChild size="lg"><a href="/">Return to Homepage</a></Button></div>
     </div>
   );
 
   return (
-    <div ref={containerRef} className="mx-auto max-w-4xl scroll-mt-28">
-      <ProgressBar step={Math.min(step, total)} total={total} />
+    <div ref={containerRef} className="mx-auto w-full max-w-5xl scroll-mt-28 rounded-2xl border bg-background/60 p-6 shadow-sm backdrop-blur md:p-10">
+      <ProgressHeader step={step} total={TOTAL} />
 
-      {currentId === "needs" && <StepContainer><StepHeading title="What can we help you improve?" copy="Select the areas you're interested in." /><div className="grid gap-3 sm:grid-cols-2">{needs.map((choice) => <AnswerCard key={choice.title} choice={choice} multi selected={selectedNeeds.includes(choice.title)} onClick={() => setSelectedNeeds((current) => current.includes(choice.title) ? current.filter((item) => item !== choice.title) : [...current, choice.title])} />)}</div><StepActions error={error} onNext={() => advance(selectedNeeds.length > 0)} /></StepContainer>}
-
-      {currentId === "detail" && (
-        <StepContainer>
-          <StepHeading title="Tell us more about what you need" copy="Select everything that applies — this helps us scope your build before the call." />
-          <div className="space-y-10">
-            {activeBlocks.map((block) => {
-              const chosen = details[block.key] ?? [];
-              return (
-                <fieldset key={block.key}>
-                  <legend className="mb-4 text-lg font-extrabold md:text-xl">{block.title}</legend>
-                  {block.freeText && (
-                    <label className="mb-4 block text-sm font-bold">{block.freeText.label}
-                      <input type="text" value={integrationTools} onChange={(event) => setIntegrationTools(event.target.value)} placeholder={block.freeText.placeholder} className="mt-2 h-12 w-full rounded-md border bg-background px-4 font-normal focus:border-primary focus:outline-none" />
-                    </label>
-                  )}
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {block.options.map((option) => <AnswerCard key={option} choice={{ title: option }} multi selected={chosen.includes(option)} onClick={() => toggleDetail(block.key, option)} />)}
-                  </div>
-                  {(chosen.includes(OTHER) || chosen.includes("Other")) && (
-                    <label className="mt-4 block text-sm font-bold">Tell us more
-                      <input type="text" value={detailNotes[block.key] ?? ""} onChange={(event) => setDetailNotes((current) => ({ ...current, [block.key]: event.target.value }))} placeholder="Describe what you have in mind." className="mt-2 h-12 w-full rounded-md border bg-background px-4 font-normal focus:border-primary focus:outline-none" />
-                    </label>
-                  )}
-                </fieldset>
-              );
-            })}
+      {step === 1 && (
+        <StepShell>
+          <StepHeading title="Where do you want to grow?" copy="Select every area you'd like to improve. Most businesses complete this in under 2 minutes." />
+          <div className="grid gap-4 md:grid-cols-2">
+            {pillars.map((pillar) => (
+              <SelectCard key={pillar.id} title={pillar.title} description={pillar.description} icon={pillar.icon}
+                selected={formData.growthPillars.includes(pillar.id)}
+                onClick={() => update("growthPillars", toggle(formData.growthPillars, pillar.id))} />
+            ))}
           </div>
-          <StepActions error={error} onBack={goBack} onNext={() => advance(detailStepValid)} />
-        </StepContainer>
+        </StepShell>
       )}
 
-      {currentId === "challenge" && <StepContainer><StepHeading title="What's your biggest challenge right now?" /><div className="grid gap-3 sm:grid-cols-2">{challenges.map((choice) => <AnswerCard key={choice.title} choice={choice} selected={challenge === choice.title} onClick={() => setChallenge(choice.title)} />)}</div><StepActions error={error} onBack={goBack} onNext={() => advance(Boolean(challenge))} /></StepContainer>}
+      {step === 2 && (
+        <StepShell>
+          <StepHeading title="What does your MVP need to include?" copy="Select the must-haves for a first working version. Your answers help us build a more relevant demo." />
+          {activeGroups.length === 0 ? (
+            <p className="rounded-xl border border-dashed p-6 text-muted-foreground">No problem — we'll recommend a starting point based on the bottleneck you describe in the next steps.</p>
+          ) : (
+            <div className="space-y-10">
+              {activeGroups.map((group) => (
+                <fieldset key={group.pillar}>
+                  <legend className="mb-4 text-lg font-extrabold md:text-xl">{group.title} — Must-Haves</legend>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    {group.features.map((feature) => (
+                      <SelectCard key={feature.title} title={feature.title} description={feature.description}
+                        selected={formData.mustHaveFeatures.includes(feature.title)}
+                        onClick={() => update("mustHaveFeatures", toggle(formData.mustHaveFeatures, feature.title))} />
+                    ))}
+                  </div>
+                </fieldset>
+              ))}
+            </div>
+          )}
+        </StepShell>
+      )}
 
-      {currentId === "timeline" && <StepContainer><StepHeading title="When are you looking to make a change?" /><div className="grid gap-3 sm:grid-cols-2">{timelines.map((choice) => <AnswerCard key={choice.title} choice={choice} selected={timeline === choice.title} onClick={() => setTimeline(choice.title)} />)}</div><StepActions error={error} onBack={goBack} onNext={() => advance(Boolean(timeline))} /></StepContainer>}
+      {step === 3 && (
+        <StepShell>
+          <StepHeading title="Your tools and your look" copy="We'll review your requirements before recommending solutions." />
+          <fieldset>
+            <legend className="mb-1 text-lg font-extrabold md:text-xl">What tools does your business already use?</legend>
+            <p className="mb-5 text-sm text-muted-foreground">Select any that apply — leave blank if none.</p>
+            <div className="space-y-6">
+              {integrationGroups.map((group) => (
+                <div key={group.title}>
+                  <p className="mb-3 text-xs font-extrabold uppercase tracking-widest text-muted-foreground">{group.title}</p>
+                  <div className="flex flex-wrap gap-2.5">
+                    {group.items.map((item) => (
+                      <CheckboxPill key={item} label={item} selected={formData.integrations.includes(item)}
+                        onClick={() => update("integrations", toggle(formData.integrations, item))} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset className="mt-12">
+            <legend className="mb-5 text-lg font-extrabold md:text-xl">Which style best represents your business?</legend>
+            <div className="grid gap-4 md:grid-cols-2">
+              {aesthetics.map((style) => (
+                <SelectCard key={style.title} title={style.title} description={style.description}
+                  selected={formData.brandAesthetic.includes(style.title)}
+                  onClick={() => update("brandAesthetic", toggle(formData.brandAesthetic, style.title))} />
+              ))}
+            </div>
+          </fieldset>
+        </StepShell>
+      )}
 
-      {currentId === "contact" && <StepContainer><StepHeading title="Let's continue the conversation." copy="Leave your details and we'll get back to you to discuss your goals and potential next steps." /><form onSubmit={submit}>
-        <div className="grid gap-5 sm:grid-cols-2"><Field label="First Name" name="firstName" /><Field label="Last Name" name="lastName" /><Field label="Business / Company" name="company" /><Field label="Work Email" name="email" type="email" /><Field label="Phone" name="phone" type="tel" /><Field label="Website (optional)" name="website" required={false} /></div>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2">
-          <SelectField label="Team size (optional)" name="teamSize" options={["Just me", "2–10", "11–50", "50+"]} />
-          <SelectField label="How did you hear about us? (optional)" name="hearAboutUs" options={["Referral", "Google", "Social Media", "Other"]} />
-          {!integrationTools.trim() && <Field label="Current tools you rely on (optional)" name="currentTools" required={false} placeholder="Any software or platforms you'd want us to know about (CRM, booking, payments, etc.)" />}
-          <Field label="Anything you'd want it to look or work like? (optional)" name="designInspiration" required={false} placeholder="Any sites, apps, or examples you like the feel of?" />
-        </div>
-        <label className="mt-5 block text-sm font-bold">Message (optional)<textarea name="message" rows={4} placeholder="Tell us briefly about your business or what you're trying to achieve." className="mt-2 w-full rounded-md border bg-background p-4 font-normal focus:border-primary focus:outline-none" /></label>
-        <div className="mt-8 flex flex-wrap items-center gap-4"><Button type="button" variant="ghost" onClick={goBack}>← Back</Button><Button type="submit" size="lg">Request My 30-Min Video Consultation →</Button></div>
-        <p className="mt-4 text-xs text-muted-foreground">By submitting this form, you agree to be contacted by ELEVEX regarding your inquiry.</p>
-      </form></StepContainer>}
+      {step === 4 && (
+        <StepShell>
+          <StepHeading title="A little about your business" copy="No sales pressure. No obligation." />
+          <div className="grid gap-5 md:grid-cols-2">
+            <Field label="Full Name" value={formData.fullName} onChange={(value) => update("fullName", value)} error={fieldErrors.fullName} />
+            <Field label="Job Title" value={formData.jobTitle} onChange={(value) => update("jobTitle", value)} error={fieldErrors.jobTitle} />
+            <Field label="Business Name" value={formData.businessName} onChange={(value) => update("businessName", value)} error={fieldErrors.businessName} />
+            <Field label="Business Email" type="email" value={formData.email} onChange={(value) => update("email", value)} error={fieldErrors.email} />
+            <Field label="Current Website" required={false} placeholder="https://yourwebsite.com" value={formData.website} onChange={(value) => update("website", value)} />
+            <label className="block text-sm font-bold">Primary Target Audience / Industry
+              <select value={formData.industry} onChange={(event) => update("industry", event.target.value)} aria-invalid={Boolean(fieldErrors.industry)}
+                className={`mt-2 h-12 w-full rounded-lg border bg-background px-4 font-normal focus:outline-none ${fieldErrors.industry ? "border-destructive" : "border-border focus:border-primary"}`}>
+                <option value="">Select an option</option>
+                {industries.map((item) => <option key={item} value={item}>{item}</option>)}
+              </select>
+              {fieldErrors.industry && <span role="alert" className="mt-1.5 block text-xs font-semibold text-destructive">{fieldErrors.industry}</span>}
+            </label>
+          </div>
+          <label className="mt-6 block text-sm font-bold">Core Operational Bottleneck
+            <span className="mt-1 block text-sm font-normal text-muted-foreground">What is the single most time-consuming manual task in your business today?</span>
+            <textarea rows={5} maxLength={500} value={formData.operationalBottleneck} onChange={(event) => update("operationalBottleneck", event.target.value)} aria-invalid={Boolean(fieldErrors.operationalBottleneck)}
+              className={`mt-2 w-full rounded-lg border bg-background p-4 font-normal focus:outline-none ${fieldErrors.operationalBottleneck ? "border-destructive" : "border-border focus:border-primary"}`} />
+            <span className="mt-1.5 flex justify-between text-xs text-muted-foreground">
+              <span className={fieldErrors.operationalBottleneck ? "font-semibold text-destructive" : ""}>{fieldErrors.operationalBottleneck ?? "Minimum 50 characters."}</span>
+              <span>{formData.operationalBottleneck.length}/500</span>
+            </span>
+          </label>
+          <p className="mt-6 text-xs text-muted-foreground">By submitting this form, you agree to be contacted by ELEVEX regarding your inquiry.</p>
+        </StepShell>
+      )}
+
+      <div className="mt-10 flex flex-wrap items-center gap-3 border-t pt-6">
+        {step > 1 && <Button type="button" variant="ghost" onClick={goBack}>← Back</Button>}
+        {step < TOTAL
+          ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
+          : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit My Requirements →"}</Button>}
+        <span className="text-xs text-muted-foreground">Takes under 2 minutes — no obligation.</span>
+      </div>
+      {error && <p role="alert" className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
     </div>
   );
 }
-
-function StepHeading({ title, copy }: { title: string; copy?: string }) { return <div className="mb-8"><h3 className="text-2xl font-extrabold md:text-4xl">{title}</h3>{copy && <p className="mt-3 text-muted-foreground">{copy}</p>}</div>; }
-function StepActions({ onBack, onNext, error }: { onBack?: () => void; onNext: () => void; error: string }) { return <div className="mt-8"><div className="flex items-center gap-3">{onBack && <Button variant="ghost" onClick={onBack}>← Back</Button>}<Button size="lg" onClick={onNext}>Continue →</Button></div>{error && <p role="alert" className="mt-3 text-sm font-semibold text-destructive">{error}</p>}</div>; }
-function Field({ label, name, type = "text", required = true, placeholder }: { label: string; name: string; type?: string; required?: boolean; placeholder?: string }) { return <label className="block text-sm font-bold">{label}<input name={name} type={type} required={required} placeholder={placeholder} className="mt-2 h-12 w-full rounded-md border bg-background px-4 font-normal focus:border-primary focus:outline-none" /></label>; }
-function SelectField({ label, name, options }: { label: string; name: string; options: string[] }) { return <label className="block text-sm font-bold">{label}<select name={name} defaultValue="" className="mt-2 h-12 w-full rounded-md border bg-background px-4 font-normal focus:border-primary focus:outline-none"><option value="">Select an option</option>{options.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>; }
