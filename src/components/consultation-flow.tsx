@@ -143,6 +143,18 @@ export function ConsultationFlow() {
   const [timeline, setTimeline] = useState("");
   const [error, setError] = useState("");
   const [complete, setComplete] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const firstRender = useRef(true);
+
+  // Keep the top of the current step in view when moving between stages.
+  useEffect(() => {
+    if (firstRender.current) { firstRender.current = false; return; }
+    const node = containerRef.current;
+    if (!node) return;
+    const reduce = typeof document !== "undefined" && document.documentElement.classList.contains("a11y-reduce-motion");
+    const top = node.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+  }, [step, complete]);
 
   const activeBlocks = useMemo(
     () => detailBlocks.filter((block) => selectedNeeds.includes(block.need)),
