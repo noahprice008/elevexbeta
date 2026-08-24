@@ -1,3 +1,5 @@
+import { ElevexXMark } from "./elevex-x-mark";
+
 export function ElevexLogo({
   dark = true,
   compact = false,
@@ -8,15 +10,15 @@ export function ElevexLogo({
   tagline?: boolean;
 }) {
   if (compact) {
-    return <span className="font-extrabold text-electric">X</span>;
+    return <ElevexXMark className="h-[1em] w-[1em]" />;
   }
 
   return (
     <span className="inline-flex flex-col" aria-label="ELEVEX">
-      <span className="font-extrabold tracking-tight">
+      <span className="inline-flex items-center font-extrabold tracking-tight">
         <span className={dark ? "text-cloud" : "text-navy"}>ELEV</span>
         <span className="text-blue-hover">E</span>
-        <span className="text-electric">X</span>
+        <ElevexXMark className="ml-[0.02em] h-[0.86em] w-[0.86em] translate-y-[0.02em]" />
       </span>
       {tagline && (
         <span
