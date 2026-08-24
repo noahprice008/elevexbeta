@@ -22,7 +22,7 @@ function ConsultantsPage() {
         title="Stop Chasing Tire-Kickers. Streamline Your High-Ticket Client Pipeline."
         subtitle="Your expertise is high-value, but your client acquisition shouldn't require manual chasing. ELEVEX builds premium digital presences and automated qualification systems for consultants and professional service providers—giving you back your time and bringing you highly qualified clients."
         primary={{ label: "Get Your System Built Within a Week (Try Free)" }}
-        secondary={{ label: "Book a Free 30-Min Video Consultation" }}
+        secondary={{ label: "Request a Custom Demo" }}
         badge="Live platform within a week. Free for 21 days. Pay only if you stay."
       />
       <PainPoints
@@ -64,7 +64,7 @@ function ConsultantsPage() {
       <FinalCta
         title="Ready to reclaim your calendar and scale your firm?"
         body="Your next high-ticket client is out there. Stop losing them to clunky web pages, manual back-and-forths, or slow responses. Let ELEVEX build a digital foundation that works as hard as you do."
-        button="Book a 30-Min Video Consultation →"
+        button="Request a Custom Demo →"
         email="sales@elevex.digital"
       />
     </AudienceLayout>

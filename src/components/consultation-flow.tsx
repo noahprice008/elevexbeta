@@ -45,11 +45,11 @@ const integrationGroups: { title: string; items: string[] }[] = [
   { title: "Cloud Storage", items: ["Google Drive", "Dropbox", "OneDrive"] },
 ];
 
-const aesthetics = [
-  { title: "Modern & Professional", description: "Clean, trustworthy, professional." },
-  { title: "Warm & Approachable", description: "Friendly, welcoming, human-centered." },
-  { title: "Minimalist & Premium", description: "Luxury-inspired, spacious, refined." },
-  { title: "Bold & High-Contrast", description: "Energetic, modern, technology-forward." },
+const aesthetics: { title: string; description: string; swatches: string[]; font: string; radius: string }[] = [
+  { title: "Modern & Professional", description: "Clean, trustworthy, high-contrast palette.", swatches: ["#0B1220", "#38BDF8", "#F8FAFC"], font: "font-sans tracking-tight", radius: "rounded-md" },
+  { title: "Warm & Approachable", description: "Soft tones, rounded shapes, human-centered.", swatches: ["#F5E6D8", "#E8A87C", "#8C5E4A"], font: "font-sans", radius: "rounded-2xl" },
+  { title: "Minimalist & Premium", description: "Elegant type, spacious monochrome layouts.", swatches: ["#111111", "#8A8A8A", "#EFEFEF"], font: "font-serif tracking-wide", radius: "rounded-none" },
+  { title: "Bold & High-Contrast", description: "Vibrant, sharp, technology-forward energy.", swatches: ["#0F0F23", "#7C3AED", "#22D3EE"], font: "font-sans font-black uppercase", radius: "rounded-lg" },
 ];
 
 const industries = [
@@ -59,6 +59,15 @@ const industries = [
   "Wellness Studios & Clinics",
   "Growing Local Businesses",
 ];
+
+const bottleneckPlaceholders: Record<string, string> = {
+  "Tradesmen & Contractors": "e.g., spending hours on manual client follow-ups and typing up quotes on my phone after a long day in the field...",
+  "Consultants & Professional Services": "e.g., manually copying lead info from our landing page into our spreadsheet and sending out individual introductory emails...",
+  "Security & Facilities Firms": "e.g., coordinating security staff shifts manually across multiple sites using messy group chats and sheets...",
+  "Wellness Studios & Clinics": "e.g., spending half our day answering basic booking questions on the phone and manually texting appointment reminders...",
+  "Growing Local Businesses": "e.g., manually double-entering client details into separate invoices and our legacy CRM software...",
+};
+
 
 const stageTitles = ["Core Growth Pillars", "MVP Prioritization", "Integrations & Brand Direction", "Business Profile"];
 
@@ -131,6 +140,27 @@ function CheckboxPill({ label, selected, onClick }: { label: string; selected: b
       className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background text-muted-foreground"}`}>
       <span className={`flex size-4 items-center justify-center rounded-sm border ${selected ? "border-primary-foreground/60" : "border-border"}`} aria-hidden="true">{selected && <Check className="size-3" />}</span>
       {label}
+    </button>
+  );
+}
+
+function AestheticCard({ style, selected, onClick }: { style: (typeof aesthetics)[number]; selected: boolean; onClick: () => void }) {
+  return (
+    <button type="button" aria-pressed={selected} onClick={onClick}
+      className={`group relative overflow-hidden rounded-xl border p-5 text-left backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-primary hover:shadow-lg hover:shadow-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-secondary shadow-lg shadow-primary/15" : "border-border bg-background/70"}`}>
+      <span aria-hidden="true" className={`flex h-24 w-full items-end gap-1.5 overflow-hidden p-3 ${style.radius}`} style={{ background: `linear-gradient(135deg, ${style.swatches[0]} 0%, ${style.swatches[1]} 100%)` }}>
+        <span className={`block h-2.5 w-16 ${style.radius}`} style={{ background: style.swatches[2] }} />
+        <span className={`block h-2.5 w-8 ${style.radius}`} style={{ background: style.swatches[2], opacity: 0.6 }} />
+      </span>
+      <span className="mt-4 flex items-start justify-between gap-3">
+        <span>
+          <strong className={`block text-sm font-extrabold text-foreground ${style.font}`}>{style.title}</strong>
+          <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{style.description}</span>
+        </span>
+        <span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border"}`} aria-hidden="true">
+          {selected && <Check className="size-3.5" />}
+        </span>
+      </span>
     </button>
   );
 }
@@ -302,7 +332,7 @@ export function ConsultationFlow() {
             <legend className="mb-5 text-lg font-extrabold md:text-xl">Which style best represents your business?</legend>
             <div className="grid gap-4 md:grid-cols-2">
               {aesthetics.map((style) => (
-                <SelectCard key={style.title} title={style.title} description={style.description}
+                <AestheticCard key={style.title} style={style}
                   selected={formData.brandAesthetic.includes(style.title)}
                   onClick={() => update("brandAesthetic", toggle(formData.brandAesthetic, style.title))} />
               ))}
@@ -331,7 +361,7 @@ export function ConsultationFlow() {
           </div>
           <label className="mt-6 block text-sm font-bold">Core Operational Bottleneck
             <span className="mt-1 block text-sm font-normal text-muted-foreground">What is the single most time-consuming manual task in your business today?</span>
-            <textarea rows={5} maxLength={500} value={formData.operationalBottleneck} onChange={(event) => update("operationalBottleneck", event.target.value)} aria-invalid={Boolean(fieldErrors.operationalBottleneck)}
+            <textarea rows={5} maxLength={500} value={formData.operationalBottleneck} placeholder={bottleneckPlaceholders[formData.industry] ?? "e.g., we lose hours every week re-typing the same customer details across email, spreadsheets and invoices..."} onChange={(event) => update("operationalBottleneck", event.target.value)} aria-invalid={Boolean(fieldErrors.operationalBottleneck)}
               className={`mt-2 w-full rounded-lg border bg-background p-4 font-normal focus:outline-none ${fieldErrors.operationalBottleneck ? "border-destructive" : "border-border focus:border-primary"}`} />
             <span className="mt-1.5 flex justify-between text-xs text-muted-foreground">
               <span className={fieldErrors.operationalBottleneck ? "font-semibold text-destructive" : ""}>{fieldErrors.operationalBottleneck ?? "Minimum 50 characters."}</span>
@@ -342,12 +372,14 @@ export function ConsultationFlow() {
         </StepShell>
       )}
 
-      <div className="mt-10 flex flex-wrap items-center gap-3 border-t pt-6">
-        {step > 1 && <Button type="button" variant="ghost" onClick={goBack}>← Back</Button>}
-        {step < TOTAL
-          ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
-          : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit My Requirements →"}</Button>}
-        <span className="text-xs text-muted-foreground">Takes under 2 minutes — no obligation.</span>
+      <div className="mt-10 border-t pt-6">
+        <div className="flex flex-wrap items-center gap-3">
+          {step > 1 && <Button type="button" variant="ghost" onClick={goBack}>← Back</Button>}
+          {step < TOTAL
+            ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
+            : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit MVP Intake & Request Demo"}</Button>}
+        </div>
+        <p className="mt-3 text-xs text-muted-foreground">Takes under 2 minutes • No credit card required • No obligation</p>
       </div>
       {error && <p role="alert" className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
     </div>
