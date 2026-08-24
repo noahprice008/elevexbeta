@@ -160,8 +160,8 @@ export function PricingBlock({ intro, card1, card2 }: {
           </article>
         </div>
         <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <Button asChild size="lg"><a href="/#consultation">Book a Consultation →</a></Button>
-          <span className="text-sm text-muted-foreground">Free initial consultation — no obligation.</span>
+          <Button asChild size="lg"><a href="/#consultation">Book a 30-Min Video Consultation →</a></Button>
+          <span className="text-sm text-muted-foreground">Free 30-minute online video consultation — no obligation.</span>
         </div>
       </div>
     </section>
@@ -190,7 +190,7 @@ export const standardPricing = {
     label: "Start here",
     title: "Free Consultation & Discovery",
     price: "$0",
-    copy: "A structured conversation about your business, your challenges and where technology can make the biggest difference — followed by a clear recommendation and a fixed quote.",
+    copy: "A structured 30-minute online video call about your business, your challenges and where technology can make the biggest difference — followed by a clear recommendation and a fixed quote.",
     items: ["No obligation, no commitment", "No card required", "Fixed monthly price quoted on the call", "Live platform delivered within a week", "21 days free before you pay anything"],
   },
   card2: {

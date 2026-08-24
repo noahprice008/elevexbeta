@@ -22,7 +22,7 @@ function TradesmenPage() {
         title="Get Your Evenings Back. Quotes, Jobs, and Follow-Ups Handled—Without the Paperwork."
         subtitle="Your tools belong on-site, not at a desk. We build modern websites, automated booking systems, and instant quoting tools for tradesmen. Get more jobs, secure faster payments, and stop spending your weekends chasing paperwork."
         primary={{ label: "Try ELEVEX Free for 21 Days →", note: "No card required. Live system within a week." }}
-        secondary={{ label: "Book a 15-Min Discovery Call", note: "Free consultation" }}
+        secondary={{ label: "Book a 30-Min Video Discovery Call", note: "Free consultation" }}
         badge="Live platform within a week. Free for 21 days. Pay only if it works for you. No contracts, cancel anytime."
       />
       <PainPoints
@@ -49,7 +49,7 @@ function TradesmenPage() {
         title="Get your custom platform live within a week."
         sub="We don't do slow, expensive development projects. We build practical solutions fast so you can start saving time immediately."
         steps={[
-          { n: "01", title: "The 15-Min Chat (Free)", copy: "We discuss your trade, your biggest admin bottlenecks, and what you want to automate. We give you a clear recommendation and a fixed monthly quote on the spot." },
+          { n: "01", title: "The 30-Min Video Call (Free)", copy: "We discuss your trade, your biggest admin bottlenecks, and what you want to automate. We give you a clear recommendation and a fixed monthly quote on the spot." },
           { n: "02", title: "We Build It in a Week", copy: "We design your website, connect your scheduling tools, and set up your automations." },
           { n: "03", title: "21 Days to Test-Drive (Free)", copy: "We hand you the keys. You use the system for 21 days to book real jobs, send real quotes, and experience the time saved—without paying a single cent.", highlight: true, badge: "Free" },
           { n: "04", title: "Keep It or Cancel It", copy: "If it completely changes your business, you stay on for your flat monthly price (starting from $199/mo). No long contracts, no lock-ins, cancel anytime. If you don't love it, we turn it off and you owe us nothing." },
@@ -66,12 +66,12 @@ function TradesmenPage() {
         ]}
       />
       <PricingBlock
-        card1={{ ...standardPricing.card1, copy: "A structured conversation about your trade, your admin bottlenecks and where automation saves you the most time — followed by a clear recommendation and a fixed quote." }}
+        card1={{ ...standardPricing.card1, copy: "A structured 30-minute online video call about your trade, your admin bottlenecks and where automation saves you the most time — followed by a clear recommendation and a fixed quote." }}
         card2={standardPricing.card2}
       />
       <FinalCta
         title="Stop wasting your weekends on admin. Let's automate your trade."
-        button="Book Your Free Discovery Call →"
+        button="Book Your Free 30-Min Video Discovery Call →"
         subtext="No credit card. No obligation. Just a practical plan to get your time back."
       />
     </AudienceLayout>

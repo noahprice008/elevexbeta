@@ -22,7 +22,7 @@ function LocalBusinessPage() {
         title="Every Big Business Started as a Growing Local One."
         subtitle="You're growing, but your tools haven't caught up. ELEVEX builds practical websites, automations, and AI-powered systems that scale with you — without the agency price tag or the months-long wait."
         primary={{ label: "Get Your Platform Live Within a Week (Try Free)" }}
-        secondary={{ label: "Book a Free Consultation" }}
+        secondary={{ label: "Book a Free 30-Min Video Consultation" }}
         badge="Live platform within a week. Free for 21 days. Pay only if you stay."
       />
       <PainPoints
@@ -51,7 +51,7 @@ function LocalBusinessPage() {
         steps={[
           { n: "01", title: "Tell Us About Your Business", copy: "A short form on what you do, what's slowing you down, and where you want to grow." },
           { n: "02", title: "We Prepare Your Recommendation", copy: "A tailored presentation showing exactly what we'd build and why." },
-          { n: "03", title: "Discovery Call & Fixed Quote", copy: "We walk through the plan live and lock in one fixed monthly price." },
+          { n: "03", title: "30-Min Video Discovery Call & Fixed Quote", copy: "We walk through the plan live and lock in one fixed monthly price." },
           { n: "04", title: "Your Platform Goes Live in a Week", copy: "Built and delivered fast, with our team helping you get set up.", highlight: true, badge: "Free" },
           { n: "05", title: "21 Days Free, Then Only Pay If You Stay", copy: "No contract, no obligation, cancel anytime." },
         ]}
@@ -61,7 +61,7 @@ function LocalBusinessPage() {
       <FinalCta
         title="Ready to grow without the growing pains?"
         body="Whether it's your website, your admin, or your follow-ups slowing you down, ELEVEX can help you find the right place to start — free to try, before you ever pay a cent."
-        button="Book a Consultation →"
+        button="Book a 30-Min Video Consultation →"
         email="sales@elevex.digital"
       />
     </AudienceLayout>
