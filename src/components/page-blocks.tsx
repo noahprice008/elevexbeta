@@ -191,14 +191,14 @@ export const standardPricing = {
     title: "Free Consultation & Discovery",
     price: "$0",
     copy: "A structured conversation about your business, your challenges and where technology can make the biggest difference — followed by a clear recommendation and a fixed quote.",
-    items: ["No obligation, no commitment", "No card required", "Fixed monthly price quoted on the call", "Live platform delivered within a week", "30 days free before you pay anything"],
+    items: ["No obligation, no commitment", "No card required", "Fixed monthly price quoted on the call", "Live platform delivered within a week", "21 days free before you pay anything"],
   },
   card2: {
     label: "After your free trial",
-    title: "After Your 30-Day Free Trial",
+    title: "After Your 21-Day Free Trial",
     price: "From $199",
     priceSuffix: "/month",
-    copy: "The flat price we quote on your call is the price you pay if you continue after your free 30 days — no contracts, cancel anytime.",
+    copy: "The flat price we quote on your call is the price you pay if you continue after your free 21 days — no contracts, cancel anytime.",
     items: ["Hosting and secure infrastructure", "Ongoing maintenance and updates", "Priority support from your team", "Continuous optimization and improvements", "Monitoring, backups and reporting", "Room to add automation and AI over time"],
   },
 };

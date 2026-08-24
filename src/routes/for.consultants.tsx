@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta } from "@/components/page-blocks";
 
 const title = "Digital Systems for Consultants & Professional Services | ELEVEX";
-const description = "Premium digital presence and automated lead qualification for consultants. Live in 1 week, free for 30 days, from $199/month after.";
+const description = "Premium digital presence and automated lead qualification for consultants. Live within a week, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/consultants")({
   head: () => ({ meta: [
@@ -23,7 +23,7 @@ function ConsultantsPage() {
         subtitle="Your expertise is high-value, but your client acquisition shouldn't require manual chasing. ELEVEX builds premium digital presences and automated qualification systems for consultants and professional service providers—giving you back your time and bringing you highly qualified clients."
         primary={{ label: "Get Your System Built in 1 Week (Try Free)" }}
         secondary={{ label: "Book a Free Consultation" }}
-        badge="Live platform in 1 week. Free for 30 days. Pay only if you stay."
+        badge="Live platform in 1 week. Free for 21 days. Pay only if you stay."
       />
       <PainPoints
         title="Are you spending more time chasing leads than delivering expertise?"
@@ -52,13 +52,13 @@ function ConsultantsPage() {
           { n: "01", title: "Free Consultation & Discovery (Day 1)", copy: "We discuss your ideal client profile, your service model, and your current administrative bottlenecks, and quote a single fixed monthly fee on the call." },
           { n: "02", title: "Tailored Build & Integration (Days 2–7)", copy: "We design your site, set up your calendar routing, configure your qualification forms, and wire up your automations." },
           { n: "03", title: "Your Platform is Live (Day 8)", copy: "We deliver your fully functional, integrated platform." },
-          { n: "04", title: "30-Day Free Trial", copy: "You get a full 30 days to test the system in the real world, completely free.", highlight: true, badge: "Free" },
+          { n: "04", title: "21-Day Free Trial", copy: "You get a full 21 days to test the system in the real world, completely free.", highlight: true, badge: "Free" },
           { n: "05", title: "Only Pay If You Stay", copy: "Keep it for the fixed monthly rate quoted on your call (starting from $199/month), or cancel anytime — no contract, no questions asked." },
         ]}
-        callout="Try it free for 30 days. Only pay if you keep it."
+        callout="Try it free for 21 days. Only pay if you keep it."
       />
       <PricingBlock
-        card1={{ label: "Start here", title: "The Build & Setup", price: "$0", copy: "Everything needed to get your practice's platform designed, integrated and live — free until you decide to stay.", items: ["Premium site design tailored to professional services", "Custom lead qualification form and onboarding flow", "Full setup of calendar scheduling & CRM integrations", "30 days of free trial usage"] }}
+        card1={{ label: "Start here", title: "The Build & Setup", price: "$0", copy: "Everything needed to get your practice's platform designed, integrated and live — free until you decide to stay.", items: ["Premium site design tailored to professional services", "Custom lead qualification form and onboarding flow", "Full setup of calendar scheduling & CRM integrations", "21 days of free trial usage"] }}
         card2={{ label: "After your free trial", title: "Growth & Maintenance Support", price: "From $199", priceSuffix: "/month", copy: "Quoted live based on your workflow complexity — no contracts, cancel anytime.", items: ["Premium hosting and secure infrastructure", "Ongoing maintenance, patches and backups", "Continuous optimization and copy adjustments", "Priority support", "Room to expand with AI assistants and advanced automations"] }}
       />
       <FinalCta

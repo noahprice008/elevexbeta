@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Tradesmen & Contractors | ELEVEX";
-const description = "Websites, automated booking and instant quoting for tradesmen. Live in 1 week, free for 30 days, from $199/month after.";
+const description = "Websites, automated booking and instant quoting for tradesmen. Live within a week, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/tradesmen")({
   head: () => ({ meta: [
@@ -21,9 +21,9 @@ function TradesmenPage() {
         eyebrow="TRADESMEN & CONTRACTORS"
         title="Get Your Evenings Back. Quotes, Jobs, and Follow-Ups Handled—Without the Paperwork."
         subtitle="Your tools belong on-site, not at a desk. We build modern websites, automated booking systems, and instant quoting tools for tradesmen. Get more jobs, secure faster payments, and stop spending your weekends chasing paperwork."
-        primary={{ label: "Try ELEVEX Free for 30 Days →", note: "No card required. Live system in 1 week." }}
+        primary={{ label: "Try ELEVEX Free for 21 Days →", note: "No card required. Live system in 1 week." }}
         secondary={{ label: "Book a 15-Min Discovery Call", note: "Free consultation" }}
-        badge="Live platform in 1 week. Free for 30 days. Pay only if it works for you. No contracts, cancel anytime."
+        badge="Live platform in 1 week. Free for 21 days. Pay only if it works for you. No contracts, cancel anytime."
       />
       <PainPoints
         title="Are you running your business, or is your paperwork running you?"
@@ -46,15 +46,15 @@ function TradesmenPage() {
         ]}
       />
       <StepFlow
-        title="Get your custom platform live in just 1 week."
+        title="Get your custom platform live within a week."
         sub="We don't do slow, expensive development projects. We build practical solutions fast so you can start saving time immediately."
         steps={[
           { n: "01", title: "The 15-Min Chat (Free)", copy: "We discuss your trade, your biggest admin bottlenecks, and what you want to automate. We give you a clear recommendation and a fixed monthly quote on the spot." },
           { n: "02", title: "We Build It in a Week", copy: "We design your website, connect your scheduling tools, and set up your automations." },
-          { n: "03", title: "30 Days to Test-Drive (Free)", copy: "We hand you the keys. You use the system for 30 days to book real jobs, send real quotes, and experience the time saved—without paying a single cent.", highlight: true, badge: "Free" },
+          { n: "03", title: "21 Days to Test-Drive (Free)", copy: "We hand you the keys. You use the system for 21 days to book real jobs, send real quotes, and experience the time saved—without paying a single cent.", highlight: true, badge: "Free" },
           { n: "04", title: "Keep It or Cancel It", copy: "If it completely changes your business, you stay on for your flat monthly price (starting from $199/mo). No long contracts, no lock-ins, cancel anytime. If you don't love it, we turn it off and you owe us nothing." },
         ]}
-        callout="Try it free for 30 days. Only pay if you keep it."
+        callout="Try it free for 21 days. Only pay if you keep it."
       />
       <QaStrip
         eyebrow="COMMON QUESTIONS"

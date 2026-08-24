@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta } from "@/components/page-blocks";
 
 const title = "Digital Systems for Wellness Studios & Clinics | ELEVEX";
-const description = "Automated bookings, reminders, digital intake and client management for wellness studios and clinics. Live in 1 week, free for 30 days.";
+const description = "Automated bookings, reminders, digital intake and client management for wellness studios and clinics. Live within a week, free for 21 days.";
 
 export const Route = createFileRoute("/for/wellness")({
   head: () => ({ meta: [
@@ -23,7 +23,7 @@ function WellnessPage() {
         subtitle="Stop wrestling with clunky booking software and chasing class packages. ELEVEX builds custom, high-converting digital systems that handle your scheduling, reminders, and client intake in the background—so you can focus on the people in your studio."
         primary={{ label: "Book a Free Consultation", note: "No obligation, no commitment" }}
         secondary={{ label: "See How It Works" }}
-        badge="Your live studio platform ready in 1 week. Free for 30 days. Pay only if you love it."
+        badge="Your live studio platform ready within a week. Free for 21 days. Pay only if you love it."
       />
       <PainPoints
         title="You opened your studio to teach and heal—not to manage software."
@@ -45,19 +45,19 @@ function WellnessPage() {
         ]}
       />
       <StepFlow
-        title="From idea to a live, self-running studio platform in one week."
+        title="From idea to a live, self-running studio platform within a week."
         steps={[
           { n: "01", title: "Tell Us About Your Studio", copy: "Fill out our brief form detailing your goals." },
           { n: "02", title: "We Prepare Your Recommendation", copy: "We design a custom map of your ideal setup." },
           { n: "03", title: "Live Discovery Call & Fixed Quote", copy: "We lock in one honest monthly price." },
-          { n: "04", title: "Your 30-Day Free Trial", copy: "Test it live. We guide you through every step.", highlight: true, badge: "Free" },
+          { n: "04", title: "Your 21-Day Free Trial", copy: "Test it live. We guide you through every step.", highlight: true, badge: "Free" },
           { n: "05", title: "Only Pay If You Stay", copy: "Cancel anytime. No contracts or lock-ins." },
         ]}
-        callout="Try it free for 30 days. Only pay if you keep it."
+        callout="Try it free for 21 days. Only pay if you keep it."
       />
       <PricingBlock
-        card1={{ label: "Start here", title: "Free Consultation & Discovery", price: "$0", copy: "A structured conversation about your wellness studio's unique workflows, challenges, and client experience, followed by a clear recommendation and fixed quote.", items: ["No card required to start", "No obligation, no commitment", "30 days entirely free before you pay anything", "Live platform delivered within a week"] }}
-        card2={{ label: "After your free trial", title: "After Your 30-Day Free Trial", price: "From $199", priceSuffix: "/month", copy: "The single, fixed price quoted on your call is exactly what you pay to keep your studio running smoothly, with zero surprise fees and no contracts.", items: ["Premium hosting & secure client databases", "Ongoing platform maintenance and security updates", "Rapid support from our team", "Continuous optimization and minor edits", "Room to scale up automation and custom AI over time"] }}
+        card1={{ label: "Start here", title: "Free Consultation & Discovery", price: "$0", copy: "A structured conversation about your wellness studio's unique workflows, challenges, and client experience, followed by a clear recommendation and fixed quote.", items: ["No card required to start", "No obligation, no commitment", "21 days entirely free before you pay anything", "Live platform delivered within a week"] }}
+        card2={{ label: "After your free trial", title: "After Your 21-Day Free Trial", price: "From $199", priceSuffix: "/month", copy: "The single, fixed price quoted on your call is exactly what you pay to keep your studio running smoothly, with zero surprise fees and no contracts.", items: ["Premium hosting & secure client databases", "Ongoing platform maintenance and security updates", "Rapid support from our team", "Continuous optimization and minor edits", "Room to scale up automation and custom AI over time"] }}
       />
       <FinalCta
         title="Let's make your studio run beautifully."

@@ -4,18 +4,18 @@ type QA = { q: string; a: React.ReactNode };
 
 const groups: { category: string; items: QA[] }[] = [
   {
-    category: "1-Week Turnaround & Free Trial",
+    category: "Fast Turnaround & Free Trial",
     items: [
-      { q: "How can you deliver a live platform in just one week?", a: "We've streamlined our delivery process into a structured, step-by-step experience. First, you tell us about your business by submitting your details through a short intake form. Our team reviews your submission and prepares a tailored recommendation presentation showing exactly what we'd build and why. Next, we walk you through this recommendation live on a discovery call, discuss your specific business goals, and lock in a fixed monthly price. Once you're ready to proceed, we build and deliver your live website, automation, or AI platform within a week." },
-      { q: "How does the 30-day free trial work? Are there any hidden commitments?", a: "Our 30-day free trial is entirely risk-free and designed for complete peace of mind. It starts with a free discovery call where you receive a clear recommendation and a fixed monthly quote, with no obligation and no credit card required. We then build and deliver your live platform within a week, giving you 30 days to actually use it in your day-to-day operations. During this trial period, our team helps you get set up and makes any edits you need, completely free of charge. At the end of the 30 days, if it's working for you, you continue at the agreed price with no contracts or lock-ins — you can cancel anytime. If you choose not to stay, you pay nothing." },
-      { q: "Do I need to provide a credit card to get started with the trial?", a: "No, there's no card required to start. Your initial discovery call, recommendation, and subsequent 30-day platform build are entirely free of financial commitment, allowing you to test the platform before making any payment decisions." },
+      { q: "How can you deliver a live platform within a week?", a: "We've streamlined our delivery process into a structured, step-by-step experience. First, you tell us about your business by submitting your details through a short intake form. Our team reviews your submission and prepares a tailored recommendation presentation showing exactly what we'd build and why. Next, we walk you through this recommendation live on a discovery call, discuss your specific business goals, and lock in a fixed monthly price. Once you're ready to proceed, we build and deliver your live website, automation, or AI platform within a week." },
+      { q: "How does the 21-day free trial work? Are there any hidden commitments?", a: "Our 21-day free trial is entirely risk-free and designed for complete peace of mind. It starts with a free discovery call where you receive a clear recommendation and a fixed monthly quote, with no obligation and no credit card required. We then build and deliver your live platform within a week, giving you 21 days to actually use it in your day-to-day operations. During this trial period, our team helps you get set up and makes any edits you need, completely free of charge. At the end of the 21 days, if it's working for you, you continue at the agreed price with no contracts or lock-ins — you can cancel anytime. If you choose not to stay, you pay nothing." },
+      { q: "Do I need to provide a credit card to get started with the trial?", a: "No, there's no card required to start. Your initial discovery call, recommendation, and subsequent 21-day platform build are entirely free of financial commitment, allowing you to test the platform before making any payment decisions." },
       { q: "What happens if I decide not to continue after the free trial?", a: "No problem — there's no penalty and nothing owed. If you decide not to continue, your platform stays live for a 7-day grace period, giving you time to request an export of your data and content. After that window, we'll take the platform offline. You're never locked in, and you only pay for what you actually choose to keep." },
     ],
   },
   {
     category: "Pricing & Ongoing Maintenance",
     items: [
-      { q: "What happens after the 30-day free trial ends?", a: "If the platform is driving value for your business and you decide to stay, you'll transition to the fixed monthly price we quoted on your discovery call. This pricing starts from $199/month and varies depending on your specific project scope. There are no lock-in contracts or long-term commitments, meaning you can cancel at any time if your business needs change." },
+      { q: "What happens after the 21-day free trial ends?", a: "If the platform is driving value for your business and you decide to stay, you'll transition to the fixed monthly price we quoted on your discovery call. This pricing starts from $199/month and varies depending on your specific project scope. There are no lock-in contracts or long-term commitments, meaning you can cancel at any time if your business needs change." },
       {
         q: "What's included in the monthly fee (starting from $199/month)?",
         a: (
@@ -81,7 +81,7 @@ const groups: { category: string; items: QA[] }[] = [
           </>
         ),
       },
-      { q: "How do I request edits or get help once my platform is live?", a: "We act as your long-term digital partner. During your 30-day free trial, our team handles all setup and makes active edits along the way. Once you transition to the paid plan, you get priority support directly from our team, along with ongoing maintenance, monitoring, and backups so you never have to worry about the technical details." },
+      { q: "How do I request edits or get help once my platform is live?", a: "We act as your long-term digital partner. During your 21-day free trial, our team handles all setup and makes active edits along the way. Once you transition to the paid plan, you get priority support directly from our team, along with ongoing maintenance, monitoring, and backups so you never have to worry about the technical details." },
       { q: "What if my business grows and I need to add new features later?", a: "We build practical, scalable systems designed to grow with your business. Your monthly plan maintains room to scale, allowing you to add advanced business process automation, new integrations, or powerful AI capabilities over time as your operational needs expand." },
     ],
   },
