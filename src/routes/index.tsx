@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { NetworkVisual } from "@/components/network-visual";
 import { ConsultationFlow } from "@/components/consultation-flow";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { BackToTop } from "@/components/back-to-top";
 import { AccessibilityWidget } from "@/components/accessibility-widget";
 import { FaqSection } from "@/components/faq-section";
