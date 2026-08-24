@@ -1,4 +1,4 @@
-import { useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 
 type Choice = { title: string; description?: string };
@@ -143,6 +143,18 @@ export function ConsultationFlow() {
   const [timeline, setTimeline] = useState("");
   const [error, setError] = useState("");
   const [complete, setComplete] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const firstRender = useRef(true);
+
+  // Keep the top of the current step in view when moving between stages.
+  useEffect(() => {
+    if (firstRender.current) { firstRender.current = false; return; }
+    const node = containerRef.current;
+    if (!node) return;
+    const reduce = typeof document !== "undefined" && document.documentElement.classList.contains("a11y-reduce-motion");
+    const top = node.getBoundingClientRect().top + window.scrollY - 96;
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+  }, [step, complete]);
 
   const activeBlocks = useMemo(
     () => detailBlocks.filter((block) => selectedNeeds.includes(block.need)),
@@ -214,17 +226,16 @@ export function ConsultationFlow() {
   };
 
   if (complete) return (
-    <div className="mx-auto max-w-3xl animate-step-in py-10 text-center">
+    <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in py-10 text-center">
       <span className="mb-6 inline-flex size-12 items-center justify-center rounded-full bg-secondary text-xl text-primary">✓</span>
       <h3 className="text-3xl font-extrabold md:text-5xl">Thanks. We've got it.</h3>
-      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">We've received your request and will review the information you provided. The next step is a 30-minute online video call about your business, your goals and where ELEVEX may be able to help.</p>
-      <div className="mx-auto mt-8 min-h-32 max-w-xl rounded-md border border-dashed border-border bg-secondary/40 p-6 text-sm text-muted-foreground">Calendar scheduling will be available here.</div>
-      <div className="mt-8 flex flex-col items-center gap-4"><Button size="lg">Book Your 30-Min Video Consultation →</Button><a href="#top" className="text-sm font-semibold text-muted-foreground hover:text-primary">I'll schedule later</a></div>
+      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Your request was sent successfully. We'll review your information and email you to arrange a date and time for your 30-minute online video consultation.</p>
+      <div className="mt-8 flex flex-col items-center gap-4"><a href="#top" className="text-sm font-semibold text-muted-foreground hover:text-primary">Back to top</a></div>
     </div>
   );
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <div ref={containerRef} className="mx-auto max-w-4xl scroll-mt-28">
       <ProgressBar step={Math.min(step, total)} total={total} />
 
       {currentId === "needs" && <StepContainer><StepHeading title="What can we help you improve?" copy="Select the areas you're interested in." /><div className="grid gap-3 sm:grid-cols-2">{needs.map((choice) => <AnswerCard key={choice.title} choice={choice} multi selected={selectedNeeds.includes(choice.title)} onClick={() => setSelectedNeeds((current) => current.includes(choice.title) ? current.filter((item) => item !== choice.title) : [...current, choice.title])} />)}</div><StepActions error={error} onNext={() => advance(selectedNeeds.length > 0)} /></StepContainer>}
