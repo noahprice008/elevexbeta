@@ -27,12 +27,13 @@ const solutions = [
 ];
 const values = [["Business First", "We start with your goals, challenges and opportunities — not a predetermined technology stack."], ["Practical Solutions", "We focus on solutions that solve real problems and create measurable value."], ["Built to Scale", "Your business will change. Your digital systems should be ready to change with it."], ["One Digital Partner", "Websites, automation, AI, integrations and growth systems — connected under one partner."]];
 const steps = [
-  { n: "01", title: "Tell Us About Your Business", copy: "You submit your details through a short intake form — what you do, where you're stuck, what you need." },
-  { n: "02", title: "We Prepare Your Recommendation", copy: "We review your submission and put together a tailored presentation showing exactly what we'd build and why." },
-  { n: "03", title: "30-Min Video Discovery Call & Fixed Quote", copy: "We walk you through the presentation live, discuss your specific needs, and lock in a fixed monthly price — before you commit to anything." },
-  { n: "04", title: "Your Platform, Built in a Week", copy: "We build your platform and hand it to you within a week — not months. You get 21 days to actually use it, with our team helping you get set up and making edits along the way, completely free.", highlight: true, badge: "Free" },
-  { n: "05", title: "Only Pay If You Stay", copy: "After 21 days, if it's working for you, you continue at the price we quoted in step 3. No contract, no lock-in — cancel anytime." },
+  { n: "01", title: "Submit MVP Intake & Preferences", copy: "You submit your details through our quick guided discovery form — outlining your goals, integration stack, and selecting must-have features using the MoSCoW method." },
+  { n: "02", title: "We Build Your Front-End Demo", copy: "Our team reviews your submission and crafts a customized initial visual concept platform designed specifically around your business." },
+  { n: "03", title: "Live Demo Review & Fixed Quote", copy: "In 2–3 business days, you receive your live demo link along with a direct booking invitation to walk through the visual mockup, refine your needs, and lock in a fixed monthly price." },
+  { n: "04", title: "Platform Built in a Week", copy: "Once approved, we build out the full platform — connecting your automations, CRM databases, and practical AI integrations — and hand it over within a single week.", highlight: true, badge: "Free" },
+  { n: "05", title: "Only Pay If You Stay", copy: "Get a full 21-day trial period to use the platform in your daily operations with active support from our team. If it works for you, continue with no contract; otherwise, pay nothing." },
 ];
+
 const included = ["Hosting and secure infrastructure", "Ongoing maintenance and updates", "Priority support from your team", "Continuous optimization and improvements", "Monitoring, backups and reporting", "Room to add automation and AI over time"];
 
 
