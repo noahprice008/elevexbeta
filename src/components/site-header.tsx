@@ -24,8 +24,8 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button asChild size="sm" className="lg:hidden"><a href="/#consultation">Book a 30-Min Call</a></Button>
-          <Button asChild className="hidden lg:inline-flex"><a href="/#consultation">Book a Consultation</a></Button>
+          <Button asChild size="sm" className="lg:hidden"><a href="/#consultation">Get My Custom Demo</a></Button>
+          <Button asChild className="hidden lg:inline-flex"><a href="/#consultation">Request a Custom Demo</a></Button>
           <Button variant="ghost" size="icon" className="text-cloud hover:bg-cloud/10 hover:text-electric lg:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
         </div>
       </div>
