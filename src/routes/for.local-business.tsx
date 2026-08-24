@@ -21,9 +21,9 @@ function LocalBusinessPage() {
         eyebrow="GROWING LOCAL BUSINESSES"
         title="Every Big Business Started as a Growing Local One."
         subtitle="You're growing, but your tools haven't caught up. ELEVEX builds practical websites, automations, and AI-powered systems that scale with you — without the agency price tag or the months-long wait."
-        primary={{ label: "Get Your Platform Live in 1 Week (Try Free)" }}
+        primary={{ label: "Get Your Platform Live Within a Week (Try Free)" }}
         secondary={{ label: "Book a Free Consultation" }}
-        badge="Live platform in 1 week. Free for 21 days. Pay only if you stay."
+        badge="Live platform within a week. Free for 21 days. Pay only if you stay."
       />
       <PainPoints
         title="Growing shouldn't feel this chaotic."

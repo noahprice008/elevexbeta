@@ -21,9 +21,9 @@ function TradesmenPage() {
         eyebrow="TRADESMEN & CONTRACTORS"
         title="Get Your Evenings Back. Quotes, Jobs, and Follow-Ups Handled—Without the Paperwork."
         subtitle="Your tools belong on-site, not at a desk. We build modern websites, automated booking systems, and instant quoting tools for tradesmen. Get more jobs, secure faster payments, and stop spending your weekends chasing paperwork."
-        primary={{ label: "Try ELEVEX Free for 21 Days →", note: "No card required. Live system in 1 week." }}
+        primary={{ label: "Try ELEVEX Free for 21 Days →", note: "No card required. Live system within a week." }}
         secondary={{ label: "Book a 15-Min Discovery Call", note: "Free consultation" }}
-        badge="Live platform in 1 week. Free for 21 days. Pay only if it works for you. No contracts, cancel anytime."
+        badge="Live platform within a week. Free for 21 days. Pay only if it works for you. No contracts, cancel anytime."
       />
       <PainPoints
         title="Are you running your business, or is your paperwork running you?"

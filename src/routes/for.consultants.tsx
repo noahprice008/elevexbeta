@@ -21,9 +21,9 @@ function ConsultantsPage() {
         eyebrow="CONSULTANTS & PROFESSIONAL SERVICES"
         title="Stop Chasing Tire-Kickers. Streamline Your High-Ticket Client Pipeline."
         subtitle="Your expertise is high-value, but your client acquisition shouldn't require manual chasing. ELEVEX builds premium digital presences and automated qualification systems for consultants and professional service providers—giving you back your time and bringing you highly qualified clients."
-        primary={{ label: "Get Your System Built in 1 Week (Try Free)" }}
+        primary={{ label: "Get Your System Built Within a Week (Try Free)" }}
         secondary={{ label: "Book a Free Consultation" }}
-        badge="Live platform in 1 week. Free for 21 days. Pay only if you stay."
+        badge="Live platform within a week. Free for 21 days. Pay only if you stay."
       />
       <PainPoints
         title="Are you spending more time chasing leads than delivering expertise?"
@@ -47,7 +47,7 @@ function ConsultantsPage() {
         ]}
       />
       <StepFlow
-        title="No Contracts. No Risks. Just a Live System in 7 Days."
+        title="No Contracts. No Risks. Just a Live System Within a Week."
         steps={[
           { n: "01", title: "Free Consultation & Discovery (Day 1)", copy: "We discuss your ideal client profile, your service model, and your current administrative bottlenecks, and quote a single fixed monthly fee on the call." },
           { n: "02", title: "Tailored Build & Integration (Days 2–7)", copy: "We design your site, set up your calendar routing, configure your qualification forms, and wire up your automations." },
