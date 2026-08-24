@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Security & Facilities Firms | ELEVEX";
-const description = "Connected scheduling, automated field reporting and real-time client updates for security and facilities firms. Live in 1 week, free for 30 days.";
+const description = "Connected scheduling, automated field reporting and real-time client updates for security and facilities firms. Live within a week, free for 21 days.";
 
 export const Route = createFileRoute("/for/security")({
   head: () => ({ meta: [
@@ -20,9 +20,9 @@ function SecurityPage() {
       <PageHero
         eyebrow="SECURITY & FACILITIES FIRMS"
         title="The Digital Backbone for Modern Security & Facilities Operations."
-        subtitle="Connect your scheduling, automate incident reporting, and give clients real-time transparency—without the administrative headache. Get a custom operational platform built in 1 week, try it free for 30 days, and only pay if it delivers."
-        primary={{ label: "Book Your Free Security Discovery Call" }}
-        badge="No contracts or lock-ins • 100% risk-free trial • Fully live in 7 days"
+        subtitle="Connect your scheduling, automate incident reporting, and give clients real-time transparency—without the administrative headache. Get a custom operational platform built within a week, try it free for 21 days, and only pay if it delivers."
+        primary={{ label: "Book Your Free 30-Min Security Video Discovery Call" }}
+        badge="No contracts or lock-ins • 100% risk-free trial • Fully live within a week"
       />
       <PainPoints
         title="You protect people and properties. Who is protecting your time?"
@@ -49,26 +49,26 @@ function SecurityPage() {
         title="Practical technology, delivered at operational speed."
         items={[
           ["Business-First Integration", "We start with the software and tools you already use (or help you find the right ones) and connect them seamlessly."],
-          ["Speed Over Bureaucracy", "Traditional agencies take 3 to 6 months to deploy custom field tools. We deliver a fully functional, live platform in just one week."],
-          ["Zero Upfront Risk", "Use your custom platform free for 30 days—if it doesn't save you time and impress your clients, you don't pay a penny."],
+          ["Speed Over Bureaucracy", "Traditional agencies take 3 to 6 months to deploy custom field tools. We deliver a fully functional, live platform within a week."],
+          ["Zero Upfront Risk", "Use your custom platform free for 21 days—if it doesn't save you time and impress your clients, you don't pay a penny."],
         ]}
       />
       <StepFlow
-        title="From operational blueprint to live platform in 7 days."
+        title="From operational blueprint to live platform within a week."
         steps={[
           { n: "01", title: "Tell Us About Your Business (5-Min Intake)", copy: "Submit your operational pain points—how you schedule, what reports you need, and where the bottlenecks are." },
           { n: "02", title: "We Design Your Blueprint", copy: "We map out an operational recommendation detailing the exact integrations, forms, and client portals we'll build." },
-          { n: "03", title: "Clear Recommendation & Fixed Monthly Quote", copy: "We review the plan on a discovery call and provide a transparent, fixed monthly price quoted to your needs." },
-          { n: "04", title: "Your Custom Platform Goes Live in 7 Days", copy: "You get 30 days of full, unrestricted access to run your business with it—completely free.", highlight: true, badge: "Free" },
+          { n: "03", title: "Clear Recommendation & Fixed Monthly Quote", copy: "We review the plan on a 30-minute online video call and provide a transparent, fixed monthly price quoted to your needs." },
+          { n: "04", title: "Your Custom Platform Goes Live Within a Week", copy: "You get 21 days of full, unrestricted access to run your business with it—completely free.", highlight: true, badge: "Free" },
           { n: "05", title: "Only Pay If You Stay", copy: "If our automation saves you hours of admin work and delights your clients, keep it at the fixed price quoted. If not, cancel anytime with no lock-ins or fees." },
         ]}
-        callout="Try it free for 30 days. Only pay if you keep it."
+        callout="Try it free for 21 days. Only pay if you keep it."
       />
       <PricingBlock card1={standardPricing.card1} card2={standardPricing.card2} />
       <FinalCta
         title="Ready to run a tighter, more profitable operation?"
         body="Stop chasing rosters and chasing down paper incident reports. Let us build a modern digital foundation that scales alongside your business."
-        button="Book Your Free Discovery Call →"
+        button="Book Your Free 30-Min Video Discovery Call →"
         email="sales@elevex.digital"
       />
     </AudienceLayout>

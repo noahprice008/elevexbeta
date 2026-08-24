@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Growing Local Businesses | ELEVEX";
-const description = "Practical websites, automation and AI systems that scale with your growing local business. Live in 1 week, free for 30 days, from $199/month after.";
+const description = "Practical websites, automation and AI systems that scale with your growing local business. Live within a week, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/local-business")({
   head: () => ({ meta: [
@@ -21,9 +21,9 @@ function LocalBusinessPage() {
         eyebrow="GROWING LOCAL BUSINESSES"
         title="Every Big Business Started as a Growing Local One."
         subtitle="You're growing, but your tools haven't caught up. ELEVEX builds practical websites, automations, and AI-powered systems that scale with you — without the agency price tag or the months-long wait."
-        primary={{ label: "Get Your Platform Live in 1 Week (Try Free)" }}
-        secondary={{ label: "Book a Free Consultation" }}
-        badge="Live platform in 1 week. Free for 30 days. Pay only if you stay."
+        primary={{ label: "Get Your Platform Live Within a Week (Try Free)" }}
+        secondary={{ label: "Book a Free 30-Min Video Consultation" }}
+        badge="Live platform within a week. Free for 21 days. Pay only if you stay."
       />
       <PainPoints
         title="Growing shouldn't feel this chaotic."
@@ -47,21 +47,21 @@ function LocalBusinessPage() {
         ]}
       />
       <StepFlow
-        title="From first conversation to live platform in one week."
+        title="From first conversation to live platform within a week."
         steps={[
           { n: "01", title: "Tell Us About Your Business", copy: "A short form on what you do, what's slowing you down, and where you want to grow." },
           { n: "02", title: "We Prepare Your Recommendation", copy: "A tailored presentation showing exactly what we'd build and why." },
-          { n: "03", title: "Discovery Call & Fixed Quote", copy: "We walk through the plan live and lock in one fixed monthly price." },
+          { n: "03", title: "30-Min Video Discovery Call & Fixed Quote", copy: "We walk through the plan live and lock in one fixed monthly price." },
           { n: "04", title: "Your Platform Goes Live in a Week", copy: "Built and delivered fast, with our team helping you get set up.", highlight: true, badge: "Free" },
-          { n: "05", title: "30 Days Free, Then Only Pay If You Stay", copy: "No contract, no obligation, cancel anytime." },
+          { n: "05", title: "21 Days Free, Then Only Pay If You Stay", copy: "No contract, no obligation, cancel anytime." },
         ]}
-        callout="Try it free for 30 days. Only pay if you keep it."
+        callout="Try it free for 21 days. Only pay if you keep it."
       />
       <PricingBlock card1={standardPricing.card1} card2={standardPricing.card2} />
       <FinalCta
         title="Ready to grow without the growing pains?"
         body="Whether it's your website, your admin, or your follow-ups slowing you down, ELEVEX can help you find the right place to start — free to try, before you ever pay a cent."
-        button="Book a Consultation →"
+        button="Book a 30-Min Video Consultation →"
         email="sales@elevex.digital"
       />
     </AudienceLayout>
