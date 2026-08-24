@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
+import { Route as ForLocalBusinessRouteImport } from './routes/for.local-business'
+import { Route as ForSecurityRouteImport } from './routes/for.security'
+import { Route as ForTradesmenRouteImport } from './routes/for.tradesmen'
+import { Route as ForWellnessRouteImport } from './routes/for.wellness'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForConsultantsRoute = ForConsultantsRouteImport.update({
+  id: '/for/consultants',
+  path: '/for/consultants',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForLocalBusinessRoute = ForLocalBusinessRouteImport.update({
+  id: '/for/local-business',
+  path: '/for/local-business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForSecurityRoute = ForSecurityRouteImport.update({
+  id: '/for/security',
+  path: '/for/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForTradesmenRoute = ForTradesmenRouteImport.update({
+  id: '/for/tradesmen',
+  path: '/for/tradesmen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForWellnessRoute = ForWellnessRouteImport.update({
+  id: '/for/wellness',
+  path: '/for/wellness',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/for/consultants': typeof ForConsultantsRoute
+  '/for/local-business': typeof ForLocalBusinessRoute
+  '/for/security': typeof ForSecurityRoute
+  '/for/tradesmen': typeof ForTradesmenRoute
+  '/for/wellness': typeof ForWellnessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/for/consultants': typeof ForConsultantsRoute
+  '/for/local-business': typeof ForLocalBusinessRoute
+  '/for/security': typeof ForSecurityRoute
+  '/for/tradesmen': typeof ForTradesmenRoute
+  '/for/wellness': typeof ForWellnessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/for/consultants': typeof ForConsultantsRoute
+  '/for/local-business': typeof ForLocalBusinessRoute
+  '/for/security': typeof ForSecurityRoute
+  '/for/tradesmen': typeof ForTradesmenRoute
+  '/for/wellness': typeof ForWellnessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/for/consultants'
+    | '/for/local-business'
+    | '/for/security'
+    | '/for/tradesmen'
+    | '/for/wellness'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/for/consultants'
+    | '/for/local-business'
+    | '/for/security'
+    | '/for/tradesmen'
+    | '/for/wellness'
+  id:
+    | '__root__'
+    | '/'
+    | '/for/consultants'
+    | '/for/local-business'
+    | '/for/security'
+    | '/for/tradesmen'
+    | '/for/wellness'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ForConsultantsRoute: typeof ForConsultantsRoute
+  ForLocalBusinessRoute: typeof ForLocalBusinessRoute
+  ForSecurityRoute: typeof ForSecurityRoute
+  ForTradesmenRoute: typeof ForTradesmenRoute
+  ForWellnessRoute: typeof ForWellnessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for/consultants': {
+      id: '/for/consultants'
+      path: '/for/consultants'
+      fullPath: '/for/consultants'
+      preLoaderRoute: typeof ForConsultantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for/local-business': {
+      id: '/for/local-business'
+      path: '/for/local-business'
+      fullPath: '/for/local-business'
+      preLoaderRoute: typeof ForLocalBusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for/security': {
+      id: '/for/security'
+      path: '/for/security'
+      fullPath: '/for/security'
+      preLoaderRoute: typeof ForSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for/tradesmen': {
+      id: '/for/tradesmen'
+      path: '/for/tradesmen'
+      fullPath: '/for/tradesmen'
+      preLoaderRoute: typeof ForTradesmenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for/wellness': {
+      id: '/for/wellness'
+      path: '/for/wellness'
+      fullPath: '/for/wellness'
+      preLoaderRoute: typeof ForWellnessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ForConsultantsRoute: ForConsultantsRoute,
+  ForLocalBusinessRoute: ForLocalBusinessRoute,
+  ForSecurityRoute: ForSecurityRoute,
+  ForTradesmenRoute: ForTradesmenRoute,
+  ForWellnessRoute: ForWellnessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
