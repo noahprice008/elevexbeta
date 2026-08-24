@@ -29,7 +29,7 @@ const values = [["Business First", "We start with your goals, challenges and opp
 const steps = [
   { n: "01", title: "Tell Us About Your Business", copy: "You submit your details through a short intake form — what you do, where you're stuck, what you need." },
   { n: "02", title: "We Prepare Your Recommendation", copy: "We review your submission and put together a tailored presentation showing exactly what we'd build and why." },
-  { n: "03", title: "Video Call & Fixed Quote", copy: "We walk you through the presentation live, discuss your specific needs, and lock in a fixed monthly price — before you commit to anything." },
+  { n: "03", title: "30-Min Video Discovery Call & Fixed Quote", copy: "We walk you through the presentation live, discuss your specific needs, and lock in a fixed monthly price — before you commit to anything." },
   { n: "04", title: "Your Platform, Built in a Week", copy: "We build your platform and hand it to you within a week — not months. You get 21 days to actually use it, with our team helping you get set up and making edits along the way, completely free.", highlight: true, badge: "Free" },
   { n: "05", title: "Only Pay If You Stay", copy: "After 21 days, if it's working for you, you continue at the price we quoted in step 3. No contract, no lock-in — cancel anytime." },
 ];

@@ -217,7 +217,7 @@ export function ConsultationFlow() {
     <div className="mx-auto max-w-3xl animate-step-in py-10 text-center">
       <span className="mb-6 inline-flex size-12 items-center justify-center rounded-full bg-secondary text-xl text-primary">✓</span>
       <h3 className="text-3xl font-extrabold md:text-5xl">Thanks. We've got it.</h3>
-      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">We've received your request and will review the information you provided. The next step is a short conversation about your business, your goals and where ELEVEX may be able to help.</p>
+      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">We've received your request and will review the information you provided. The next step is a 30-minute online video call about your business, your goals and where ELEVEX may be able to help.</p>
       <div className="mx-auto mt-8 min-h-32 max-w-xl rounded-md border border-dashed border-border bg-secondary/40 p-6 text-sm text-muted-foreground">Calendar scheduling will be available here.</div>
       <div className="mt-8 flex flex-col items-center gap-4"><Button size="lg">Book Your 30-Min Video Consultation →</Button><a href="#top" className="text-sm font-semibold text-muted-foreground hover:text-primary">I'll schedule later</a></div>
     </div>
