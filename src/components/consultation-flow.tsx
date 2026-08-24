@@ -141,7 +141,7 @@ function StepHeading({ title, copy }: { title: string; copy?: string }) {
 
 function StepShell({ children }: { children: ReactNode }) { return <div className="animate-step-in">{children}</div>; }
 
-function Field({ label, value, onChange, type = "text", placeholder, error, required = true, maxLength }: { label: string; value: string; onChange: (value: string) => void; type?: string; placeholder?: string; error?: string; required?: boolean; maxLength?: number }) {
+function Field({ label, value, onChange, type = "text", placeholder, error, required = true, maxLength }: { label: string; value: string; onChange: (value: string) => void; type?: string; placeholder?: string; error?: string | undefined; required?: boolean; maxLength?: number }) {
   return (
     <label className="block text-sm font-bold">
       {label}{!required && <span className="font-normal text-muted-foreground"> (optional)</span>}
@@ -160,7 +160,7 @@ export function ConsultationFlow() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialData);
   const [error, setError] = useState("");
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [complete, setComplete] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -191,7 +191,7 @@ export function ConsultationFlow() {
   const goBack = () => { setError(""); setStep((current) => Math.max(1, current - 1)); };
 
   const validateProfile = () => {
-    const errors: Record<string, string> = {};
+    const errors: Partial<Record<keyof FormData, string>> = {};
     if (!formData.fullName.trim()) errors.fullName = "Please enter your full name.";
     if (!formData.jobTitle.trim()) errors.jobTitle = "Please enter your job title.";
     if (!formData.businessName.trim()) errors.businessName = "Please enter your business name.";
