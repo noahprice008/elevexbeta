@@ -21,7 +21,7 @@ function WellnessPage() {
         eyebrow="WELLNESS STUDIOS & CLINICS"
         title="Bookings, Reminders, and Client Management. Running Beautifully on Autopilot."
         subtitle="Stop wrestling with clunky booking software and chasing class packages. ELEVEX builds custom, high-converting digital systems that handle your scheduling, reminders, and client intake in the background—so you can focus on the people in your studio."
-        primary={{ label: "Book a Free 30-Min Video Consultation", note: "No obligation, no commitment" }}
+        primary={{ label: "Request a Custom Demo", note: "No obligation, no commitment" }}
         secondary={{ label: "See How It Works" }}
         badge="Your live studio platform ready within a week. Free for 21 days. Pay only if you love it."
       />
