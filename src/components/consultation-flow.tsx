@@ -45,11 +45,11 @@ const integrationGroups: { title: string; items: string[] }[] = [
   { title: "Cloud Storage", items: ["Google Drive", "Dropbox", "OneDrive"] },
 ];
 
-const aesthetics = [
-  { title: "Modern & Professional", description: "Clean, trustworthy, professional." },
-  { title: "Warm & Approachable", description: "Friendly, welcoming, human-centered." },
-  { title: "Minimalist & Premium", description: "Luxury-inspired, spacious, refined." },
-  { title: "Bold & High-Contrast", description: "Energetic, modern, technology-forward." },
+const aesthetics: { title: string; description: string; swatches: string[]; font: string; radius: string }[] = [
+  { title: "Modern & Professional", description: "Clean, trustworthy, high-contrast palette.", swatches: ["#0B1220", "#38BDF8", "#F8FAFC"], font: "font-sans tracking-tight", radius: "rounded-md" },
+  { title: "Warm & Approachable", description: "Soft tones, rounded shapes, human-centered.", swatches: ["#F5E6D8", "#E8A87C", "#8C5E4A"], font: "font-sans", radius: "rounded-2xl" },
+  { title: "Minimalist & Premium", description: "Elegant type, spacious monochrome layouts.", swatches: ["#111111", "#8A8A8A", "#EFEFEF"], font: "font-serif tracking-wide", radius: "rounded-none" },
+  { title: "Bold & High-Contrast", description: "Vibrant, sharp, technology-forward energy.", swatches: ["#0F0F23", "#7C3AED", "#22D3EE"], font: "font-sans font-black uppercase", radius: "rounded-lg" },
 ];
 
 const industries = [
@@ -59,6 +59,15 @@ const industries = [
   "Wellness Studios & Clinics",
   "Growing Local Businesses",
 ];
+
+const bottleneckPlaceholders: Record<string, string> = {
+  "Tradesmen & Contractors": "e.g., spending hours on manual client follow-ups and typing up quotes on my phone after a long day in the field...",
+  "Consultants & Professional Services": "e.g., manually copying lead info from our landing page into our spreadsheet and sending out individual introductory emails...",
+  "Security & Facilities Firms": "e.g., coordinating security staff shifts manually across multiple sites using messy group chats and sheets...",
+  "Wellness Studios & Clinics": "e.g., spending half our day answering basic booking questions on the phone and manually texting appointment reminders...",
+  "Growing Local Businesses": "e.g., manually double-entering client details into separate invoices and our legacy CRM software...",
+};
+
 
 const stageTitles = ["Core Growth Pillars", "MVP Prioritization", "Integrations & Brand Direction", "Business Profile"];
 
