@@ -65,4 +65,3 @@ function Index() {
 }
 function Section({ children }: { children: React.ReactNode }) { return <section className="bg-secondary py-24 md:py-32"><div className="mx-auto max-w-7xl px-5 lg:px-8">{children}</div></section>; }
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) { return <p className={`text-xs font-extrabold uppercase ${dark ? "text-electric" : "text-primary"}`}>{children}</p>; }
-function FooterColumn({ title, items }: { title: string; items: string[] }) { return <div><h3 className="text-sm font-extrabold">{title}</h3><ul className="mt-4 space-y-2">{items.map((item) => <li key={item}><a href={item === "Solutions" ? "#solutions" : item === "How We Deliver" ? "#how-we-deliver" : item === "Why ELEVEX" ? "#why" : item === "Pricing" ? "#pricing" : "#consultation"} className="text-sm text-cloud/60 hover:text-electric">{item}</a></li>)}</ul></div>; }
