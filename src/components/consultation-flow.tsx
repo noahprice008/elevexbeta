@@ -372,12 +372,14 @@ export function ConsultationFlow() {
         </StepShell>
       )}
 
-      <div className="mt-10 flex flex-wrap items-center gap-3 border-t pt-6">
-        {step > 1 && <Button type="button" variant="ghost" onClick={goBack}>← Back</Button>}
-        {step < TOTAL
-          ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
-          : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit My Requirements →"}</Button>}
-        <span className="text-xs text-muted-foreground">Takes under 2 minutes — no obligation.</span>
+      <div className="mt-10 border-t pt-6">
+        <div className="flex flex-wrap items-center gap-3">
+          {step > 1 && <Button type="button" variant="ghost" onClick={goBack}>← Back</Button>}
+          {step < TOTAL
+            ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
+            : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit MVP Intake & Request Demo"}</Button>}
+        </div>
+        <p className="mt-3 text-xs text-muted-foreground">Takes under 2 minutes • No credit card required • No obligation</p>
       </div>
       {error && <p role="alert" className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
     </div>
