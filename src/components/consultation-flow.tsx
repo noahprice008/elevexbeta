@@ -332,7 +332,7 @@ export function ConsultationFlow() {
             <legend className="mb-5 text-lg font-extrabold md:text-xl">Which style best represents your business?</legend>
             <div className="grid gap-4 md:grid-cols-2">
               {aesthetics.map((style) => (
-                <SelectCard key={style.title} title={style.title} description={style.description}
+                <AestheticCard key={style.title} style={style}
                   selected={formData.brandAesthetic.includes(style.title)}
                   onClick={() => update("brandAesthetic", toggle(formData.brandAesthetic, style.title))} />
               ))}
