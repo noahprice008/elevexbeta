@@ -77,7 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ELEVEX" },
+      { title: "ELEVEX — Digital Solutions Development" },
+      { property: "og:site_name", content: "ELEVEX" },
       { name: "description", content: "Digital solutions built for growing businesses." },
       { name: "author", content: "ELEVEX" },
       { property: "og:type", content: "website" },
