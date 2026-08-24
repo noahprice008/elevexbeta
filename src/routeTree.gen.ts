@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
+import { Route as ForSecurityRouteImport } from './routes/for.security'
 import { Route as ForTradesmenRouteImport } from './routes/for.tradesmen'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ForConsultantsRoute = ForConsultantsRouteImport.update({
   path: '/for/consultants',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForSecurityRoute = ForSecurityRouteImport.update({
+  id: '/for/security',
+  path: '/for/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForTradesmenRoute = ForTradesmenRouteImport.update({
   id: '/for/tradesmen',
   path: '/for/tradesmen',
@@ -32,30 +38,34 @@ const ForTradesmenRoute = ForTradesmenRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/for/consultants': typeof ForConsultantsRoute
+  '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/for/consultants': typeof ForConsultantsRoute
+  '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/for/consultants': typeof ForConsultantsRoute
+  '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/for/consultants' | '/for/tradesmen'
+  fullPaths: '/' | '/for/consultants' | '/for/security' | '/for/tradesmen'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/for/consultants' | '/for/tradesmen'
-  id: '__root__' | '/' | '/for/consultants' | '/for/tradesmen'
+  to: '/' | '/for/consultants' | '/for/security' | '/for/tradesmen'
+  id: '__root__' | '/' | '/for/consultants' | '/for/security' | '/for/tradesmen'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ForConsultantsRoute: typeof ForConsultantsRoute
+  ForSecurityRoute: typeof ForSecurityRoute
   ForTradesmenRoute: typeof ForTradesmenRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForConsultantsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for/security': {
+      id: '/for/security'
+      path: '/for/security'
+      fullPath: '/for/security'
+      preLoaderRoute: typeof ForSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/for/tradesmen': {
       id: '/for/tradesmen'
       path: '/for/tradesmen'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ForConsultantsRoute: ForConsultantsRoute,
+  ForSecurityRoute: ForSecurityRoute,
   ForTradesmenRoute: ForTradesmenRoute,
 }
 export const routeTree = rootRouteImport
