@@ -144,6 +144,27 @@ function CheckboxPill({ label, selected, onClick }: { label: string; selected: b
   );
 }
 
+function AestheticCard({ style, selected, onClick }: { style: (typeof aesthetics)[number]; selected: boolean; onClick: () => void }) {
+  return (
+    <button type="button" aria-pressed={selected} onClick={onClick}
+      className={`group relative overflow-hidden rounded-xl border p-5 text-left backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-primary hover:shadow-lg hover:shadow-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-secondary shadow-lg shadow-primary/15" : "border-border bg-background/70"}`}>
+      <span aria-hidden="true" className={`flex h-24 w-full items-end gap-1.5 overflow-hidden p-3 ${style.radius}`} style={{ background: `linear-gradient(135deg, ${style.swatches[0]} 0%, ${style.swatches[1]} 100%)` }}>
+        <span className={`block h-2.5 w-16 ${style.radius}`} style={{ background: style.swatches[2] }} />
+        <span className={`block h-2.5 w-8 ${style.radius}`} style={{ background: style.swatches[2], opacity: 0.6 }} />
+      </span>
+      <span className="mt-4 flex items-start justify-between gap-3">
+        <span>
+          <strong className={`block text-sm font-extrabold text-foreground ${style.font}`}>{style.title}</strong>
+          <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{style.description}</span>
+        </span>
+        <span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border"}`} aria-hidden="true">
+          {selected && <Check className="size-3.5" />}
+        </span>
+      </span>
+    </button>
+  );
+}
+
 function StepHeading({ title, copy }: { title: string; copy?: string }) {
   return <div className="mb-8"><h3 className="text-2xl font-extrabold md:text-4xl">{title}</h3>{copy && <p className="mt-3 max-w-2xl text-muted-foreground">{copy}</p>}</div>;
 }
