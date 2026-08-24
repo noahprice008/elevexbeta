@@ -361,7 +361,7 @@ export function ConsultationFlow() {
           </div>
           <label className="mt-6 block text-sm font-bold">Core Operational Bottleneck
             <span className="mt-1 block text-sm font-normal text-muted-foreground">What is the single most time-consuming manual task in your business today?</span>
-            <textarea rows={5} maxLength={500} value={formData.operationalBottleneck} onChange={(event) => update("operationalBottleneck", event.target.value)} aria-invalid={Boolean(fieldErrors.operationalBottleneck)}
+            <textarea rows={5} maxLength={500} value={formData.operationalBottleneck} placeholder={bottleneckPlaceholders[formData.industry] ?? "e.g., we lose hours every week re-typing the same customer details across email, spreadsheets and invoices..."} onChange={(event) => update("operationalBottleneck", event.target.value)} aria-invalid={Boolean(fieldErrors.operationalBottleneck)}
               className={`mt-2 w-full rounded-lg border bg-background p-4 font-normal focus:outline-none ${fieldErrors.operationalBottleneck ? "border-destructive" : "border-border focus:border-primary"}`} />
             <span className="mt-1.5 flex justify-between text-xs text-muted-foreground">
               <span className={fieldErrors.operationalBottleneck ? "font-semibold text-destructive" : ""}>{fieldErrors.operationalBottleneck ?? "Minimum 50 characters."}</span>
