@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
 import { Route as ForSecurityRouteImport } from './routes/for.security'
 import { Route as ForTradesmenRouteImport } from './routes/for.tradesmen'
+import { Route as ForWellnessRouteImport } from './routes/for.wellness'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const ForTradesmenRoute = ForTradesmenRouteImport.update({
   path: '/for/tradesmen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForWellnessRoute = ForWellnessRouteImport.update({
+  id: '/for/wellness',
+  path: '/for/wellness',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
+  '/for/wellness': typeof ForWellnessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
+  '/for/wellness': typeof ForWellnessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,30 @@ export interface FileRoutesById {
   '/for/consultants': typeof ForConsultantsRoute
   '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
+  '/for/wellness': typeof ForWellnessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/for/consultants' | '/for/security' | '/for/tradesmen'
+  fullPaths:
+    | '/'
+    | '/for/consultants'
+    | '/for/security'
+    | '/for/tradesmen'
+    | '/for/wellness'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/for/consultants' | '/for/security' | '/for/tradesmen'
-  id: '__root__' | '/' | '/for/consultants' | '/for/security' | '/for/tradesmen'
+  to:
+    | '/'
+    | '/for/consultants'
+    | '/for/security'
+    | '/for/tradesmen'
+    | '/for/wellness'
+  id:
+    | '__root__'
+    | '/'
+    | '/for/consultants'
+    | '/for/security'
+    | '/for/tradesmen'
+    | '/for/wellness'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +92,7 @@ export interface RootRouteChildren {
   ForConsultantsRoute: typeof ForConsultantsRoute
   ForSecurityRoute: typeof ForSecurityRoute
   ForTradesmenRoute: typeof ForTradesmenRoute
+  ForWellnessRoute: typeof ForWellnessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForTradesmenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/for/wellness': {
+      id: '/for/wellness'
+      path: '/for/wellness'
+      fullPath: '/for/wellness'
+      preLoaderRoute: typeof ForWellnessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   ForConsultantsRoute: ForConsultantsRoute,
   ForSecurityRoute: ForSecurityRoute,
   ForTradesmenRoute: ForTradesmenRoute,
+  ForWellnessRoute: ForWellnessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
