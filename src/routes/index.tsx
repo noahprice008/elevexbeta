@@ -81,3 +81,4 @@ function Index() {
 }
 function Section({ children }: { children: React.ReactNode }) { return <section className="bg-secondary py-24 md:py-32"><div className="mx-auto max-w-7xl px-5 lg:px-8">{children}</div></section>; }
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) { return <p className={`text-xs font-extrabold uppercase ${dark ? "text-electric" : "text-primary"}`}>{children}</p>; }
+function UrgencyBadge({ dark = false }: { dark?: boolean }) { return <p className={`mt-7 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wide ${dark ? "border-electric/40 bg-electric/10 text-electric" : "border-primary/25 bg-primary/5 text-primary"}`}><span className="h-2 w-2 rounded-full bg-electric" />Currently onboarding 15 new builds this quarter</p>; }
