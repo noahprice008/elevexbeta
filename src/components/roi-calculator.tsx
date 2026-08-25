@@ -3,7 +3,9 @@ import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const SUBSCRIPTION = 199;
+const MIN_SUBSCRIPTION = 199;
+const MAX_SUBSCRIPTION = 999;
+const SUBSCRIPTION_STEP = 100;
 const WEEKS_PER_MONTH = 4.3;
 
 const money = (value: number) => `$${Math.round(value).toLocaleString("en-US")}`;
@@ -11,11 +13,12 @@ const money = (value: number) => `$${Math.round(value).toLocaleString("en-US")}`
 export function RoiCalculator() {
   const [hours, setHours] = useState(8);
   const [rate, setRate] = useState(30);
+  const [subscription, setSubscription] = useState(MIN_SUBSCRIPTION);
 
   const reclaimed = hours * WEEKS_PER_MONTH;
   const value = reclaimed * rate;
-  const net = value - SUBSCRIPTION;
-  const barWidth = value > 0 ? Math.min(100, Math.max(8, (SUBSCRIPTION / value) * 100)) : 100;
+  const net = value - subscription;
+  const barWidth = value > 0 ? Math.min(100, Math.max(8, (subscription / value) * 100)) : 100;
 
   return (
     <section id="roi-calculator" className="border-t border-cloud/10 bg-navy py-24 text-cloud md:py-32">
@@ -57,6 +60,22 @@ export function RoiCalculator() {
                 <span className="text-sm font-semibold text-cloud/60">/hour</span>
               </div>
             </div>
+
+            <div className="mt-8 border-t border-cloud/12 pt-6">
+              <label htmlFor="roi-subscription" className="text-sm font-bold text-cloud/80">Estimated ELEVEX subscription</label>
+              <p className="mt-3 text-4xl font-extrabold text-electric">{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month</span></p>
+              <Slider
+                id="roi-subscription"
+                className="mt-5"
+                min={MIN_SUBSCRIPTION}
+                max={MAX_SUBSCRIPTION}
+                step={SUBSCRIPTION_STEP}
+                value={[subscription]}
+                onValueChange={([v]) => setSubscription(v ?? MIN_SUBSCRIPTION)}
+                aria-label="Estimated ELEVEX subscription per month"
+              />
+              <div className="mt-2 flex justify-between text-xs font-semibold text-cloud/45"><span>{money(MIN_SUBSCRIPTION)}</span><span>{money(MAX_SUBSCRIPTION)}</span></div>
+            </div>
           </div>
 
           <div className="rounded-md border border-electric/40 bg-cloud/5 p-7 md:p-10">
@@ -80,7 +99,7 @@ export function RoiCalculator() {
 
             <div className="mt-8 space-y-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wide text-cloud/50">$199/month subscription</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-cloud/50">from {money(MIN_SUBSCRIPTION)}/month subscription</p>
                 <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-cloud/10">
                   <div className="h-full rounded-full bg-cloud/35" style={{ width: `${barWidth}%` }} />
                 </div>
