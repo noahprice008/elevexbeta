@@ -7,6 +7,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 const links: [string, string][] = [
   ["Solutions", "/#solutions"],
   ["How We Deliver", "/#how-we-deliver"],
+  ["Integrations", "/#integrations"],
   ["Why ELEVEX", "/#why"],
   ["Pricing", "/#pricing"],
   ["FAQ", "/#faq"],
