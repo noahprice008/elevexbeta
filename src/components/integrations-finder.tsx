@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Check, Search } from "lucide-react";
+import { Check, Search, Pointer } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -35,10 +35,12 @@ const tools: Tool[] = [
   { name: "Notion", category: "Productivity" },
   { name: "Zapier", category: "Productivity" },
   { name: "Make", category: "Productivity" },
+  { name: "n8n", category: "Productivity" },
+  { name: "Base44", category: "Productivity" },
   { name: "Webflow", category: "Productivity" },
 ];
 
-const categories = ["All", "Payments", "Scheduling", "CRM", "Communication", "Marketing", "Productivity"];
+const categories = ["Payments", "Scheduling", "CRM", "Communication", "Marketing", "Productivity"];
 
 function initials(name: string) {
   return name.replace(/[^A-Za-z ]/g, "").split(" ").filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
@@ -46,20 +48,27 @@ function initials(name: string) {
 
 export function IntegrationsFinder() {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState<string>("");
 
   const term = query.trim().toLowerCase();
   const results = useMemo(
-    () => tools.filter((t) => (category === "All" || t.category === category) && (!term || t.name.toLowerCase().includes(term))),
+    () => tools.filter((t) => (category === "" || t.category === category) && (!term || t.name.toLowerCase().includes(term))),
     [term, category],
   );
+
+  const hasSelection = category !== "" || query.trim() !== "";
 
   return (
     <section id="integrations" className="bg-navy py-24 text-cloud md:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <p className="text-xs font-extrabold uppercase text-electric">YOUR STACK, COVERED</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">Already using tools you love? We connect to them.</h2>
-        <p className="mt-6 max-w-3xl text-lg text-cloud/65">Search or browse the software you run today — see what plugs straight into your 7-day build.</p>
+        <p className="mt-6 max-w-3xl text-lg text-cloud/65">
+          Search or browse the software you run today — see what plugs straight into your 7-day build.
+        </p>
+        <p className="mt-3 max-w-3xl text-sm font-semibold text-cloud/50">
+          Don't worry if your platforms aren't shown here — most other platforms can connect. These are simply the most popular ones we work with.
+        </p>
 
         <div className="relative mt-10 max-w-xl">
           <Search aria-hidden="true" className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-cloud/50" />
@@ -77,7 +86,7 @@ export function IntegrationsFinder() {
             <button
               key={c}
               type="button"
-              onClick={() => setCategory(c)}
+              onClick={() => setCategory(category === c ? "" : c)}
               aria-pressed={category === c}
               className={`cursor-pointer rounded-full border px-4 py-1.5 text-xs font-bold uppercase tracking-wide transition-colors ${
                 category === c ? "border-electric bg-electric/15 text-electric" : "border-cloud/20 text-cloud/60 hover:border-electric/50 hover:text-cloud"
@@ -88,7 +97,15 @@ export function IntegrationsFinder() {
           ))}
         </div>
 
-        {results.length > 0 ? (
+        {!hasSelection ? (
+          <div className="mt-14 flex max-w-xl items-start gap-4 rounded-md border border-dashed border-cloud/20 bg-cloud/5 p-6">
+            <Pointer className="mt-0.5 size-5 shrink-0 text-electric" aria-hidden="true" />
+            <div>
+              <p className="font-extrabold text-cloud">Select a category above to see the networks we support.</p>
+              <p className="mt-1 text-sm text-cloud/60">Or type a tool name in the search box to check compatibility instantly.</p>
+            </div>
+          </div>
+        ) : results.length > 0 ? (
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {results.map((tool) => (
               <article
