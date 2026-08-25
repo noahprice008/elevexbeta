@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, type LucideIcon } from "lucide-react";
+import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, Upload, Sparkles, FileImage, type LucideIcon } from "lucide-react";
 
 /* ---------------------------------- data --------------------------------- */
 
@@ -52,6 +52,12 @@ const aesthetics: { title: string; description: string; swatches: string[]; font
   { title: "Bold & High-Contrast", description: "Vibrant, sharp, technology-forward energy.", swatches: ["#0F0F23", "#7C3AED", "#22D3EE"], font: "font-sans font-black uppercase", radius: "rounded-lg" },
 ];
 
+const brandHelpOptions = [
+  { id: "brand-sheet", label: "I have a brand sheet to upload", icon: Upload },
+  { id: "logo", label: "I have a logo to upload", icon: FileImage },
+  { id: "suggest", label: "I don't know — can you suggest?", icon: Sparkles },
+];
+
 const industries = [
   "Tradesmen & Contractors",
   "Consultants & Professional Services",
@@ -69,12 +75,15 @@ const bottleneckPlaceholders: Record<string, string> = {
 };
 
 
-const stageTitles = ["Core Growth Pillars", "MVP Prioritization", "Integrations & Brand Direction", "Business Profile"];
+const stageTitles = ["Core Growth Pillars", "MVP Prioritization", "Integrations", "Brand Direction", "Business Profile"];
 
 type FormData = {
   growthPillars: string[];
   mustHaveFeatures: string[];
   integrations: string[];
+  brandHelp: string[];
+  brandSheetName: string;
+  logoName: string;
   brandAesthetic: string[];
   fullName: string;
   jobTitle: string;
@@ -86,7 +95,7 @@ type FormData = {
 };
 
 const initialData: FormData = {
-  growthPillars: [], mustHaveFeatures: [], integrations: [], brandAesthetic: [],
+  growthPillars: [], mustHaveFeatures: [], integrations: [], brandHelp: [], brandSheetName: "", logoName: "", brandAesthetic: [],
   fullName: "", jobTitle: "", businessName: "", email: "", website: "", industry: "", operationalBottleneck: "",
 };
 
@@ -147,18 +156,18 @@ function CheckboxPill({ label, selected, onClick }: { label: string; selected: b
 function AestheticCard({ style, selected, onClick }: { style: (typeof aesthetics)[number]; selected: boolean; onClick: () => void }) {
   return (
     <button type="button" aria-pressed={selected} onClick={onClick}
-      className={`group relative overflow-hidden rounded-xl border p-5 text-left backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:border-primary hover:shadow-lg hover:shadow-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-secondary shadow-lg shadow-primary/15" : "border-border bg-background/70"}`}>
-      <span aria-hidden="true" className={`flex h-24 w-full items-end gap-1.5 overflow-hidden p-3 ${style.radius}`} style={{ background: `linear-gradient(135deg, ${style.swatches[0]} 0%, ${style.swatches[1]} 100%)` }}>
-        <span className={`block h-2.5 w-16 ${style.radius}`} style={{ background: style.swatches[2] }} />
-        <span className={`block h-2.5 w-8 ${style.radius}`} style={{ background: style.swatches[2], opacity: 0.6 }} />
+      className={`group relative overflow-hidden rounded-xl border p-4 text-left backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:shadow-md hover:shadow-primary/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-secondary shadow-md shadow-primary/15" : "border-border bg-background/70"}`}>
+      <span aria-hidden="true" className={`flex h-14 w-full items-end gap-1 overflow-hidden rounded-t-md p-2`} style={{ background: `linear-gradient(135deg, ${style.swatches[0]} 0%, ${style.swatches[1]} 100%)` }}>
+        <span className={`block h-2 w-12 rounded-sm`} style={{ background: style.swatches[2] }} />
+        <span className={`block h-2 w-6 rounded-sm`} style={{ background: style.swatches[2], opacity: 0.6 }} />
       </span>
-      <span className="mt-4 flex items-start justify-between gap-3">
+      <span className="mt-3 flex items-start justify-between gap-2">
         <span>
-          <strong className={`block text-sm font-extrabold text-foreground ${style.font}`}>{style.title}</strong>
-          <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{style.description}</span>
+          <strong className={`block text-xs font-extrabold text-foreground ${style.font}`}>{style.title}</strong>
+          <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">{style.description}</span>
         </span>
-        <span className={`mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md border ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border"}`} aria-hidden="true">
-          {selected && <Check className="size-3.5" />}
+        <span className={`mt-0.5 flex size-4 shrink-0 items-center justify-center rounded border ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border"}`} aria-hidden="true">
+          {selected && <Check className="size-2.5" />}
         </span>
       </span>
     </button>
@@ -184,7 +193,7 @@ function Field({ label, value, onChange, type = "text", placeholder, error, requ
 
 /* --------------------------------- flow ---------------------------------- */
 
-const TOTAL = 4;
+const TOTAL = 5;
 
 export function ConsultationFlow() {
   const [step, setStep] = useState(1);
@@ -310,9 +319,9 @@ export function ConsultationFlow() {
 
       {step === 3 && (
         <StepShell>
-          <StepHeading title="Your tools and your look" copy="We'll review your requirements before recommending solutions." />
+          <StepHeading title="What tools does your business already use?" copy="We'll review your requirements before recommending solutions." />
           <fieldset>
-            <legend className="mb-1 text-lg font-extrabold md:text-xl">What tools does your business already use?</legend>
+            <legend className="sr-only">Integrations</legend>
             <p className="mb-5 text-sm text-muted-foreground">Select any that apply — leave blank if none.</p>
             <div className="space-y-6">
               {integrationGroups.map((group) => (
@@ -328,9 +337,78 @@ export function ConsultationFlow() {
               ))}
             </div>
           </fieldset>
-          <fieldset className="mt-12">
-            <legend className="mb-5 text-lg font-extrabold md:text-xl">Which style best represents your business?</legend>
-            <div className="grid gap-4 md:grid-cols-2">
+        </StepShell>
+      )}
+
+      {step === 4 && (
+        <StepShell>
+          <StepHeading title="How should your platform look and feel?" copy="Share what you have, or let us propose a direction." />
+
+          <fieldset>
+            <legend className="mb-3 text-lg font-extrabold md:text-xl">Brand assets</legend>
+            <div className="flex flex-wrap gap-2.5">
+              {brandHelpOptions.map((option) => {
+                const selected = formData.brandHelp.includes(option.id);
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => update("brandHelp", toggle(formData.brandHelp, option.id))}
+                    className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border bg-background text-muted-foreground"}`}
+                  >
+                    <option.icon className="size-4" aria-hidden="true" />
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {formData.brandHelp.includes("brand-sheet") && (
+              <label className="mt-5 block rounded-xl border border-dashed border-border bg-background/70 p-5 transition-colors hover:border-primary/50">
+                <span className="flex items-center gap-2 text-sm font-bold">
+                  <Upload className="size-4 text-primary" aria-hidden="true" />
+                  Upload your brand sheet
+                </span>
+                <span className="mt-1 block text-xs text-muted-foreground">PDF, PNG, or JPG. Max 10 MB.</span>
+                <input
+                  type="file"
+                  accept=".pdf,.png,.jpg,.jpeg"
+                  className="mt-3 block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2 file:font-semibold file:text-foreground hover:file:bg-secondary/80"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    update("brandSheetName", file ? file.name : "");
+                  }}
+                />
+                {formData.brandSheetName && <span className="mt-2 block text-xs font-semibold text-primary">Selected: {formData.brandSheetName}</span>}
+              </label>
+            )}
+
+            {formData.brandHelp.includes("logo") && (
+              <label className="mt-5 block rounded-xl border border-dashed border-border bg-background/70 p-5 transition-colors hover:border-primary/50">
+                <span className="flex items-center gap-2 text-sm font-bold">
+                  <FileImage className="size-4 text-primary" aria-hidden="true" />
+                  Upload your logo
+                </span>
+                <span className="mt-1 block text-xs text-muted-foreground">SVG, PNG, or JPG. Max 5 MB.</span>
+                <input
+                  type="file"
+                  accept=".svg,.png,.jpg,.jpeg"
+                  className="mt-3 block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2 file:font-semibold file:text-foreground hover:file:bg-secondary/80"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    update("logoName", file ? file.name : "");
+                  }}
+                />
+                {formData.logoName && <span className="mt-2 block text-xs font-semibold text-primary">Selected: {formData.logoName}</span>}
+              </label>
+            )}
+          </fieldset>
+
+          <fieldset className="mt-10">
+            <legend className="mb-3 text-lg font-extrabold md:text-xl">Which style best represents your business?</legend>
+            <p className="mb-4 text-sm text-muted-foreground">Pick one or more directions — optional if you'd like us to suggest.</p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {aesthetics.map((style) => (
                 <AestheticCard key={style.title} style={style}
                   selected={formData.brandAesthetic.includes(style.title)}
@@ -341,7 +419,7 @@ export function ConsultationFlow() {
         </StepShell>
       )}
 
-      {step === 4 && (
+      {step === 5 && (
         <StepShell>
           <StepHeading title="A little about your business" copy="No sales pressure. No obligation." />
           <div className="grid gap-5 md:grid-cols-2">
