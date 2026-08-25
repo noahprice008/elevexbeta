@@ -1,4 +1,6 @@
-import { ElevexXMark } from "./elevex-x-mark";
+import xMark from "@/assets/elevex-x.png.asset.json";
+import wordmarkLight from "@/assets/elevex-wordmark.png.asset.json";
+import wordmarkDark from "@/assets/elevex-wordmark-dark.png.asset.json";
 
 export function ElevexLogo({
   dark = true,
@@ -10,16 +12,16 @@ export function ElevexLogo({
   tagline?: boolean;
 }) {
   if (compact) {
-    return <ElevexXMark className="h-[1em] w-[1em]" />;
+    return <img src={xMark.url} alt="ELEVEX" className="h-[1em] w-auto" />;
   }
 
   return (
     <span className="inline-flex flex-col" aria-label="ELEVEX">
-      <span className="inline-flex items-center font-extrabold tracking-tight">
-        <span className={dark ? "text-cloud" : "text-navy"}>ELEV</span>
-        <span className="text-blue-hover">E</span>
-        <ElevexXMark className="ml-[0.02em] h-[0.86em] w-[0.86em] translate-y-[0.02em]" />
-      </span>
+      <img
+        src={dark ? wordmarkDark.url : wordmarkLight.url}
+        alt="ELEVEX"
+        className="h-[1.05em] w-auto"
+      />
       {tagline && (
         <span
           className={`mt-1 text-[0.5em] font-medium uppercase tracking-[0.32em] ${dark ? "text-cloud/50" : "text-navy/50"}`}
