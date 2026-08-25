@@ -7,6 +7,7 @@ const MIN_SUBSCRIPTION = 199;
 const MAX_SUBSCRIPTION = 999;
 const SUBSCRIPTION_STEP = 100;
 const WEEKS_PER_MONTH = 4.3;
+const subscriptionOptions = Array.from({ length: 9 }, (_, index) => MIN_SUBSCRIPTION + index * SUBSCRIPTION_STEP);
 
 const money = (value: number) => `$${Math.round(value).toLocaleString("en-US")}`;
 
@@ -63,7 +64,7 @@ export function RoiCalculator() {
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
               <label htmlFor="roi-subscription" className="text-sm font-bold text-cloud/80">Estimated ELEVEX subscription</label>
-              <p className="mt-3 text-4xl font-extrabold text-electric">{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month</span></p>
+              <p className="mt-3 text-4xl font-extrabold text-electric"><span className="text-2xl">from </span>{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month</span></p>
               <Slider
                 id="roi-subscription"
                 className="mt-5"
@@ -75,6 +76,21 @@ export function RoiCalculator() {
                 aria-label="Estimated ELEVEX subscription per month"
               />
               <div className="mt-2 flex justify-between text-xs font-semibold text-cloud/45"><span>{money(MIN_SUBSCRIPTION)}</span><span>{money(MAX_SUBSCRIPTION)}</span></div>
+              <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-5" aria-label="Choose estimated subscription amount">
+                {subscriptionOptions.map((amount) => (
+                  <button
+                    key={amount}
+                    type="button"
+                    onClick={() => setSubscription(amount)}
+                    aria-pressed={subscription === amount}
+                    className={`rounded-md border px-2.5 py-2 text-xs font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric ${
+                      subscription === amount ? "border-electric bg-electric text-navy" : "border-cloud/15 bg-cloud/5 text-cloud/60 hover:border-electric/50 hover:text-cloud"
+                    }`}
+                  >
+                    {money(amount)}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -99,7 +115,7 @@ export function RoiCalculator() {
 
             <div className="mt-8 space-y-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wide text-cloud/50">from {money(MIN_SUBSCRIPTION)}/month subscription</p>
+                <p className="text-xs font-bold uppercase tracking-wide text-cloud/50">from {money(subscription)}/month subscription</p>
                 <div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-cloud/10">
                   <div className="h-full rounded-full bg-cloud/35" style={{ width: `${barWidth}%` }} />
                 </div>
