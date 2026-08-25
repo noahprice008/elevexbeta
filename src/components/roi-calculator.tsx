@@ -18,7 +18,7 @@ export function RoiCalculator() {
   const barWidth = value > 0 ? Math.min(100, Math.max(8, (SUBSCRIPTION / value) * 100)) : 100;
 
   return (
-    <section id="roi-calculator" className="bg-navy py-24 text-cloud md:py-32">
+    <section id="roi-calculator" className="border-t border-cloud/10 bg-navy py-24 text-cloud md:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <p className="text-xs font-extrabold uppercase text-electric">WHAT IT'S COSTING YOU</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">See what manual work is really costing you.</h2>
