@@ -2,11 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { Wrench, Briefcase, ShieldCheck, HeartPulse, Store, type LucideIcon } from "lucide-react";
 
 export const audiences: { title: string; copy: string; to: string; Icon: LucideIcon }[] = [
-  { title: "Tradesmen & Contractors", copy: "Quotes, jobs and follow-ups handled without the paperwork.", to: "/for/tradesmen", Icon: Wrench },
-  { title: "Consultants & Professional Services", copy: "A credible presence and a steady flow of qualified enquiries.", to: "/for/consultants", Icon: Briefcase },
-  { title: "Security & Facilities Firms", copy: "Connected scheduling, reporting and client communication.", to: "/for/security", Icon: ShieldCheck },
-  { title: "Wellness Studios & Clinics", copy: "Bookings, reminders and client management that run themselves.", to: "/for/wellness", Icon: HeartPulse },
-  { title: "Growing Local Businesses", copy: "A digital foundation that keeps up as the business expands.", to: "/for/local-business", Icon: Store },
+  { title: "Tradesmen & Contractors", copy: "Stop losing Sunday evenings to invoicing. Automatically convert on-site quotes into scheduled jobs.", to: "/for/tradesmen", Icon: Wrench },
+  { title: "Consultants & Professional Services", copy: "A credible digital presence and a steady flow of qualified enquiries — without the manual follow-up.", to: "/for/consultants", Icon: Briefcase },
+  { title: "Security & Facilities Firms", copy: "Connected scheduling, real-time reporting and client communication that never drops the ball.", to: "/for/security", Icon: ShieldCheck },
+  { title: "Wellness Studios & Clinics", copy: "Eliminate no-shows with two-way SMS reminders and automated waitlist fulfilment.", to: "/for/wellness", Icon: HeartPulse },
+  { title: "Growing Local Businesses", copy: "A digital foundation that keeps up as the business expands, from first customer to fiftieth.", to: "/for/local-business", Icon: Store },
 ];
 
 export function AudienceCards() {
