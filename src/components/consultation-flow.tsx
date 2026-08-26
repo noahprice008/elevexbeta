@@ -123,6 +123,30 @@ function ProgressHeader({ step, total }: { step: number; total: number }) {
   );
 }
 
+function StickyProgressBar({ step, total, visible }: { step: number; total: number; visible: boolean }) {
+  const percentage = Math.round((step / total) * 100);
+  return (
+    <div
+      aria-hidden={!visible}
+      className={`fixed inset-x-0 top-20 z-40 transition-all duration-300 ease-out ${visible ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0 pointer-events-none"}`}
+    >
+      <div className="border-b border-border/50 bg-background/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-1 lg:px-8">
+          <span className="text-[11px] font-extrabold uppercase tracking-wider text-foreground/90">Step {step} of {total}</span>
+          <span className="text-[11px] font-bold text-muted-foreground">{stageTitles[step - 1]}</span>
+        </div>
+        <div className="h-1.5 w-full bg-navy/10 dark:bg-cloud/10" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={total} aria-label="Form progress">
+          <div className="relative h-full rounded-r-full bg-electric transition-[width] duration-[400ms] ease-out" style={{ width: `${percentage}%` }}>
+            <span className="absolute -right-1.5 top-1/2 -translate-y-1/2" aria-hidden="true">
+              <span key={step} className="block h-3 w-3 rounded-full bg-electric shadow-[0_0_14px_rgba(56,189,248,0.85)] animate-progress-ping" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SelectCard({ title, description, selected, onClick, icon: Icon }: { title: string; description?: string; selected: boolean; onClick: () => void; icon?: LucideIcon }) {
   return (
     <button type="button" aria-pressed={selected} onClick={onClick}
@@ -261,24 +285,38 @@ export function ConsultationFlow() {
     }
   };
 
-  if (complete) return (
-    <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
-      <span className="mb-6 inline-flex size-14 items-center justify-center rounded-full bg-secondary text-primary"><Check className="size-6" aria-hidden="true" /></span>
-      <h3 className="text-3xl font-extrabold md:text-5xl">Thanks — We've Got Everything We Need</h3>
-      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Your requirements have been submitted successfully. Our team will review your goals, priorities, and technology stack before creating a tailored ELEVEX demo experience designed around your business.</p>
-      <ul className="mx-auto mt-8 grid max-w-md gap-3 text-left text-sm">
-        {["A custom demo concept", "Recommended automation opportunities", "Suggested technology stack", "A follow-up link to discuss next steps"].map((item) => (
-          <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" /><span className="text-muted-foreground">{item}</span></li>
-        ))}
-      </ul>
-      <p className="mt-8 text-sm font-bold">Expected review time: 24–48 business hours.</p>
-      <div className="mt-8"><Button asChild size="lg"><a href="/">Return to Homepage</a></Button></div>
-    </div>
-  );
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [barVisible, setBarVisible] = useState(false);
+
+  useEffect(() => {
+    if (!sentinelRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setBarVisible(entry?.isIntersecting ?? false),
+      { threshold: 0 }
+    );
+    observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={containerRef} className="mx-auto w-full max-w-5xl scroll-mt-28 rounded-2xl border bg-background/60 p-6 shadow-sm backdrop-blur md:p-10">
-      <ProgressHeader step={step} total={TOTAL} />
+    <div ref={sentinelRef} data-form-sentinel className="relative">
+      <StickyProgressBar step={step} total={TOTAL} visible={barVisible && !complete} />
+      {complete ? (
+        <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
+          <span className="mb-6 inline-flex size-14 items-center justify-center rounded-full bg-secondary text-primary"><Check className="size-6" aria-hidden="true" /></span>
+          <h3 className="text-3xl font-extrabold md:text-5xl">Thanks — We've Got Everything We Need</h3>
+          <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Your requirements have been submitted successfully. Our team will review your goals, priorities, and technology stack before creating a tailored ELEVEX demo experience designed around your business.</p>
+          <ul className="mx-auto mt-8 grid max-w-md gap-3 text-left text-sm">
+            {["A custom demo concept", "Recommended automation opportunities", "Suggested technology stack", "A follow-up link to discuss next steps"].map((item) => (
+              <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" /><span className="text-muted-foreground">{item}</span></li>
+            ))}
+          </ul>
+          <p className="mt-8 text-sm font-bold">Expected review time: 24–48 business hours.</p>
+          <div className="mt-8"><Button asChild size="lg"><a href="/">Return to Homepage</a></Button></div>
+        </div>
+      ) : (
+        <div ref={containerRef} className="mx-auto w-full max-w-5xl scroll-mt-28 rounded-2xl border bg-background/60 p-6 shadow-sm backdrop-blur md:p-10">
+          <ProgressHeader step={step} total={TOTAL} />
 
       {step === 1 && (
         <StepShell>
@@ -461,5 +499,7 @@ export function ConsultationFlow() {
       </div>
       {error && <p role="alert" className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
     </div>
+  )}
+</div>
   );
 }
