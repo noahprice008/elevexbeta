@@ -499,5 +499,7 @@ export function ConsultationFlow() {
       </div>
       {error && <p role="alert" className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
     </div>
+  )}
+</div>
   );
 }
