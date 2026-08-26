@@ -292,7 +292,7 @@ export function ConsultationFlow() {
     if (!sentinelRef.current || typeof IntersectionObserver === "undefined") return;
     const observer = new IntersectionObserver(
       ([entry]) => setBarVisible(entry?.isIntersecting ?? false),
-      { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
+      { threshold: 0 }
     );
     observer.observe(sentinelRef.current);
     return () => observer.disconnect();
