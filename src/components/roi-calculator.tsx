@@ -64,33 +64,31 @@ export function RoiCalculator() {
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
               <label htmlFor="roi-subscription" className="text-sm font-bold text-cloud/80">Estimated ELEVEX subscription</label>
-              <p className="mt-3 text-4xl font-extrabold text-electric"><span className="text-2xl">from </span>{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month</span></p>
-              <Slider
+              <p className="mt-3 text-sm font-bold text-cloud/60">Plans start from $199/month</p>
+              <p className="mt-1 text-4xl font-extrabold text-electric">{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month selected</span></p>
+              <input
                 id="roi-subscription"
-                className="mt-5"
+                type="range"
                 min={MIN_SUBSCRIPTION}
                 max={MAX_SUBSCRIPTION}
                 step={SUBSCRIPTION_STEP}
-                value={[subscription]}
-                onValueChange={([v]) => setSubscription(v ?? MIN_SUBSCRIPTION)}
+                value={subscription}
+                onChange={(event) => setSubscription(Number(event.target.value))}
+                className="mt-5 h-3 w-full cursor-pointer accent-electric"
                 aria-label="Estimated ELEVEX subscription per month"
               />
               <div className="mt-2 flex justify-between text-xs font-semibold text-cloud/45"><span>{money(MIN_SUBSCRIPTION)}</span><span>{money(MAX_SUBSCRIPTION)}</span></div>
-              <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-5" aria-label="Choose estimated subscription amount">
+              <label htmlFor="roi-subscription-select" className="mt-5 block text-xs font-extrabold uppercase text-cloud/50">Or choose an amount</label>
+              <select
+                id="roi-subscription-select"
+                value={subscription}
+                onChange={(event) => setSubscription(Number(event.target.value))}
+                className="mt-2 h-12 w-full cursor-pointer rounded-md border border-cloud/20 bg-navy px-3 text-sm font-extrabold text-cloud outline-none focus:border-electric focus:ring-2 focus:ring-electric/30"
+              >
                 {subscriptionOptions.map((amount) => (
-                  <button
-                    key={amount}
-                    type="button"
-                    onClick={() => setSubscription(amount)}
-                    aria-pressed={subscription === amount}
-                    className={`rounded-md border px-2.5 py-2 text-xs font-extrabold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric ${
-                      subscription === amount ? "border-electric bg-electric text-navy" : "border-cloud/15 bg-cloud/5 text-cloud/60 hover:border-electric/50 hover:text-cloud"
-                    }`}
-                  >
-                    {money(amount)}
-                  </button>
+                  <option key={amount} value={amount}>{money(amount)}/month</option>
                 ))}
-              </div>
+              </select>
             </div>
           </div>
 
