@@ -123,6 +123,30 @@ function ProgressHeader({ step, total }: { step: number; total: number }) {
   );
 }
 
+function StickyProgressBar({ step, total, visible }: { step: number; total: number; visible: boolean }) {
+  const percentage = Math.round((step / total) * 100);
+  return (
+    <div
+      aria-hidden={!visible}
+      className={`fixed inset-x-0 top-20 z-40 transition-all duration-300 ease-out ${visible ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0 pointer-events-none"}`}
+    >
+      <div className="border-b border-border/50 bg-background/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-1 lg:px-8">
+          <span className="text-[11px] font-extrabold uppercase tracking-wider text-foreground/90">Step {step} of {total}</span>
+          <span className="text-[11px] font-bold text-muted-foreground">{stageTitles[step - 1]}</span>
+        </div>
+        <div className="h-1.5 w-full bg-navy/10 dark:bg-cloud/10" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={total} aria-label="Form progress">
+          <div className="relative h-full rounded-r-full bg-electric transition-[width] duration-[400ms] ease-out" style={{ width: `${percentage}%` }}>
+            <span className="absolute -right-1.5 top-1/2 -translate-y-1/2" aria-hidden="true">
+              <span key={step} className="block h-3 w-3 rounded-full bg-electric shadow-[0_0_14px_rgba(56,189,248,0.85)] animate-progress-ping" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SelectCard({ title, description, selected, onClick, icon: Icon }: { title: string; description?: string; selected: boolean; onClick: () => void; icon?: LucideIcon }) {
   return (
     <button type="button" aria-pressed={selected} onClick={onClick}
