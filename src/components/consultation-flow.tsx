@@ -285,24 +285,38 @@ export function ConsultationFlow() {
     }
   };
 
-  if (complete) return (
-    <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
-      <span className="mb-6 inline-flex size-14 items-center justify-center rounded-full bg-secondary text-primary"><Check className="size-6" aria-hidden="true" /></span>
-      <h3 className="text-3xl font-extrabold md:text-5xl">Thanks — We've Got Everything We Need</h3>
-      <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Your requirements have been submitted successfully. Our team will review your goals, priorities, and technology stack before creating a tailored ELEVEX demo experience designed around your business.</p>
-      <ul className="mx-auto mt-8 grid max-w-md gap-3 text-left text-sm">
-        {["A custom demo concept", "Recommended automation opportunities", "Suggested technology stack", "A follow-up link to discuss next steps"].map((item) => (
-          <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" /><span className="text-muted-foreground">{item}</span></li>
-        ))}
-      </ul>
-      <p className="mt-8 text-sm font-bold">Expected review time: 24–48 business hours.</p>
-      <div className="mt-8"><Button asChild size="lg"><a href="/">Return to Homepage</a></Button></div>
-    </div>
-  );
+  const sentinelRef = useRef<HTMLDivElement>(null);
+  const [barVisible, setBarVisible] = useState(false);
+
+  useEffect(() => {
+    if (!sentinelRef.current || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setBarVisible(entry.isIntersecting),
+      { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
+    );
+    observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={containerRef} className="mx-auto w-full max-w-5xl scroll-mt-28 rounded-2xl border bg-background/60 p-6 shadow-sm backdrop-blur md:p-10">
-      <ProgressHeader step={step} total={TOTAL} />
+    <div ref={sentinelRef} className="relative">
+      <StickyProgressBar step={step} total={TOTAL} visible={barVisible && !complete} />
+      {complete ? (
+        <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
+          <span className="mb-6 inline-flex size-14 items-center justify-center rounded-full bg-secondary text-primary"><Check className="size-6" aria-hidden="true" /></span>
+          <h3 className="text-3xl font-extrabold md:text-5xl">Thanks — We've Got Everything We Need</h3>
+          <p className="mx-auto mt-5 max-w-xl text-muted-foreground">Your requirements have been submitted successfully. Our team will review your goals, priorities, and technology stack before creating a tailored ELEVEX demo experience designed around your business.</p>
+          <ul className="mx-auto mt-8 grid max-w-md gap-3 text-left text-sm">
+            {["A custom demo concept", "Recommended automation opportunities", "Suggested technology stack", "A follow-up link to discuss next steps"].map((item) => (
+              <li key={item} className="flex items-start gap-3"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" /><span className="text-muted-foreground">{item}</span></li>
+            ))}
+          </ul>
+          <p className="mt-8 text-sm font-bold">Expected review time: 24–48 business hours.</p>
+          <div className="mt-8"><Button asChild size="lg"><a href="/">Return to Homepage</a></Button></div>
+        </div>
+      ) : (
+        <div ref={containerRef} className="mx-auto w-full max-w-5xl scroll-mt-28 rounded-2xl border bg-background/60 p-6 shadow-sm backdrop-blur md:p-10">
+          <ProgressHeader step={step} total={TOTAL} />
 
       {step === 1 && (
         <StepShell>
