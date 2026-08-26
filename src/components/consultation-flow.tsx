@@ -291,7 +291,7 @@ export function ConsultationFlow() {
   useEffect(() => {
     if (!sentinelRef.current || typeof IntersectionObserver === "undefined") return;
     const observer = new IntersectionObserver(
-      ([entry]) => setBarVisible(entry.isIntersecting),
+      ([entry]) => setBarVisible(entry?.isIntersecting ?? false),
       { threshold: 0, rootMargin: "-80px 0px 0px 0px" }
     );
     observer.observe(sentinelRef.current);
