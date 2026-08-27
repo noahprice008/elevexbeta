@@ -289,17 +289,20 @@ export function ConsultationFlow() {
   const [barVisible, setBarVisible] = useState(false);
 
   useEffect(() => {
-    if (!sentinelRef.current || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setBarVisible(entry?.isIntersecting ?? false),
-      { threshold: 0 }
-    );
-    observer.observe(sentinelRef.current);
-    return () => observer.disconnect();
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const HEADER_HEIGHT = 80;
+    const update = () => {
+      const rect = sentinel.getBoundingClientRect();
+      setBarVisible(rect.bottom > HEADER_HEIGHT + 8 && rect.top < window.innerHeight);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
   return (
-    <div ref={sentinelRef} data-form-sentinel className="relative">
+    <div ref={sentinelRef} className="relative">
       <StickyProgressBar step={step} total={TOTAL} visible={barVisible && !complete} />
       {complete ? (
         <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
