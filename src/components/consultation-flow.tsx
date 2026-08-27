@@ -289,17 +289,16 @@ export function ConsultationFlow() {
   const [barVisible, setBarVisible] = useState(false);
 
   useEffect(() => {
-    if (!sentinelRef.current || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const v = entry?.isIntersecting ?? false;
-        (window as any).__ioLog = [...((window as any).__ioLog || []), { v, rect: entry?.boundingClientRect }];
-        setBarVisible(v);
-      },
-      { threshold: 0 }
-    );
-    observer.observe(sentinelRef.current);
-    return () => observer.disconnect();
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+    const HEADER_HEIGHT = 80;
+    const update = () => {
+      const rect = sentinel.getBoundingClientRect();
+      setBarVisible(rect.bottom > HEADER_HEIGHT + 8 && rect.top < window.innerHeight);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
   return (
