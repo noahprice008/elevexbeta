@@ -340,7 +340,7 @@ export function ConsultationFlow() {
 
   return (
     <div ref={sentinelRef} className="relative">
-      <StickyProgressBar step={step} total={TOTAL} visible={barVisible && !complete} />
+      <StickyProgressBar step={step} total={TOTAL} celebrating={celebrating} visible={barVisible && (!complete || celebrating)} />
       {complete ? (
         <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
           <span className="mb-6 inline-flex size-14 items-center justify-center rounded-full bg-secondary text-primary"><Check className="size-6" aria-hidden="true" /></span>
