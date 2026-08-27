@@ -302,7 +302,7 @@ export function ConsultationFlow() {
   }, []);
 
   return (
-    <div ref={sentinelRef} data-form-sentinel className="relative">
+    <div ref={sentinelRef} className="relative">
       <StickyProgressBar step={step} total={TOTAL} visible={barVisible && !complete} />
       {complete ? (
         <div ref={containerRef} className="mx-auto max-w-3xl animate-step-in rounded-2xl border bg-background/70 p-8 text-center shadow-sm backdrop-blur md:p-12">
