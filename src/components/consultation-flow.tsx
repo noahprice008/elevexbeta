@@ -311,7 +311,14 @@ export function ConsultationFlow() {
       console.error("[ELEVEX discovery submission failed]", submissionError);
     } finally {
       setSubmitting(false);
-      setComplete(true);
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        || document.documentElement.classList.contains("a11y-reduce-motion");
+      setCelebrating(true);
+      // Let the reward animation own a beat before the success panel appears.
+      window.setTimeout(() => {
+        setCelebrating(false);
+        setComplete(true);
+      }, reduceMotion ? 600 : 1500);
     }
   };
 
