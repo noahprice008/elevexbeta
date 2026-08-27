@@ -123,8 +123,18 @@ function ProgressHeader({ step, total }: { step: number; total: number }) {
   );
 }
 
-function StickyProgressBar({ step, total, visible }: { step: number; total: number; visible: boolean }) {
-  const percentage = Math.round((step / total) * 100);
+const confettiPieces = [
+  { left: "18%", delay: "0ms", color: "bg-electric", drift: "-14px" },
+  { left: "30%", delay: "60ms", color: "bg-white", drift: "10px" },
+  { left: "42%", delay: "20ms", color: "bg-electric", drift: "-8px" },
+  { left: "54%", delay: "90ms", color: "bg-white", drift: "16px" },
+  { left: "66%", delay: "40ms", color: "bg-electric", drift: "-12px" },
+  { left: "78%", delay: "110ms", color: "bg-white", drift: "8px" },
+  { left: "88%", delay: "70ms", color: "bg-electric", drift: "-16px" },
+];
+
+function StickyProgressBar({ step, total, visible, celebrating }: { step: number; total: number; visible: boolean; celebrating: boolean }) {
+  const percentage = celebrating ? 100 : Math.round((step / total) * 100);
   return (
     <div
       aria-hidden={!visible}
@@ -132,15 +142,34 @@ function StickyProgressBar({ step, total, visible }: { step: number; total: numb
     >
       <div className="border-b border-border/50 bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-1 lg:px-8">
-          <span className="text-[11px] font-extrabold uppercase tracking-wider text-foreground/90">Step {step} of {total}</span>
-          <span className="text-[11px] font-bold text-muted-foreground">{stageTitles[step - 1]}</span>
+          <span className="text-[11px] font-extrabold uppercase tracking-wider text-foreground/90">
+            {celebrating ? "Complete" : `Step ${step} of ${total}`}
+          </span>
+          <span className="text-[11px] font-bold text-muted-foreground">{celebrating ? "Request submitted" : stageTitles[step - 1]}</span>
         </div>
-        <div className="h-1.5 w-full bg-navy/10 dark:bg-cloud/10" role="progressbar" aria-valuenow={step} aria-valuemin={1} aria-valuemax={total} aria-label="Form progress">
-          <div className="relative h-full rounded-r-full bg-electric transition-[width] duration-[400ms] ease-out" style={{ width: `${percentage}%` }}>
+        <div className="relative h-1.5 w-full bg-navy/10 dark:bg-cloud/10" role="progressbar" aria-valuenow={celebrating ? total : step} aria-valuemin={1} aria-valuemax={total} aria-label="Form progress">
+          <div
+            className={`relative h-full rounded-r-full bg-electric transition-[width] ease-out ${celebrating ? "duration-[600ms]" : "duration-[400ms]"}`}
+            style={{ width: `${percentage}%` }}
+          >
             <span className="absolute -right-1.5 top-1/2 -translate-y-1/2" aria-hidden="true">
-              <span key={step} className="block h-3 w-3 rounded-full bg-electric shadow-[0_0_14px_rgba(56,189,248,0.85)] animate-progress-ping" />
+              <span key={celebrating ? "done" : step} className="block h-3 w-3 rounded-full bg-electric shadow-[0_0_14px_rgba(56,189,248,0.85)] animate-progress-ping" />
             </span>
           </div>
+          {celebrating && (
+            <span className="pointer-events-none absolute inset-x-0 -top-2 flex justify-center" aria-hidden="true">
+              {confettiPieces.map((piece, index) => (
+                <span
+                  key={index}
+                  className={`animate-confetti-burst absolute h-1.5 w-1.5 rounded-full ${piece.color} motion-reduce:hidden`}
+                  style={{ left: piece.left, animationDelay: piece.delay, ["--drift" as string]: piece.drift }}
+                />
+              ))}
+              <span className="animate-check-bounce -mt-4 flex size-7 items-center justify-center rounded-full bg-electric text-navy shadow-[0_0_18px_rgba(56,189,248,0.7)] motion-reduce:animate-check-fade">
+                <Check className="size-4" strokeWidth={3} aria-hidden="true" />
+              </span>
+            </span>
+          )}
         </div>
       </div>
     </div>
