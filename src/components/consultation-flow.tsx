@@ -254,6 +254,7 @@ export function ConsultationFlow() {
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [celebrating, setCelebrating] = useState(false);
   const [complete, setComplete] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const firstRender = useRef(true);
