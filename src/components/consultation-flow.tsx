@@ -300,14 +300,12 @@ export function ConsultationFlow() {
     if (!validateProfile()) { setError("Please fix the highlighted fields."); return; }
     setError(""); setSubmitting(true);
     const payload = { ...formData, submittedAt: new Date().toISOString() };
-    const webhook = import.meta.env["VITE_LEAD_WEBHOOK_URL"] as string | undefined;
+    const webhook = (import.meta.env["VITE_LEAD_WEBHOOK_URL"] as string | undefined)
+      || "http://localhost:5678/webhook-test/e9250990-13c1-4343-a4de-21f009dbfec8";
     try {
-      if (webhook) {
-        await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-      } else {
-        console.info("[ELEVEX discovery submission]", payload);
-      }
+      await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
     } catch (submissionError) {
+      // Webhook failures are non-blocking: the user still sees the success/reward flow.
       console.error("[ELEVEX discovery submission failed]", submissionError);
     } finally {
       setSubmitting(false);
