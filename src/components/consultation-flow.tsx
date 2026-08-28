@@ -83,7 +83,9 @@ type FormData = {
   integrations: string[];
   brandHelp: string[];
   brandSheetName: string;
+  brandSheetBase64: string;
   logoName: string;
+  logoBase64: string;
   brandAesthetic: string[];
   fullName: string;
   jobTitle: string;
