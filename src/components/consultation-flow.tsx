@@ -83,7 +83,9 @@ type FormData = {
   integrations: string[];
   brandHelp: string[];
   brandSheetName: string;
+  brandSheetBase64: string;
   logoName: string;
+  logoBase64: string;
   brandAesthetic: string[];
   fullName: string;
   jobTitle: string;
@@ -95,7 +97,7 @@ type FormData = {
 };
 
 const initialData: FormData = {
-  growthPillars: [], mustHaveFeatures: [], integrations: [], brandHelp: [], brandSheetName: "", logoName: "", brandAesthetic: [],
+  growthPillars: [], mustHaveFeatures: [], integrations: [], brandHelp: [], brandSheetName: "", brandSheetBase64: "", logoName: "", logoBase64: "", brandAesthetic: [],
   fullName: "", jobTitle: "", businessName: "", email: "", website: "", industry: "", operationalBottleneck: "",
 };
 
@@ -103,6 +105,14 @@ const toggle = (list: string[], value: string) =>
   list.includes(value) ? list.filter((item) => item !== value) : [...list, value];
 
 const emailValid = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+
+const fileToBase64 = (file: File) =>
+  new Promise<string>((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(typeof reader.result === "string" ? reader.result : "");
+    reader.onerror = () => resolve("");
+    reader.readAsDataURL(file);
+  });
 
 /* -------------------------------- primitives ------------------------------- */
 
@@ -455,9 +465,10 @@ export function ConsultationFlow() {
                   type="file"
                   accept=".pdf,.png,.jpg,.jpeg"
                   className="mt-3 block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2 file:font-semibold file:text-foreground hover:file:bg-secondary/80"
-                  onChange={(event) => {
+                  onChange={async (event) => {
                     const file = event.target.files?.[0];
                     update("brandSheetName", file ? file.name : "");
+                    update("brandSheetBase64", file ? await fileToBase64(file) : "");
                   }}
                 />
                 {formData.brandSheetName && <span className="mt-2 block text-xs font-semibold text-primary">Selected: {formData.brandSheetName}</span>}
@@ -475,9 +486,10 @@ export function ConsultationFlow() {
                   type="file"
                   accept=".svg,.png,.jpg,.jpeg"
                   className="mt-3 block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2 file:font-semibold file:text-foreground hover:file:bg-secondary/80"
-                  onChange={(event) => {
+                  onChange={async (event) => {
                     const file = event.target.files?.[0];
                     update("logoName", file ? file.name : "");
+                    update("logoBase64", file ? await fileToBase64(file) : "");
                   }}
                 />
                 {formData.logoName && <span className="mt-2 block text-xs font-semibold text-primary">Selected: {formData.logoName}</span>}
