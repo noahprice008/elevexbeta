@@ -97,7 +97,7 @@ type FormData = {
 };
 
 const initialData: FormData = {
-  growthPillars: [], mustHaveFeatures: [], integrations: [], brandHelp: [], brandSheetName: "", logoName: "", brandAesthetic: [],
+  growthPillars: [], mustHaveFeatures: [], integrations: [], brandHelp: [], brandSheetName: "", brandSheetBase64: "", logoName: "", logoBase64: "", brandAesthetic: [],
   fullName: "", jobTitle: "", businessName: "", email: "", website: "", industry: "", operationalBottleneck: "",
 };
 
