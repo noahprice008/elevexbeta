@@ -106,6 +106,14 @@ const toggle = (list: string[], value: string) =>
 
 const emailValid = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
+const fileToBase64 = (file: File) =>
+  new Promise<string>((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(typeof reader.result === "string" ? reader.result : "");
+    reader.onerror = () => resolve("");
+    reader.readAsDataURL(file);
+  });
+
 /* -------------------------------- primitives ------------------------------- */
 
 function ProgressHeader({ step, total }: { step: number; total: number }) {
