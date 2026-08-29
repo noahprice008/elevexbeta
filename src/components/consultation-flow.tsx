@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, Upload, Sparkles, FileImage, type LucideIcon } from "lucide-react";
+import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, Sparkles, FileImage, type LucideIcon } from "lucide-react";
 
 /* ---------------------------------- data --------------------------------- */
 
@@ -53,8 +53,7 @@ const aesthetics: { title: string; description: string; swatches: string[]; font
 ];
 
 const brandHelpOptions = [
-  { id: "brand-sheet", label: "I have a brand sheet to upload", icon: Upload },
-  { id: "logo", label: "I have a logo to upload", icon: FileImage },
+  { id: "logo", label: "I have artwork or a logo to upload", icon: FileImage },
   { id: "suggest", label: "I don't know — can you suggest?", icon: Sparkles },
 ];
 
@@ -82,10 +81,8 @@ type FormData = {
   mustHaveFeatures: string[];
   integrations: string[];
   brandHelp: string[];
-  brandSheetName: string;
-  brandSheetBase64: string;
-  logoName: string;
-  logoBase64: string;
+  logoNames: string[];
+  logoBase64: string[];
   brandAesthetic: string[];
   fullName: string;
   jobTitle: string;
@@ -97,7 +94,7 @@ type FormData = {
 };
 
 const initialData: FormData = {
-  growthPillars: [], mustHaveFeatures: [], integrations: [], brandHelp: [], brandSheetName: "", brandSheetBase64: "", logoName: "", logoBase64: "", brandAesthetic: [],
+  growthPillars: [], mustHaveFeatures: [], integrations: [], brandHelp: [], logoNames: [], logoBase64: [], brandAesthetic: [],
   fullName: "", jobTitle: "", businessName: "", email: "", website: "", industry: "", operationalBottleneck: "",
 };
 
@@ -454,47 +451,30 @@ export function ConsultationFlow() {
               })}
             </div>
 
-            {formData.brandHelp.includes("brand-sheet") && (
-              <label className="mt-5 block rounded-xl border border-dashed border-border bg-background/70 p-5 transition-colors hover:border-primary/50">
-                <span className="flex items-center gap-2 text-sm font-bold">
-                  <Upload className="size-4 text-primary" aria-hidden="true" />
-                  Upload your brand sheet
-                </span>
-                <span className="mt-1 block text-xs text-muted-foreground">PDF, PNG, or JPG. Max 10 MB.</span>
-                <input
-                  type="file"
-                  accept=".pdf,.png,.jpg,.jpeg"
-                  className="mt-3 block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2 file:font-semibold file:text-foreground hover:file:bg-secondary/80"
-                  onChange={async (event) => {
-                    const file = event.target.files?.[0];
-                    update("brandSheetName", file ? file.name : "");
-                    update("brandSheetBase64", file ? await fileToBase64(file) : "");
-                  }}
-                />
-                {formData.brandSheetName && <span className="mt-2 block text-xs font-semibold text-primary">Selected: {formData.brandSheetName}</span>}
-              </label>
-            )}
-
             {formData.brandHelp.includes("logo") && (
               <label className="mt-5 block rounded-xl border border-dashed border-border bg-background/70 p-5 transition-colors hover:border-primary/50">
                 <span className="flex items-center gap-2 text-sm font-bold">
                   <FileImage className="size-4 text-primary" aria-hidden="true" />
-                  Upload your logo
+                  Upload your current artwork (or similar)
                 </span>
-                <span className="mt-1 block text-xs text-muted-foreground">SVG, PNG, or JPG. Max 5 MB.</span>
+                <span className="mt-1 block text-xs text-muted-foreground">SVG, PNG, JPG, or PDF. Up to 5 files, max 5 MB each.</span>
                 <input
                   type="file"
-                  accept=".svg,.png,.jpg,.jpeg"
+                  multiple
+                  accept=".svg,.png,.jpg,.jpeg,.pdf"
                   className="mt-3 block w-full text-sm file:mr-3 file:rounded-md file:border-0 file:bg-secondary file:px-3 file:py-2 file:font-semibold file:text-foreground hover:file:bg-secondary/80"
                   onChange={async (event) => {
-                    const file = event.target.files?.[0];
-                    update("logoName", file ? file.name : "");
-                    update("logoBase64", file ? await fileToBase64(file) : "");
+                    const files = Array.from(event.target.files ?? []).slice(0, 5);
+                    update("logoNames", files.map((file) => file.name));
+                    update("logoBase64", await Promise.all(files.map((file) => fileToBase64(file))));
                   }}
                 />
-                {formData.logoName && <span className="mt-2 block text-xs font-semibold text-primary">Selected: {formData.logoName}</span>}
+                {formData.logoNames.length > 0 && (
+                  <span className="mt-2 block text-xs font-semibold text-primary">Selected ({formData.logoNames.length}/5): {formData.logoNames.join(", ")}</span>
+                )}
               </label>
             )}
+
           </fieldset>
 
           <fieldset className="mt-10">
