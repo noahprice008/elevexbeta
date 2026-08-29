@@ -64,7 +64,7 @@ export function RoiCalculator() {
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
               <label htmlFor="roi-subscription" className="text-sm font-bold text-cloud/80">Estimated ELEVEX subscription</label>
-              <p className="mt-3 text-sm font-bold text-cloud/60">Plans start from $199/month</p>
+              <p className="mt-3 text-sm font-bold text-cloud/60">From $199/month — less than a day of part-time admin help, and it never calls in sick</p>
               <p className="mt-1 text-4xl font-extrabold text-electric">{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month selected</span></p>
               <input
                 id="roi-subscription"

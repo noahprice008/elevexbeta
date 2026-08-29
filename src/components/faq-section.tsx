@@ -15,9 +15,9 @@ const groups: { category: string; items: QA[] }[] = [
   {
     category: "Pricing & Ongoing Maintenance",
     items: [
-      { q: "What happens after the 21-day free trial ends?", a: "If the platform is driving value for your business and you decide to stay, you'll transition to the fixed monthly price we quoted on your 30-minute video discovery call. This pricing starts from $199/month and varies depending on your specific project scope. There are no lock-in contracts or long-term commitments, meaning you can cancel at any time if your business needs change." },
+      { q: "What happens after the 21-day free trial ends?", a: "If the platform is driving value for your business and you decide to stay, you'll transition to the fixed monthly price we quoted on your 30-minute video discovery call. Pricing starts from $199/month — roughly what a few hours of part-time admin help costs, for a system that answers enquiries and books work around the clock. It varies depending on your specific project scope. There are no lock-in contracts or long-term commitments, meaning you can cancel at any time if your business needs change." },
       {
-        q: "What's included in the monthly fee (starting from $199/month)?",
+        q: "What do I get for the monthly fee (from $199/month — less than a few hours of admin help)?",
         a: (
           <>
             <p>The fixed monthly price we quote on your call covers everything required to keep your systems running smoothly, securely, and efficiently:</p>
@@ -82,10 +82,10 @@ const groups: { category: string; items: QA[] }[] = [
             <p>ELEVEX connects all of your digital pieces under a single, reliable partner. Our four core pillars are:</p>
             <ol className="mt-3 space-y-2">
               {[
-                ["Digital Presence", "modern, responsive websites and digital experiences designed around your customers to build a strong first impression and act as a genuine business asset."],
-                ["Automation", "custom business process automation to eliminate repetitive manual work and connect the software tools you already use into smooth, efficient workflows."],
-                ["AI Solutions", "practical AI assistants, automated support, smart workflows, and content automation designed to generate measurable business productivity."],
-                ["Growth Systems", "custom systems to help you capture, qualify, organize, and follow up with prospective clients, including seamless appointment booking and CRM integrations."],
+                ["A website that wins the job", "before: visitors judge an outdated site and call someone else. After: a fast, mobile-first site that shows your work, your reviews and a quote request within one tap."],
+                ["An end to manual admin", "before: quotes typed twice, leads copied into a CRM by hand, follow-ups forgotten. After: one enquiry updates every tool you already use, on its own."],
+                ["Answers at 9pm, not 9am", "before: after-hours enquiries sit unread overnight. After: common questions get answered instantly and hot leads are qualified before you open the laptop."],
+                ["A diary that fills itself", "before: chasing quotes and losing slots to no-shows. After: customers book themselves in, get reminded automatically, and nothing goes cold."],
               ].map(([title, copy], index) => <li key={title} className="flex gap-3"><span className="font-extrabold text-primary">{index + 1}.</span><span><strong className="font-extrabold text-foreground">{title}</strong> — {copy}</span></li>)}
             </ol>
           </>

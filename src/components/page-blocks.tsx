@@ -198,7 +198,7 @@ export const standardPricing = {
     title: "After Your 21-Day Free Trial",
     price: "From $199",
     priceSuffix: "/month",
-    copy: "The flat price we quote on your call is the price you pay if you continue after your free 21 days — no contracts, cancel anytime.",
+    copy: "Less than a few hours of part-time admin help each month — and it works every hour of every day. Two recovered enquiries typically cover it. The flat price we quote on your call is the price you pay after your free 21 days — no contracts, cancel anytime.",
     items: ["Hosting and secure infrastructure", "Ongoing maintenance and updates", "Priority support from your team", "Continuous optimization and improvements", "Monitoring, backups and reporting", "Room to add automation and AI over time"],
   },
 };

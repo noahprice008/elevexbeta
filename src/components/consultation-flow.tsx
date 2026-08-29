@@ -10,28 +10,28 @@ const pillars: Pillar[] = [
   { id: "digital", title: "Stop losing enquiries to a dated website", icon: Globe, description: "People find you, judge you in seconds, then leave without contacting you. I want a site that turns visitors into booked work." },
   { id: "automation", title: "Stop re-typing the same admin every day", icon: Workflow, description: "Quotes, invoices, CRM entries and follow-ups are done by hand. I want the tools I already use to talk to each other." },
   { id: "ai", title: "Stop leaving customers waiting for a reply", icon: Bot, description: "Enquiries land at 9pm and sit until morning. I want questions answered and leads qualified while my team sleeps." },
-  { id: "growth", title: "Growth Systems", icon: TrendingUp, description: "I need better ways to generate, qualify, and automatically follow up with incoming leads." },
+  { id: "growth", title: "Stop chasing leads that go cold", icon: TrendingUp, description: "Enquiries slip through the cracks and no-shows eat the diary. I want booking and follow-up to happen on their own." },
   { id: "unsure", title: "Not Sure", icon: HelpCircle, description: "I know we have operational bottlenecks holding us back, but I'm not sure which technology fits." },
 ];
 
 type FeatureGroup = { pillar: string; title: string; features: { title: string; description: string }[] };
 
 const featureGroups: FeatureGroup[] = [
-  { pillar: "digital", title: "Digital Presence", features: [
+  { pillar: "digital", title: "Turning visitors into booked work", features: [
     { title: "Professional Website / Landing Page", description: "A clean, mobile-responsive home base for your business." },
     { title: "Dynamic Service Catalog", description: "A structured showcase of your services or past projects." },
     { title: "Secure Client Intake Forms", description: "Tailored forms that capture inquiry details from day one." },
   ]},
-  { pillar: "automation", title: "Business Automation", features: [
+  { pillar: "automation", title: "Taking the admin off your desk", features: [
     { title: "Instant Lead Notifications", description: "Receive alerts via email, Slack, Teams, or SMS." },
     { title: "CRM Auto-Syncing", description: "Push new leads automatically into your CRM." },
     { title: "Automated Document Generation", description: "Instant creation of quotes, agreements, or onboarding paperwork." },
   ]},
-  { pillar: "ai", title: "Practical AI", features: [
+  { pillar: "ai", title: "Answering customers while you sleep", features: [
     { title: "24/7 AI Customer Support Chatbot", description: "Answer customer questions automatically." },
     { title: "AI Administrative Assistant", description: "Generate follow-ups, reports, summaries, and internal admin tasks." },
   ]},
-  { pillar: "growth", title: "Growth Systems", features: [
+  { pillar: "growth", title: "Filling the diary without chasing", features: [
     { title: "Online Booking & Calendar Systems", description: "Allow your customers to book appointments automatically." },
     { title: "Intake & Qualification Screening Flow", description: "Filter unqualified leads before they consume staff time." },
     { title: "Multi-Day Lead Nurturing Campaign", description: "Automated follow-up sequences that keep prospects engaged." },
