@@ -64,7 +64,7 @@ export function IntegrationsFinder() {
         <p className="text-xs font-extrabold uppercase text-electric">YOUR STACK, COVERED</p>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">Already using tools you love? We connect to them.</h2>
         <p className="mt-6 max-w-3xl text-lg text-cloud/65">
-          Search or browse the software you run today — see what plugs straight into your 7-day build.
+          Your calendar, CRM, inbox and invoicing stop living in separate boxes — one enquiry updates all of them, automatically. Search the software you run today to see what plugs into your 7-day build.
         </p>
         <p className="mt-3 max-w-3xl text-sm font-semibold text-cloud/50">
           Don't worry if your platforms aren't shown here — most other platforms can connect. These are simply the most popular ones we work with.
@@ -127,7 +127,7 @@ export function IntegrationsFinder() {
           <div className="mt-10 max-w-2xl rounded-md border border-electric/30 bg-cloud/5 p-8">
             <h3 className="text-xl font-extrabold">Don't see it?</h3>
             <p className="mt-3 text-cloud/70">
-              We connect to 500+ tools via API, Zapier, or Make — tell us what you use on your discovery call.
+              If it has an API, we can wire it in — so a new enquiry books itself, lands in your CRM and pings your phone without anyone touching a keyboard. (Under the hood: direct APIs, Zapier, Make and n8n.)
             </p>
             <Button asChild className="mt-6"><a href="#consultation">Ask About My Tool →</a></Button>
           </div>
