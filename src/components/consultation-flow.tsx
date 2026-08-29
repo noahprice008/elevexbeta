@@ -74,7 +74,7 @@ const bottleneckPlaceholders: Record<string, string> = {
 };
 
 
-const stageTitles = ["Core Growth Pillars", "MVP Prioritization", "Integrations", "Brand Direction", "Business Profile"];
+const stageTitles = ["Core Growth Pillars", "Phase 1 Essentials", "Integrations", "Brand Direction", "Business Profile"];
 
 type FormData = {
   growthPillars: string[];
@@ -382,7 +382,7 @@ export function ConsultationFlow() {
 
       {step === 2 && (
         <StepShell>
-          <StepHeading title="What does your MVP need to include?" copy="Select the must-haves for a first working version. Your answers help us build a more relevant demo." />
+          <StepHeading title="What belongs in your Phase 1 Essentials?" copy="Select the systems your business needs working from day one. Your answers shape a sharper, more relevant demo." />
           {activeGroups.length === 0 ? (
             <p className="rounded-xl border border-dashed p-6 text-muted-foreground">No problem — we'll recommend a starting point based on the bottleneck you describe in the next steps.</p>
           ) : (
@@ -527,7 +527,7 @@ export function ConsultationFlow() {
           {step > 1 && <Button type="button" variant="ghost" onClick={goBack}>← Back</Button>}
           {step < TOTAL
             ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
-            : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit MVP Intake & Request Demo"}</Button>}
+            : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit Requirements & Request Demo"}</Button>}
         </div>
         <p className="mt-3 text-xs text-muted-foreground">Takes under 2 minutes • No credit card required • No obligation</p>
       </div>
