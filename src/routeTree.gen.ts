@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlueprintsRouteImport } from './routes/blueprints'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
 import { Route as ForLocalBusinessRouteImport } from './routes/for.local-business'
 import { Route as ForSecurityRouteImport } from './routes/for.security'
@@ -19,6 +21,16 @@ import { Route as ForWellnessRouteImport } from './routes/for.wellness'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlueprintsRoute = BlueprintsRouteImport.update({
+  id: '/blueprints',
+  path: '/blueprints',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForConsultantsRoute = ForConsultantsRouteImport.update({
@@ -49,6 +61,8 @@ const ForWellnessRoute = ForWellnessRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blueprints': typeof BlueprintsRoute
+  '/roadmap': typeof RoadmapRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/local-business': typeof ForLocalBusinessRoute
   '/for/security': typeof ForSecurityRoute
@@ -57,6 +71,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blueprints': typeof BlueprintsRoute
+  '/roadmap': typeof RoadmapRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/local-business': typeof ForLocalBusinessRoute
   '/for/security': typeof ForSecurityRoute
@@ -66,6 +82,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blueprints': typeof BlueprintsRoute
+  '/roadmap': typeof RoadmapRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/local-business': typeof ForLocalBusinessRoute
   '/for/security': typeof ForSecurityRoute
@@ -76,6 +94,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/blueprints'
+    | '/roadmap'
     | '/for/consultants'
     | '/for/local-business'
     | '/for/security'
@@ -84,6 +104,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/blueprints'
+    | '/roadmap'
     | '/for/consultants'
     | '/for/local-business'
     | '/for/security'
@@ -92,6 +114,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/blueprints'
+    | '/roadmap'
     | '/for/consultants'
     | '/for/local-business'
     | '/for/security'
@@ -101,6 +125,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlueprintsRoute: typeof BlueprintsRoute
+  RoadmapRoute: typeof RoadmapRoute
   ForConsultantsRoute: typeof ForConsultantsRoute
   ForLocalBusinessRoute: typeof ForLocalBusinessRoute
   ForSecurityRoute: typeof ForSecurityRoute
@@ -115,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blueprints': {
+      id: '/blueprints'
+      path: '/blueprints'
+      fullPath: '/blueprints'
+      preLoaderRoute: typeof BlueprintsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/for/consultants': {
@@ -157,6 +197,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlueprintsRoute: BlueprintsRoute,
+  RoadmapRoute: RoadmapRoute,
   ForConsultantsRoute: ForConsultantsRoute,
   ForLocalBusinessRoute: ForLocalBusinessRoute,
   ForSecurityRoute: ForSecurityRoute,
