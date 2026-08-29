@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, Upload, Sparkles, FileImage, type LucideIcon } from "lucide-react";
+import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, Sparkles, FileImage, type LucideIcon } from "lucide-react";
 
 /* ---------------------------------- data --------------------------------- */
 
@@ -53,7 +53,7 @@ const aesthetics: { title: string; description: string; swatches: string[]; font
 ];
 
 const brandHelpOptions = [
-  { id: "logo", label: "I have a logo to upload", icon: FileImage },
+  { id: "logo", label: "I have artwork or a logo to upload", icon: FileImage },
   { id: "suggest", label: "I don't know — can you suggest?", icon: Sparkles },
 ];
 
