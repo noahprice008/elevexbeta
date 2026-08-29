@@ -30,7 +30,7 @@ const solutions = [
 ];
 const values = [["Business First", "We start with your goals, challenges and opportunities — not a predetermined technology stack."], ["Practical Solutions", "We focus on solutions that solve real problems and create measurable value."], ["Built to Scale", "Your business will change. Your digital systems should be ready to change with it."], ["One Digital Partner", "Websites, automation, AI, integrations and growth systems — connected under one partner."]];
 const steps = [
-  { n: "01", title: "Define Your MVP Requirements", copy: "Spend 2 minutes on our guided MoSCoW discovery form selecting your must-have features, current software stack, and visual style preferences." },
+  { n: "01", title: "Define Your Phase 1 Essentials", copy: "Spend 2 minutes on our guided discovery form selecting the systems your business must have on day one, your current software stack, and your visual style preferences." },
   { n: "02", title: "We Build Your Custom Demo", copy: "Our team reviews your operational bottlenecks and builds a customized front-end visual demo of your future platform within 2–3 business days — entirely free." },
   { n: "03", title: "Review & Fixed Quote", copy: "We send over your custom demo link and invite you to a short video call to walk through the design, map out custom workflows, and lock in a fixed monthly quote." },
   { n: "04", title: "Live Platform in a Week", copy: "We fully program your system, connect your live databases, integrate your tools, and activate your automations or AI assistants, delivering a fully functional live platform.", highlight: true, badge: "Free" },
