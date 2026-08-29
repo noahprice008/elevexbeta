@@ -7,9 +7,9 @@ import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, Sparkles, FileImag
 type Pillar = { id: string; title: string; description: string; icon: LucideIcon };
 
 const pillars: Pillar[] = [
-  { id: "digital", title: "Digital Presence", icon: Globe, description: "I need a professional website, landing page, or want to modernize my current outdated web experience." },
-  { id: "automation", title: "Business Automation", icon: Workflow, description: "I want to reduce repetitive admin, manual work, and connect our daily business tools." },
-  { id: "ai", title: "Practical AI", icon: Bot, description: "I want to explore custom AI assistants, customer support chatbots, or automated workflows." },
+  { id: "digital", title: "Stop losing enquiries to a dated website", icon: Globe, description: "People find you, judge you in seconds, then leave without contacting you. I want a site that turns visitors into booked work." },
+  { id: "automation", title: "Stop re-typing the same admin every day", icon: Workflow, description: "Quotes, invoices, CRM entries and follow-ups are done by hand. I want the tools I already use to talk to each other." },
+  { id: "ai", title: "Stop leaving customers waiting for a reply", icon: Bot, description: "Enquiries land at 9pm and sit until morning. I want questions answered and leads qualified while my team sleeps." },
   { id: "growth", title: "Growth Systems", icon: TrendingUp, description: "I need better ways to generate, qualify, and automatically follow up with incoming leads." },
   { id: "unsure", title: "Not Sure", icon: HelpCircle, description: "I know we have operational bottlenecks holding us back, but I'm not sure which technology fits." },
 ];
