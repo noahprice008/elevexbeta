@@ -35,6 +35,41 @@ const groups: { category: string; items: QA[] }[] = [
         ),
       },
       { q: "Are there any setup fees or hidden surprises?", a: "None at all. We believe in straightforward, honest pricing built around your specific project. We scope and price strictly around what you actually need, meaning there are no pre-packaged plans with tools you'll never use and no hidden setup fees. The fixed price we quote on your 30-minute video discovery call is the exact price you pay — no surprises." },
+      { q: "What happens if I cancel — do I lose my site and data?", a: "No. You own your site, your customer database, and your domain 100% — that never changes. If you cancel, we help you export your files, content, and data in standard, portable formats, and we hand over domain control. The same applies after the free trial: your platform stays live for a 7-day grace period so there's time to export everything. No lock-in, no assets held hostage." },
+      {
+        q: "What counts as included maintenance vs. a new project?",
+        a: (
+          <>
+            <p>We keep the line clear so there are never surprise invoices. Anything that keeps your existing systems healthy and current is included. Anything that builds something new is scoped and quoted before we start.</p>
+            <div className="mt-4 grid gap-5 sm:grid-cols-2">
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-primary">Included in your plan (from $199/month)</p>
+                <ul className="mt-3 space-y-2">
+                  {[
+                    "Hosting and secure infrastructure",
+                    "Security monitoring and backups",
+                    "Domain health and uptime checks",
+                    "Standard text and image updates",
+                    "Performance checks and tuning",
+                    "Routine operational tweaks (changing a form field, updating a phone number)",
+                  ].map((item) => <li key={item} className="flex gap-3"><span aria-hidden="true" className="font-bold text-primary">✓</span><span>{item}</span></li>)}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-foreground">New project scope (quoted separately)</p>
+                <ul className="mt-3 space-y-2">
+                  {[
+                    "New pages or sections",
+                    "New automation sequences",
+                    "New third-party integrations",
+                    "Major feature additions",
+                  ].map((item) => <li key={item} className="flex gap-3"><span aria-hidden="true" className="font-bold text-muted-foreground">+</span><span>{item}</span></li>)}
+                </ul>
+              </div>
+            </div>
+          </>
+        ),
+      },
     ],
   },
   {
