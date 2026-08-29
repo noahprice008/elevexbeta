@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Tradesmen & Contractors | ELEVEX";
-const description = "Websites, automated booking and instant quoting for tradesmen. Live within a week, free for 21 days, from $199/month after.";
+const description = "Stop missing quotes while you are on the tools — automated booking and instant quoting for tradesmen. Live within a week, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/tradesmen")({
   head: () => ({ meta: [
@@ -39,7 +39,7 @@ function TradesmenPage() {
       <Pillars
         title="Your Digital Crew: Built to Automate Your Business"
         items={[
-          { n: "01", title: "The Non-Stop Lead Capture (Digital Presence & Growth)", copy: "A modern, mobile-friendly website designed specifically to showcase your past projects, highlight five-star reviews, and let clients request quotes directly. If you miss a call while on-site, our system automatically sends an SMS back: \u201cSorry I missed you! I'm currently on-site. Click here to instantly upload photos of your job and request a quote.\u201d You never lose a lead again." },
+          { n: "01", title: "The Non-Stop Lead Capture — never miss a job while you are on site", copy: "A modern, mobile-friendly website designed specifically to showcase your past projects, highlight five-star reviews, and let clients request quotes directly. If you miss a call while on-site, our system automatically sends an SMS back: \u201cSorry I missed you! I'm currently on-site. Click here to instantly upload photos of your job and request a quote.\u201d You never lose a lead again." },
           { n: "02", title: "The 5-Minute Quote Generator (Automation)", copy: "We connect your website to simple, templated quoting software tailored to your trade. Select the job type, input the dimensions, and click \u201cSend.\u201d The system automatically generates a professional, branded PDF quote, emails it to the client, and sends a text notification." },
           { n: "03", title: "The Automated Follow-Up Engine (Growth Systems & AI)", copy: "A smart follow-up system that works even when you're asleep. Once a quote is sent, the system automatically follows up via polite email/SMS at Day 3 and Day 7. When they accept, the system automatically prompts them to pay the deposit online to secure their spot on your schedule." },
           { n: "04", title: "Frictionless Client Booking & Reminders (Growth Systems)", copy: "An online calendar that fits around your real schedule. Customers book their own site visits or consultations based on your actual availability. The system automatically sends them SMS reminders to ensure they're home when you arrive, eliminating wasted trips." },
@@ -52,7 +52,7 @@ function TradesmenPage() {
           { n: "01", title: "The 30-Min Video Call (Free)", copy: "We discuss your trade, your biggest admin bottlenecks, and what you want to automate. We give you a clear recommendation and a fixed monthly quote on the spot." },
           { n: "02", title: "We Build It in a Week", copy: "We design your website, connect your scheduling tools, and set up your automations." },
           { n: "03", title: "21 Days to Test-Drive (Free)", copy: "We hand you the keys. You use the system for 21 days to book real jobs, send real quotes, and experience the time saved—without paying a single cent.", highlight: true, badge: "Free" },
-          { n: "04", title: "Keep It or Cancel It", copy: "If it completely changes your business, you stay on for your flat monthly price (starting from $199/mo). No long contracts, no lock-ins, cancel anytime. If you don't love it, we turn it off and you owe us nothing." },
+          { n: "04", title: "Keep It or Cancel It", copy: "If it completely changes your business, you stay on for your flat monthly price (from $199/mo — less than one recovered job a month). No long contracts, no lock-ins, cancel anytime. If you don't love it, we turn it off and you owe us nothing." },
         ]}
         callout="Try it free for 21 days. Only pay if you keep it."
       />

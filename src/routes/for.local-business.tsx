@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Growing Local Businesses | ELEVEX";
-const description = "Practical websites, automation and AI systems that scale with your growing local business. Live within a week, free for 21 days, from $199/month after.";
+const description = "Stop losing leads overnight and re-typing admin by hand — systems that scale with your growing local business. Live within a week, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/local-business")({
   head: () => ({ meta: [
@@ -40,9 +40,9 @@ function LocalBusinessPage() {
         title="One partner. Everything connected."
         sub="We combine digital development, automation, AI and integrations into one system built around your business — not a generic template."
         items={[
-          { n: "01", title: "Digital Presence — A website that grows with you", copy: "A modern, responsive site that reflects the business you're building today, with room to add booking, e-commerce, or new pages as you grow." },
+          { n: "01", title: "A website that wins the job — and grows with you", copy: "A modern, responsive site that reflects the business you're building today, with room to add booking, e-commerce, or new pages as you grow." },
           { n: "02", title: "Automation — Stop running your business from ten different apps", copy: "We connect the tools you already use and automate the repetitive admin — follow-ups, reminders, data entry — so growth doesn't mean more manual work." },
-          { n: "03", title: "AI — Practical AI, no buzzwords", copy: "Simple, useful AI where it actually helps: answering common customer questions, qualifying enquiries, or summarizing what's happening in your business." },
+          { n: "03", title: "AI — answers at 9pm, not 9am", copy: "Simple, useful AI where it actually helps: answering common customer questions, qualifying enquiries, or summarizing what's happening in your business." },
           { n: "04", title: "Growth Systems — Turn steady interest into steady revenue", copy: "Capture, organize, and follow up with every enquiry automatically, so no lead falls through the cracks as volume increases." },
         ]}
       />
