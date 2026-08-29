@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "af1469b1-b33e-45dc-9f58-aedd0ea859b0",
-  "project_id": "aeb95aa9-a9c2-4758-9c6c-f86dacaa7268",
-  "url": "/__l5e/assets-v1/af1469b1-b33e-45dc-9f58-aedd0ea859b0/elevex-wordmark-dark.png",
-  "r2_key": "a/v1/aeb95aa9-a9c2-4758-9c6c-f86dacaa7268/af1469b1-b33e-45dc-9f58-aedd0ea859b0/elevex-wordmark-dark.png",
-  "original_filename": "elevex-wordmark-dark.png",
-  "size": 254324,
   "content_type": "image/png",
-  "created_at": "2026-08-25T07:39:21Z"
+  "created_at": "2026-08-25T07:39:21Z",
+  "original_filename": "elevex-wordmark-dark.png",
+  "project_id": "0bbd96c7-123d-4ee8-a00c-6371af0eec0a",
+  "r2_key": "a/v1/0bbd96c7-123d-4ee8-a00c-6371af0eec0a/af1469b1-b33e-45dc-9f58-aedd0ea859b0/elevex-wordmark-dark.png",
+  "size": 254324,
+  "url": "/__l5e/assets-v1/af1469b1-b33e-45dc-9f58-aedd0ea859b0/elevex-wordmark-dark.png",
+  "version": 1
 }
