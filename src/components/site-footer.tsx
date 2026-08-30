@@ -19,7 +19,7 @@ export function SiteFooter() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="text-2xl"><ElevexLogo /></div>
-            <p className="mt-2 text-xs uppercase text-cloud/45">Digital Solutions Development</p>
+            <p className="mt-2 text-xs uppercase text-cloud/45">Enterprise Technology. Built for the Local Business.</p>
             <p className="mt-5 text-sm text-cloud/60">Digital solutions built for growing businesses.</p>
           </div>
           <FooterColumn title="Navigation" items={[["Solutions", "/#solutions"], ["How We Deliver", "/#how-we-deliver"], ["Automation Blueprints", "/blueprints"], ["21-Day Trial Roadmap", "/roadmap"], ["Why ELEVEX", "/#why"], ["Pricing", "/#pricing"], ["FAQ", "/#faq"], ["Contact", "/#contact"]]} />
