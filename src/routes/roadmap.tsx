@@ -53,23 +53,23 @@ function RoadmapPage() {
             <div>
               <Eyebrow>DURING THE TRIAL</Eyebrow>
               <h2 className="mt-5 text-4xl font-extrabold leading-tight md:text-5xl">
-                Your team gets custom video guides, recorded for your exact setup.
+                Your team gets clear, written instructions tailored to your exact setup.
               </h2>
               <p className="mt-6 text-lg text-muted-foreground">
-                A system nobody uses is a system that failed. During your 21-day trial we record short screen-capture walkthroughs of
+                A system nobody uses is a system that failed. During your 21-day trial we prepare simple, step-by-step written guides for
                 <em> your </em>
-                platform — not generic help documentation — so any member of staff can watch two minutes and get on with the job.
+                platform — not generic help documentation — so any member of staff can read them, follow them, and get on with the job.
               </p>
               <p className="mt-4 text-muted-foreground">
-                New hire in month four? Send them the same library. Changed a workflow? We re-record it. Adoption is part of the delivery, not an afterthought.
+                New hire in month four? Send them the same set. Changed a workflow? We update the guide. Adoption is part of the delivery, not an afterthought.
               </p>
             </div>
             <div className="rounded-md border bg-card p-8">
               <NodeFlow
                 steps={[
-                  { label: "We record your workflows", detail: "Short, narrated screen captures of the exact screens your staff will use." },
-                  { label: "Your team watches and applies", detail: "Two-minute clips instead of a manual nobody opens." },
-                  { label: "We re-record as you change", detail: "Update a process and the guide is refreshed to match." },
+                  { label: "We write your workflows down", detail: "Plain-English instructions covering the exact screens your staff use." },
+                  { label: "Your team reads and applies", detail: "Short steps instead of a manual nobody opens." },
+                  { label: "We update as you change", detail: "Change a process and the guide is refreshed to match." },
                 ]}
               />
               <p className="mt-8 border-t pt-6 text-sm font-extrabold text-primary">
