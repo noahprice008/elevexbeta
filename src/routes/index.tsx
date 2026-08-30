@@ -14,11 +14,13 @@ import { SavingsPill } from "@/components/savings-pill";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "ELEVEX | Digital Solutions Development for Growing Businesses" },
-    { name: "description", content: "ELEVEX helps growing businesses build better digital experiences, automate processes, implement practical AI solutions and connect the systems they rely on." },
-    { property: "og:title", content: "ELEVEX | Digital Solutions Development for Growing Businesses" },
+    { title: "ELEVEX — Enterprise Technology Built for Local Business" },
+    { name: "description", content: "ELEVEX helps growing businesses build better digital experiences, automate processes, capture leads overnight and connect the systems they rely on." },
+    { property: "og:title", content: "ELEVEX — Enterprise Technology Built for Local Business" },
     { property: "og:description", content: "Business-focused digital solutions for better experiences, smarter operations and sustainable growth." },
-    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: "ELEVEX — Enterprise Technology Built for Local Business" },
   ]}), component: Index,
 });
 
