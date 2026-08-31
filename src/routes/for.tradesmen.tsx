@@ -71,8 +71,9 @@ function TradesmenPage() {
       />
       <FinalCta
         title="Stop wasting your weekends on admin. Let's automate your trade."
-        button="Book Your Free 30-Min Video Discovery Call →"
+        button="Get My Free Demo →"
         subtext="No credit card. No obligation. Just a practical plan to get your time back."
+        email="sales@elevex.digital"
       />
     </AudienceLayout>
   );

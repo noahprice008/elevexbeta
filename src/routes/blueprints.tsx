@@ -87,6 +87,7 @@ function BlueprintsPage() {
         title="Want one of these mapped to your business?"
         button="Get My Free Demo →"
         subtext="A 30-minute online video call. No credit card, no obligation — just a clear picture of what we would automate first."
+        email="sales@elevex.digital"
       />
     </AudienceLayout>
   );
