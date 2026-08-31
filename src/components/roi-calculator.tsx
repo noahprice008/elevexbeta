@@ -24,14 +24,14 @@ export function RoiCalculator() {
   return (
     <section id="roi-calculator" className="border-t border-cloud/10 bg-navy py-24 text-cloud md:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <p className="text-xs font-extrabold uppercase text-electric">WHAT IT'S COSTING YOU</p>
-        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">See what manual work is really costing you.</h2>
-        <p className="mt-6 max-w-3xl text-lg text-cloud/65">Slide to your weekly hours. We'll show you what an automated system gets back.</p>
+        <p className="text-xs font-extrabold uppercase text-electric">WHAT IS MANUAL ADMIN COSTING YOU?</p>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight md:text-6xl">Calculate the Hidden 'Tax' on Your Time (and Your Evenings).</h2>
+        <p className="mt-6 max-w-3xl text-lg text-cloud/65">Slide the controls below to see exactly how many hours you can claw back each month, and the real-world dollar amount you save by putting your operations on autopilot.</p>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-2 lg:items-start">
           <div className="rounded-md border border-cloud/12 bg-cloud/5 p-7 md:p-10">
             <label htmlFor="roi-hours" className="block text-sm font-bold text-cloud/80">
-              Hours per week spent on manual scheduling, invoicing, or admin follow-up
+              How many hours a week do you spend on scheduling, invoicing, or chasing follow-ups?
             </label>
             <p className="mt-4 text-5xl font-extrabold text-electric">{hours}<span className="ml-2 text-lg font-bold text-cloud/60">hrs/week</span></p>
             <Slider
@@ -45,10 +45,11 @@ export function RoiCalculator() {
               aria-label="Hours per week spent on manual work"
             />
             <div className="mt-2 flex justify-between text-xs font-semibold text-cloud/45"><span>0</span><span>30</span></div>
+            <p className="mt-4 text-xs leading-relaxed text-cloud/45">Be honest — include the minutes spent texting clients at the dinner table, typing quotes on Sunday nights, or playing phone tag.</p>
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
-              <label htmlFor="roi-rate" className="text-sm font-bold text-cloud/80">Your time is worth about</label>
-              <p className="mt-1 text-xs leading-relaxed text-cloud/45">Pre-set at a standard administrative labor rate of $30/hour — adjust it to what your time is actually worth.</p>
+              <label htmlFor="roi-rate" className="text-sm font-bold text-cloud/80">What is your time worth to your business?</label>
+              <p className="mt-1 text-xs leading-relaxed text-cloud/45">We've pre-set this to a basic admin rate of $30/hr. If you're a specialized tradesman, consultant, or clinic owner, your billable rate is likely much higher.</p>
               <div className="mt-3 flex items-center gap-3">
                 <span className="text-lg font-extrabold text-cloud/70">$</span>
                 <Input
@@ -64,8 +65,8 @@ export function RoiCalculator() {
             </div>
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
-              <label htmlFor="roi-subscription" className="text-sm font-bold text-cloud/80">Estimated ELEVEX subscription</label>
-              <p className="mt-3 text-sm font-bold text-cloud/60">From $199/month — less than a day of part-time admin help, and it never calls in sick</p>
+              <label htmlFor="roi-subscription" className="text-sm font-bold text-cloud/80">Estimated ELEVEX Investment</label>
+              <p className="mt-3 text-sm font-bold text-cloud/60">Our core platform starts at just $199/month — less than a single day of part-time admin help. Our systems work 24/7, never call in sick, and never let a hot lead go cold.</p>
               <p className="mt-1 text-4xl font-extrabold text-electric">{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month selected</span></p>
               <input
                 id="roi-subscription"
@@ -96,17 +97,19 @@ export function RoiCalculator() {
           <div className="rounded-md border border-electric/40 bg-cloud/5 p-7 md:p-10">
             <div className="grid gap-6 sm:grid-cols-3">
               <div>
-                <p className="text-xs font-extrabold uppercase tracking-wide text-cloud/50">Hours reclaimed</p>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-cloud/50">Hours of Your Life Reclaimed</p>
                 <p className="mt-2 text-3xl font-extrabold transition-all duration-300">{Math.round(reclaimed)}<span className="text-sm font-bold text-cloud/60">/mo</span></p>
+                <p className="mt-2 text-[11px] leading-relaxed text-cloud/45">That is nearly a full workweek handed back to you every single month.</p>
               </div>
               <div>
-                <p className="text-xs font-extrabold uppercase tracking-wide text-cloud/50">Value of that time</p>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-cloud/50">Reclaimed Productivity Value</p>
                 <p className="mt-2 text-3xl font-extrabold text-electric transition-all duration-300">{money(value)}<span className="text-sm font-bold text-cloud/60">/mo</span></p>
+                <p className="mt-2 text-[11px] leading-relaxed text-cloud/45">The financial value of the hours you buy back to focus on actual billable work.</p>
               </div>
               <div>
-                <p className="text-xs font-extrabold uppercase tracking-wide text-cloud/50">Net monthly gain</p>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-cloud/50">Your Monthly Freedom Dividend</p>
                 <p className="mt-2 text-3xl font-extrabold transition-all duration-300">{net >= 0 ? money(net) : `-${money(Math.abs(net))}`}</p>
-                <p className="mt-2 text-[11px] leading-relaxed text-cloud/45">Based on the selected subscription (base platform from $199/month). Your actual subscription is quoted transparently on your discovery call, based on your specific workflow complexity.</p>
+                <p className="mt-2 text-[11px] leading-relaxed text-cloud/45">≈ {money(net)}/month back in your pocket after covering your ELEVEX subscription.</p>
               </div>
             </div>
             <p className="mt-6 text-lg font-extrabold">
@@ -130,7 +133,7 @@ export function RoiCalculator() {
 
             <Button asChild size="lg" className="mt-8 w-full sm:w-auto"><a href="#consultation">Get My Free Demo →</a></Button>
             <p className="mt-5 text-xs leading-relaxed text-cloud/45">
-              Estimate for illustration purposes based on your inputs. Actual results vary by business and are discussed on your discovery call.
+              Estimates are for illustration based on your inputs. Your actual custom setup and subscription rate will be quoted transparently on your discovery call based on your workflow complexity.
             </p>
           </div>
         </div>
