@@ -47,7 +47,7 @@ function ConsultantsPage() {
         ]}
       />
       <StepFlow
-        title="No Contracts. No Risks. Just a Live System Within a Week."
+        title="No Contracts. No Risks. Demo in 3 Days, Live System 7 Days From Approval."
         steps={[
           { n: "01", title: "Free 30-Min Video Consultation & Discovery (Day 1)", copy: "We discuss your ideal client profile, your service model, and your current administrative bottlenecks, and quote a single fixed monthly fee on the call." },
           { n: "02", title: "Tailored Build & Integration (Days 2–7)", copy: "We design your site, set up your calendar routing, configure your qualification forms, and wire up your automations." },

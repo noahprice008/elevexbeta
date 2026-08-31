@@ -59,7 +59,7 @@ function SecurityPage() {
           { n: "01", title: "Tell Us About Your Business (5-Min Intake)", copy: "Submit your operational pain points—how you schedule, what reports you need, and where the bottlenecks are." },
           { n: "02", title: "We Design Your Blueprint", copy: "We map out an operational recommendation detailing the exact integrations, forms, and client portals we'll build." },
           { n: "03", title: "Clear Recommendation & Fixed Monthly Quote", copy: "We review the plan on a 30-minute online video call and provide a transparent, fixed monthly price quoted to your needs." },
-          { n: "04", title: "Your Custom Platform Goes Live Within a Week", copy: "You get 21 days of full, unrestricted access to run your business with it—completely free.", highlight: true, badge: "Free" },
+          { n: "04", title: "Your Custom Platform Goes Live 7 Days From Approval", copy: "You get 21 days of full, unrestricted access to run your business with it—completely free.", highlight: true, badge: "Free" },
           { n: "05", title: "Only Pay If You Stay", copy: "If our automation saves you hours of admin work and delights your clients, keep it at the fixed price quoted. If not, cancel anytime with no lock-ins or fees." },
         ]}
         callout="Try it free for 21 days. Only pay if you keep it."

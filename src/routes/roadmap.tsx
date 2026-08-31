@@ -4,7 +4,7 @@ import { PageHero, Eyebrow, FinalCta } from "@/components/page-blocks";
 import { NodeFlow } from "@/components/node-flow";
 
 const title = "The 21-Day Trial Roadmap | ELEVEX";
-const description = "Exactly what happens from intake form to decision day: discovery call, Phase 1 Essentials build, delivery within a week, and a 21-day live trial with full ELEVEX support.";
+const description = "Exactly what happens from intake form to decision day: discovery call, Phase 1 Essentials build, delivery 7 days from approval, and a 21-day live trial with full ELEVEX support.";
 
 export const Route = createFileRoute("/roadmap")({
   head: () => ({ meta: [
@@ -19,7 +19,7 @@ const stages: { label: string; detail: string }[] = [
   { label: "01 — Intake form", detail: "A short guided form captures your priorities, the tools you already run on and what you want handled first." },
   { label: "02 — 30-minute discovery call", detail: "An online video call to confirm scope, agree what belongs in Phase 1 and give you a fixed monthly quote." },
   { label: "03 — Phase 1 Essentials build", detail: "We build Your Launch-Ready Core Systems: the site, the booking and the automations that carry the most weight from day one." },
-  { label: "04 — Delivery within a week", detail: "Your platform goes live, connected to your existing tools, tested and handed over ready to use." },
+  { label: "04 — Delivery 7 days from approval", detail: "Your platform goes live, connected to your existing tools, tested and handed over ready to use." },
   { label: "05 — 21-day live trial", detail: "You run real work through it for 21 days with full ELEVEX support. Tweaks and adjustments are included throughout." },
   { label: "06 — Decision day", detail: "Continue at the quoted monthly fee, or walk away with a 7-day export grace period to take your data with you." },
 ];
@@ -32,7 +32,7 @@ function RoadmapPage() {
         title="No Mystery. Here Is Every Step From First Form to Decision Day."
         subtitle="You know what happens, when it happens and what it costs before you commit to anything. Nothing is billed until the trial is over and you have decided to keep it."
         primary={{ label: "Start the Intake Form →", note: "Takes a few minutes. No credit card." }}
-        badge="Live within a week. Free for 21 days. Pay only if you keep it."
+        badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days. Pay only if you keep it."
       />
 
       <section className="bg-navy py-24 text-cloud md:py-32">
@@ -104,7 +104,7 @@ function RoadmapPage() {
       <FinalCta
         title="Ready to start the 21 days?"
         button="Request a Custom Demo →"
-        subtext="A 30-minute online video call, a fixed quote, and a working platform within a week."
+        subtext="A 30-minute online video call, a fixed quote, and a working platform 7 days from approval."
       />
     </AudienceLayout>
   );
