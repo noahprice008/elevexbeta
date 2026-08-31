@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { MessageSquare, Send, X } from "lucide-react";
 import agentAvatar from "@/assets/elevex-agent-avatar.png";
 
-type Msg = { role: "bot" | "user"; text: string; link?: { label: string; href: string } };
+type Msg = { role: "bot" | "user"; text: string; link?: { label: string; href: string } | undefined };
 
 type Entry = { keys: string[]; answer: string; link?: { label: string; href: string } };
 
