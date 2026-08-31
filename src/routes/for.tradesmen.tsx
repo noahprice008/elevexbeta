@@ -21,8 +21,8 @@ function TradesmenPage() {
         eyebrow="TRADESMEN & CONTRACTORS"
         title="Get Your Evenings Back. Quotes, Jobs, and Follow-Ups Handled—Without the Paperwork."
         subtitle="Your tools belong on-site, not at a desk. We build modern websites, automated booking systems, and instant quoting tools for tradesmen. Get more jobs, secure faster payments, and stop spending your weekends chasing paperwork."
-        primary={{ label: "Try ELEVEX Free for 21 Days →", note: "No card required. Custom demo in 3 days, live platform 7 days from approval." }}
-        secondary={{ label: "Request a Custom Demo", note: "Free consultation" }}
+        primary={{ label: "Get My Free Demo →", note: "No card required. Custom demo in 3 days, live platform 7 days from approval." }}
+        secondary={{ label: "See How It Works", note: "Free 30-minute video consultation" }}
         badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days. Pay only if it works for you. No contracts, cancel anytime."
       />
       <PainPoints
@@ -71,8 +71,9 @@ function TradesmenPage() {
       />
       <FinalCta
         title="Stop wasting your weekends on admin. Let's automate your trade."
-        button="Book Your Free 30-Min Video Discovery Call →"
+        button="Get My Free Demo →"
         subtext="No credit card. No obligation. Just a practical plan to get your time back."
+        email="sales@elevex.digital"
       />
     </AudienceLayout>
   );

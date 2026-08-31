@@ -29,7 +29,7 @@ export function SiteFooter() {
             <a href="mailto:info@elevex.digital" className="mt-4 block text-sm text-cloud/60 hover:text-electric">info@elevex.digital</a>
             <a href="mailto:support@elevex.digital" className="mt-1 block text-sm text-cloud/60 hover:text-electric">support@elevex.digital</a>
             <span className="mt-2 block text-sm text-cloud/45">elevex.digital</span>
-            <Button asChild className="mt-6"><a href="/#consultation">Request a Custom Demo →</a></Button>
+            <Button asChild className="mt-6"><a href="/#consultation">Get My Free Demo →</a></Button>
           </div>
         </div>
         <div className="mt-14 flex flex-col justify-between gap-4 border-t border-cloud/10 pt-6 text-xs text-cloud/45 sm:flex-row">

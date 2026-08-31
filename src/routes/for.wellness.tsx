@@ -21,7 +21,7 @@ function WellnessPage() {
         eyebrow="WELLNESS STUDIOS & CLINICS"
         title="Bookings, Reminders, and Client Management. Running Beautifully on Autopilot."
         subtitle="Stop wrestling with clunky booking software and chasing class packages. ELEVEX builds custom, high-converting digital systems that handle your scheduling, reminders, and client intake in the background—so you can focus on the people in your studio."
-        primary={{ label: "Request a Custom Demo", note: "No obligation, no commitment" }}
+        primary={{ label: "Get My Free Demo →", note: "No obligation, no commitment" }}
         secondary={{ label: "See How It Works" }}
         badge="Your interactive demo in 3 days, live studio platform 7 days from approval. Free for 21 days. Pay only if you love it."
       />
@@ -62,7 +62,8 @@ function WellnessPage() {
       <FinalCta
         title="Let's make your studio run beautifully."
         body="Keep your energy where it matters most: with your community. Let ELEVEX build the digital foundation that works in the background so your studio can grow."
-        button="Book Your Free 30-Min Wellness Video Consultation →"
+        button="Get My Free Demo →"
+        email="sales@elevex.digital"
       />
     </AudienceLayout>
   );
