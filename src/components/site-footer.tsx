@@ -34,7 +34,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-14 flex flex-col justify-between gap-4 border-t border-cloud/10 pt-6 text-xs text-cloud/45 sm:flex-row">
           <p>© 2026 ELEVEX. All rights reserved.</p>
-          <div className="flex gap-5"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+          <div className="flex gap-5"><a href="/privacy" className="hover:text-electric">Privacy Policy</a><a href="/terms" className="hover:text-electric">Terms of Service</a></div>
         </div>
       </div>
     </footer>
