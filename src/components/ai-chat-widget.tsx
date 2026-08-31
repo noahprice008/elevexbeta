@@ -145,7 +145,7 @@ export function AiChatWidget() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-24 right-5 z-[60] flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-xl border border-electric/25 bg-navy shadow-2xl">
+        <div className="fixed bottom-20 right-4 z-[60] md:bottom-24 flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-xl border border-electric/25 bg-navy shadow-2xl">
           <div className="flex items-center gap-3 border-b border-cloud/10 bg-navy px-4 py-3">
             <img src={agentAvatar} alt="" width={40} height={40} loading="lazy" className="h-10 w-10 rounded-full bg-cloud/10 object-cover" />
             <div className="flex-1">
@@ -222,7 +222,7 @@ export function AiChatWidget() {
         type="button"
         onClick={() => setOpen(!open)}
         aria-label={open ? "Close ELEVEX assistant" : "Open ELEVEX assistant"}
-        className="fixed bottom-5 right-5 z-[60] flex h-16 w-16 items-center justify-center rounded-full border border-electric/40 bg-navy shadow-xl transition-transform hover:scale-105"
+        className="fixed bottom-4 right-20 z-[60] flex h-14 w-14 items-center justify-center rounded-full border border-electric/40 bg-navy shadow-xl transition-transform hover:scale-105"
       >
         {open ? (
           <X className="h-6 w-6 text-electric" />
