@@ -369,7 +369,7 @@ export function ConsultationFlow() {
 
       {step === 1 && (
         <StepShell>
-          <StepHeading title="Where do you want to grow?" copy="Select every area you'd like to improve. Most businesses complete this in under 2 minutes." />
+          <StepHeading title="Where do you want to grow?" copy="Select every area you'd like to improve. Quick checkbox selection — no technical background required." />
           <div className="grid gap-4 md:grid-cols-2">
             {pillars.map((pillar) => (
               <SelectCard key={pillar.id} title={pillar.title} description={pillar.description} icon={pillar.icon}
@@ -529,7 +529,7 @@ export function ConsultationFlow() {
             ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
             : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit Requirements & Request Demo"}</Button>}
         </div>
-        <p className="mt-3 text-xs text-muted-foreground">Takes under 2 minutes • No credit card required • No obligation</p>
+        <p className="mt-3 text-xs text-muted-foreground">Takes less than two minutes to complete • No credit card required • No obligation</p>
       </div>
       {error && <p role="alert" className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
     </div>
