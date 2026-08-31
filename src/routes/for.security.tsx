@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Security & Facilities Firms | ELEVEX";
-const description = "Connected scheduling, automated field reporting and real-time client updates for security and facilities firms. Live within a week, free for 21 days.";
+const description = "Connected scheduling, automated field reporting and real-time client updates for security and facilities firms. Custom demo in 3 days, live platform 7 days from approval, free for 21 days.";
 
 export const Route = createFileRoute("/for/security")({
   head: () => ({ meta: [
@@ -20,9 +20,9 @@ function SecurityPage() {
       <PageHero
         eyebrow="SECURITY & FACILITIES FIRMS"
         title="The Digital Backbone for Modern Security & Facilities Operations."
-        subtitle="Connect your scheduling, automate incident reporting, and give clients real-time transparency—without the administrative headache. Get a custom operational platform built within a week, try it free for 21 days, and only pay if it delivers."
+        subtitle="Connect your scheduling, automate incident reporting, and give clients real-time transparency—without the administrative headache. Get your interactive demo in 3 days and a fully programmed live platform 7 days from approval, try it free for 21 days, and only pay if it delivers."
         primary={{ label: "Book Your Free 30-Min Security Video Discovery Call" }}
-        badge="No contracts or lock-ins • 100% risk-free trial • Fully live within a week"
+        badge="No contracts or lock-ins • 100% risk-free trial • Custom demo in 3 days, fully live 7 days from approval"
       />
       <PainPoints
         title="You protect people and properties. Who is protecting your time?"
@@ -49,12 +49,12 @@ function SecurityPage() {
         title="Practical technology, delivered at operational speed."
         items={[
           ["Business-First Integration", "We start with the software and tools you already use (or help you find the right ones) and connect them seamlessly."],
-          ["Speed Over Bureaucracy", "Traditional agencies take 3 to 6 months to deploy custom field tools. We deliver a fully functional, live platform within a week."],
+          ["Speed Over Bureaucracy", "Traditional agencies take 3 to 6 months to deploy custom field tools. We deliver an interactive demo in 3 days and a fully functional live platform 7 days from approval."],
           ["Zero Upfront Risk", "Use your custom platform free for 21 days—if it doesn't save you time and impress your clients, you don't pay a penny."],
         ]}
       />
       <StepFlow
-        title="From operational blueprint to live platform within a week."
+        title="From operational blueprint to interactive demo in 3 days — live platform 7 days from approval."
         steps={[
           { n: "01", title: "Tell Us About Your Business (5-Min Intake)", copy: "Submit your operational pain points—how you schedule, what reports you need, and where the bottlenecks are." },
           { n: "02", title: "We Design Your Blueprint", copy: "We map out an operational recommendation detailing the exact integrations, forms, and client portals we'll build." },

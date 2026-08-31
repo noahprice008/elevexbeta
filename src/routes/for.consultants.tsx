@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta } from "@/components/page-blocks";
 
 const title = "Digital Systems for Consultants & Professional Services | ELEVEX";
-const description = "Stop fielding unqualified enquiries — a site that sells your authority and screens leads for you. Live within a week, free for 21 days, from $199/month after.";
+const description = "Stop fielding unqualified enquiries — a site that sells your authority and screens leads for you. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/consultants")({
   head: () => ({ meta: [
@@ -21,9 +21,9 @@ function ConsultantsPage() {
         eyebrow="CONSULTANTS & PROFESSIONAL SERVICES"
         title="Stop Chasing Tire-Kickers. Streamline Your High-Ticket Client Pipeline."
         subtitle="Your expertise is high-value, but your client acquisition shouldn't require manual chasing. ELEVEX builds premium digital presences and automated qualification systems for consultants and professional service providers—giving you back your time and bringing you highly qualified clients."
-        primary={{ label: "Get Your System Built Within a Week (Try Free)" }}
+        primary={{ label: "Get Your Website, Automations and AI Built (Try Free)" }}
         secondary={{ label: "Request a Custom Demo" }}
-        badge="Live platform within a week. Free for 21 days. Pay only if you stay."
+        badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days."
       />
       <PainPoints
         title="Are you spending more time chasing leads than delivering expertise?"

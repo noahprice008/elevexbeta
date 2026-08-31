@@ -191,7 +191,7 @@ export const standardPricing = {
     title: "Free Consultation & Discovery",
     price: "$0",
     copy: "A structured 30-minute online video call about your business, your challenges and where technology can make the biggest difference — followed by a clear recommendation and a fixed quote.",
-    items: ["No obligation, no commitment", "No card required", "Fixed monthly price quoted on the call", "Live platform delivered within a week", "21 days free before you pay anything"],
+    items: ["No obligation, no commitment", "No card required", "Fixed monthly price quoted on the call", "Live platform delivered 7 days from approval", "21 days free before you pay anything"],
   },
   card2: {
     label: "After your free trial",

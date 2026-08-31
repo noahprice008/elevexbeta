@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Tradesmen & Contractors | ELEVEX";
-const description = "Stop missing quotes while you are on the tools — automated booking and instant quoting for tradesmen. Live within a week, free for 21 days, from $199/month after.";
+const description = "Stop missing quotes while you are on the tools — automated booking and instant quoting for tradesmen. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/tradesmen")({
   head: () => ({ meta: [
@@ -21,9 +21,9 @@ function TradesmenPage() {
         eyebrow="TRADESMEN & CONTRACTORS"
         title="Get Your Evenings Back. Quotes, Jobs, and Follow-Ups Handled—Without the Paperwork."
         subtitle="Your tools belong on-site, not at a desk. We build modern websites, automated booking systems, and instant quoting tools for tradesmen. Get more jobs, secure faster payments, and stop spending your weekends chasing paperwork."
-        primary={{ label: "Try ELEVEX Free for 21 Days →", note: "No card required. Live system within a week." }}
+        primary={{ label: "Try ELEVEX Free for 21 Days →", note: "No card required. Custom demo in 3 days, live platform 7 days from approval." }}
         secondary={{ label: "Request a Custom Demo", note: "Free consultation" }}
-        badge="Live platform within a week. Free for 21 days. Pay only if it works for you. No contracts, cancel anytime."
+        badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days. Pay only if it works for you. No contracts, cancel anytime."
       />
       <PainPoints
         title="Are you running your business, or is your paperwork running you?"
@@ -46,7 +46,7 @@ function TradesmenPage() {
         ]}
       />
       <StepFlow
-        title="Get your custom platform live within a week."
+        title="Get your custom interactive demo in 3 days — and your fully programmed live platform in 7 days from approval."
         sub="We don't do slow, expensive development projects. We build practical solutions fast so you can start saving time immediately."
         steps={[
           { n: "01", title: "The 30-Min Video Call (Free)", copy: "We discuss your trade, your biggest admin bottlenecks, and what you want to automate. We give you a clear recommendation and a fixed monthly quote on the spot." },
