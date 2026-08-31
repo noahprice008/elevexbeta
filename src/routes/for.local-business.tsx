@@ -3,7 +3,7 @@ import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Growing Local Businesses | ELEVEX";
-const description = "Stop losing leads overnight and re-typing admin by hand — systems that scale with your growing local business. Live within a week, free for 21 days, from $199/month after.";
+const description = "Stop losing leads overnight and re-typing admin by hand — systems that scale with your growing local business. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/local-business")({
   head: () => ({ meta: [
@@ -21,9 +21,9 @@ function LocalBusinessPage() {
         eyebrow="GROWING LOCAL BUSINESSES"
         title="Every Big Business Started as a Growing Local One."
         subtitle="You're growing, but your tools haven't caught up. ELEVEX builds practical websites, automations, and AI-powered systems that scale with you — without the agency price tag or the months-long wait."
-        primary={{ label: "Get Your Platform Live Within a Week (Try Free)" }}
+        primary={{ label: "Get Your Website, Automations and AI Live (Try Free)" }}
         secondary={{ label: "Request a Custom Demo" }}
-        badge="Live platform within a week. Free for 21 days. Pay only if you stay."
+        badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days."
       />
       <PainPoints
         title="Growing shouldn't feel this chaotic."
@@ -47,7 +47,7 @@ function LocalBusinessPage() {
         ]}
       />
       <StepFlow
-        title="From first conversation to live platform within a week."
+        title="From first conversation to interactive demo in 3 days — live platform 7 days from approval."
         steps={[
           { n: "01", title: "Tell Us About Your Business", copy: "A short form on what you do, what's slowing you down, and where you want to grow." },
           { n: "02", title: "We Prepare Your Recommendation", copy: "A tailored presentation showing exactly what we'd build and why." },
