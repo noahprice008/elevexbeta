@@ -21,7 +21,7 @@ function SecurityPage() {
         eyebrow="SECURITY & FACILITIES FIRMS"
         title="The Digital Backbone for Modern Security & Facilities Operations."
         subtitle="Connect your scheduling, automate incident reporting, and give clients real-time transparency—without the administrative headache. Get your interactive demo in 3 days and a fully programmed live platform 7 days from approval, try it free for 21 days, and only pay if it delivers."
-        primary={{ label: "Book Your Free 30-Min Security Video Discovery Call" }}
+        primary={{ label: "Get My Free Demo →" }}
         badge="No contracts or lock-ins • 100% risk-free trial • Custom demo in 3 days, fully live 7 days from approval"
       />
       <PainPoints
@@ -68,7 +68,7 @@ function SecurityPage() {
       <FinalCta
         title="Ready to run a tighter, more profitable operation?"
         body="Stop chasing rosters and chasing down paper incident reports. Let us build a modern digital foundation that scales alongside your business."
-        button="Book Your Free 30-Min Video Discovery Call →"
+        button="Get My Free Demo →"
         email="sales@elevex.digital"
       />
     </AudienceLayout>

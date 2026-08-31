@@ -58,7 +58,7 @@ function BlueprintsPage() {
         eyebrow="AUTOMATION BLUEPRINT GALLERY"
         title="See Exactly What Runs in the Background of Your Business."
         subtitle="Automation is not an abstract idea. Each blueprint below is a live system we build, install and support — mapped step by step so you can see precisely where your time comes back."
-        primary={{ label: "Request a Custom Demo →", note: "Custom demo in 3 days, live platform 7 days from approval. Free for 21 days." }}
+        primary={{ label: "Get My Free Demo →", note: "Custom demo in 3 days, live platform 7 days from approval. Free for 21 days." }}
         badge="Every blueprint is built into your flat monthly fee. No per-automation billing."
       />
 
@@ -85,7 +85,7 @@ function BlueprintsPage() {
 
       <FinalCta
         title="Want one of these mapped to your business?"
-        button="Request a Custom Demo →"
+        button="Get My Free Demo →"
         subtext="A 30-minute online video call. No credit card, no obligation — just a clear picture of what we would automate first."
       />
     </AudienceLayout>

@@ -128,7 +128,7 @@ export function RoiCalculator() {
               </div>
             </div>
 
-            <Button asChild size="lg" className="mt-8 w-full sm:w-auto"><a href="#consultation">Get My Custom Demo →</a></Button>
+            <Button asChild size="lg" className="mt-8 w-full sm:w-auto"><a href="#consultation">Get My Free Demo →</a></Button>
             <p className="mt-5 text-xs leading-relaxed text-cloud/45">
               Estimate for illustration purposes based on your inputs. Actual results vary by business and are discussed on your discovery call.
             </p>
