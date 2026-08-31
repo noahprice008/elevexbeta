@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Wrench, Briefcase, ShieldCheck, HeartPulse, Store, type LucideIcon } from "lucide-react";
 
 export const audiences: { title: string; copy: string; to: string; Icon: LucideIcon }[] = [
-  { title: "Tradesmen & Contractors", copy: "Stop losing Sunday evenings to invoicing. Automatically convert on-site quotes into scheduled jobs.", to: "/for/tradesmen", Icon: Wrench },
+  { title: "Tradesmen & Contractors", copy: "Stop losing Sunday evenings to invoicing. Automatically convert on-site quotes into scheduled jobs, and instantly generate ready-to-send invoice drafts the moment the job is completed.", to: "/for/tradesmen", Icon: Wrench },
   { title: "Consultants & Professional Services", copy: "A credible digital presence and a steady flow of qualified enquiries — without the manual follow-up.", to: "/for/consultants", Icon: Briefcase },
   { title: "Security & Facilities Firms", copy: "Connected scheduling, real-time reporting and client communication that never drops the ball.", to: "/for/security", Icon: ShieldCheck },
   { title: "Wellness Studios & Clinics", copy: "Eliminate no-shows with two-way SMS reminders and automated waitlist fulfilment.", to: "/for/wellness", Icon: HeartPulse },
