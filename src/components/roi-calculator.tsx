@@ -48,6 +48,7 @@ export function RoiCalculator() {
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
               <label htmlFor="roi-rate" className="text-sm font-bold text-cloud/80">Your time is worth about</label>
+              <p className="mt-1 text-xs leading-relaxed text-cloud/45">Pre-set at a standard administrative labor rate of $30/hour — adjust it to what your time is actually worth.</p>
               <div className="mt-3 flex items-center gap-3">
                 <span className="text-lg font-extrabold text-cloud/70">$</span>
                 <Input
@@ -105,6 +106,7 @@ export function RoiCalculator() {
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-wide text-cloud/50">Net monthly gain</p>
                 <p className="mt-2 text-3xl font-extrabold transition-all duration-300">{net >= 0 ? money(net) : `-${money(Math.abs(net))}`}</p>
+                <p className="mt-2 text-[11px] leading-relaxed text-cloud/45">Based on the selected subscription (base platform from $199/month). Your actual subscription is quoted transparently on your discovery call, based on your specific workflow complexity.</p>
               </div>
             </div>
             <p className="mt-6 text-lg font-extrabold">

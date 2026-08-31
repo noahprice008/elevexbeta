@@ -28,7 +28,7 @@ export function SiteFooter() {
             <h3 className="text-sm font-extrabold">Contact</h3>
             <a href="mailto:info@elevex.digital" className="mt-4 block text-sm text-cloud/60 hover:text-electric">info@elevex.digital</a>
             <a href="mailto:support@elevex.digital" className="mt-1 block text-sm text-cloud/60 hover:text-electric">support@elevex.digital</a>
-            <a href="https://elevex.digital" className="mt-2 block text-sm text-cloud/45 hover:text-electric">elevex.digital</a>
+            <span className="mt-2 block text-sm text-cloud/45">elevex.digital</span>
             <Button asChild className="mt-6"><a href="/#consultation">Request a Custom Demo →</a></Button>
           </div>
         </div>
