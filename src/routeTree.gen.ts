@@ -11,7 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlueprintsRouteImport } from './routes/blueprints'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
 import { Route as ForLocalBusinessRouteImport } from './routes/for.local-business'
 import { Route as ForSecurityRouteImport } from './routes/for.security'
@@ -28,9 +30,19 @@ const BlueprintsRoute = BlueprintsRouteImport.update({
   path: '/blueprints',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoadmapRoute = RoadmapRouteImport.update({
   id: '/roadmap',
   path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForConsultantsRoute = ForConsultantsRouteImport.update({
@@ -62,7 +74,9 @@ const ForWellnessRoute = ForWellnessRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blueprints': typeof BlueprintsRoute
+  '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
+  '/terms': typeof TermsRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/local-business': typeof ForLocalBusinessRoute
   '/for/security': typeof ForSecurityRoute
@@ -72,7 +86,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blueprints': typeof BlueprintsRoute
+  '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
+  '/terms': typeof TermsRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/local-business': typeof ForLocalBusinessRoute
   '/for/security': typeof ForSecurityRoute
@@ -83,7 +99,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blueprints': typeof BlueprintsRoute
+  '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
+  '/terms': typeof TermsRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/local-business': typeof ForLocalBusinessRoute
   '/for/security': typeof ForSecurityRoute
@@ -95,7 +113,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blueprints'
+    | '/privacy'
     | '/roadmap'
+    | '/terms'
     | '/for/consultants'
     | '/for/local-business'
     | '/for/security'
@@ -105,7 +125,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/blueprints'
+    | '/privacy'
     | '/roadmap'
+    | '/terms'
     | '/for/consultants'
     | '/for/local-business'
     | '/for/security'
@@ -115,7 +137,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blueprints'
+    | '/privacy'
     | '/roadmap'
+    | '/terms'
     | '/for/consultants'
     | '/for/local-business'
     | '/for/security'
@@ -126,7 +150,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlueprintsRoute: typeof BlueprintsRoute
+  PrivacyRoute: typeof PrivacyRoute
   RoadmapRoute: typeof RoadmapRoute
+  TermsRoute: typeof TermsRoute
   ForConsultantsRoute: typeof ForConsultantsRoute
   ForLocalBusinessRoute: typeof ForLocalBusinessRoute
   ForSecurityRoute: typeof ForSecurityRoute
@@ -150,11 +176,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlueprintsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/roadmap': {
       id: '/roadmap'
       path: '/roadmap'
       fullPath: '/roadmap'
       preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/for/consultants': {
@@ -198,7 +238,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlueprintsRoute: BlueprintsRoute,
+  PrivacyRoute: PrivacyRoute,
   RoadmapRoute: RoadmapRoute,
+  TermsRoute: TermsRoute,
   ForConsultantsRoute: ForConsultantsRoute,
   ForLocalBusinessRoute: ForLocalBusinessRoute,
   ForSecurityRoute: ForSecurityRoute,
