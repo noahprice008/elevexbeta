@@ -8,6 +8,11 @@ export function BackToTop() {
     const onScroll = () => {
       const doc = document.documentElement;
       const max = doc.scrollHeight - window.innerHeight;
+      const pricing = document.getElementById("pricing");
+      if (pricing) {
+        setVisible(pricing.getBoundingClientRect().top <= window.innerHeight * 0.5);
+        return;
+      }
       setVisible(max > 0 && window.scrollY > max * 0.5);
     };
     onScroll();

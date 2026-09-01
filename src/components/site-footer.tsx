@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ElevexLogo } from "@/components/elevex-logo";
+import { Calculator } from "lucide-react";
 
 function FooterColumn({ title, items }: { title: string; items: [string, string][] }) {
   return (
@@ -29,10 +30,20 @@ export function SiteFooter() {
             <a href="mailto:info@elevex.digital" className="mt-4 block text-sm text-cloud/60 hover:text-electric">info@elevex.digital</a>
             <a href="mailto:support@elevex.digital" className="mt-1 block text-sm text-cloud/60 hover:text-electric">support@elevex.digital</a>
             <span className="mt-2 block text-sm text-cloud/45">elevex.digital</span>
-            <Button asChild className="mt-6"><a href="/#consultation">Get My Free Demo →</a></Button>
+            <div className="mt-6 flex items-center gap-3">
+              <Button asChild><a href="/#consultation">Get My Free Demo →</a></Button>
+              <a
+                href="/#roi-calculator"
+                aria-label="Calculate my savings"
+                title="Calculate my savings"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-electric/50 bg-electric text-navy shadow-lg shadow-electric/20 transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+              >
+                <Calculator className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </div>
-        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-cloud/10 pt-6 text-xs text-cloud/45 sm:flex-row">
+        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-cloud/10 pb-14 pt-6 pr-16 text-xs text-cloud/45 sm:flex-row">
           <p>© 2026 ELEVEX. All rights reserved.</p>
           <div className="flex gap-5"><a href="/privacy" className="hover:text-electric">Privacy Policy</a><a href="/terms" className="hover:text-electric">Terms of Service</a></div>
         </div>
