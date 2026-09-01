@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { MessageSquare, Send, X } from "lucide-react";
 import { useChat } from "@/components/chat-provider";
+import {
+  chatbotContactTestWebhook,
+  chatbotContactProductionWebhook,
+  sendToBothEndpoints,
+} from "@/lib/webhooks";
 
 type Msg = { role: "bot" | "user"; text: string; link?: { label: string; href: string } | undefined };
 
