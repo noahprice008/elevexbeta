@@ -9,12 +9,12 @@ export function SavingsPill() {
 
     const update = () => {
       const pastHero = window.scrollY > window.innerHeight * 0.6;
-      let inView = false;
+      let beforeSection = true;
       if (target) {
         const rect = target.getBoundingClientRect();
-        inView = rect.top < window.innerHeight * 0.85 && rect.bottom > 0;
+        beforeSection = rect.top > window.innerHeight * 0.85;
       }
-      setVisible(pastHero && !inView);
+      setVisible(pastHero && beforeSection);
     };
 
     update();
