@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { MessageSquare, Send, X } from "lucide-react";
-import agentAvatar from "@/assets/elevex-agent-avatar.png";
+import { useChat } from "@/components/chat-provider";
 
 type Msg = { role: "bot" | "user"; text: string; link?: { label: string; href: string } | undefined };
 
@@ -85,7 +85,7 @@ function findAnswer(input: string): Msg {
 }
 
 export function AiChatWidget() {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useChat();
   const [messages, setMessages] = useState<Msg[]>([GREETING]);
   const [input, setInput] = useState("");
   const [mode, setMode] = useState<"chat" | "lead">("chat");
@@ -107,7 +107,7 @@ export function AiChatWidget() {
 
   const submitLead = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!lead.name.trim() || !/^\S+@\S+\.\S+$/.test(lead.email)) {
+    if (!lead.name.trim() || /^\S+@\S+\.\S+$/.test(lead.email)) {
       setLeadError("Please add your name and a valid email.");
       return;
     }
@@ -145,9 +145,11 @@ export function AiChatWidget() {
   return (
     <>
       {open && (
-        <div className="fixed bottom-20 right-4 z-[60] md:bottom-24 flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-xl border border-electric/25 bg-navy shadow-2xl">
+        <div className="fixed bottom-4 right-4 z-[60] flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-xl border border-electric/25 bg-navy shadow-2xl">
           <div className="flex items-center gap-3 border-b border-cloud/10 bg-navy px-4 py-3">
-            <img src={agentAvatar} alt="" width={40} height={40} loading="lazy" className="h-10 w-10 rounded-full bg-cloud/10 object-cover" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-electric/10">
+              <MessageSquare className="h-4 w-4 text-electric" />
+            </div>
             <div className="flex-1">
               <p className="text-sm font-extrabold text-cloud">
                 ELEV<span className="text-electric">EX</span> Assistant
@@ -217,24 +219,6 @@ export function AiChatWidget() {
           </div>
         </div>
       )}
-
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        aria-label={open ? "Close ELEVEX assistant" : "Open ELEVEX assistant"}
-        className="fixed bottom-4 right-20 z-[60] flex h-14 w-14 items-center justify-center rounded-full border border-electric/40 bg-navy shadow-xl transition-transform hover:scale-105"
-      >
-        {open ? (
-          <X className="h-6 w-6 text-electric" />
-        ) : (
-          <>
-            <img src={agentAvatar} alt="" width={64} height={64} loading="lazy" className="h-full w-full rounded-full object-cover" />
-            <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-electric">
-              <MessageSquare className="h-3 w-3 text-navy" />
-            </span>
-          </>
-        )}
-      </button>
     </>
   );
 }
