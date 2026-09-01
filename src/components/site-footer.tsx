@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ElevexLogo } from "@/components/elevex-logo";
+import { Calculator } from "lucide-react";
 
 function FooterColumn({ title, items }: { title: string; items: [string, string][] }) {
   return (
