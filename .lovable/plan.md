@@ -1,25 +1,78 @@
-# Why the production webhook isn't firing
+# Plan: Make ELEVEX Hostslinger-Compatible (Standard Vite SPA)
 
-## Diagnosis
+## Goal
+Convert the project from a Lovable/TanStack Start full-stack build to a standard Vite + React single-page application that Hostslinger can build directly from the GitHub repository, with no Lovable-specific packages or server runtime.
 
-The form posts directly from the visitor's browser to two URLs on `localhost:5678`. That address means "the machine viewing the page", so it can only ever work while you personally have n8n running and are viewing the site locally. Two separate things are blocking it right now:
+## Background
+The current `vite.config.ts` uses `@tanstack/react-start/plugin/vite` and `nitro`, which are full-stack/server-framework plugins. Hostslinger's build container cannot resolve these (and previously failed on `@lovable.dev/vite-tanstack-config`). The site is actually a static marketing SPA with no server-side data loading, so it can be simplified to a plain Vite React build.
 
-1. **The workflow isn't Active.** n8n's production URL (`/webhook/...`) only exists while the workflow is toggled Active. Until then it returns 404. The test URL (`/webhook-test/...`) only listens while you click "Listen for test event".
-2. **The published site is HTTPS.** Browsers block an HTTPS page from calling `http://localhost`, so on the live site both calls fail silently regardless of n8n's state. Failures are swallowed on purpose today (the success screen shows anyway), which is why it looks like nothing happened.
+## What will change
 
-## Plan
+### 1. Build tooling
+- Replace `vite.config.ts` with a standard Vite configuration using:
+  - `@vitejs/plugin-react`
+  - `@tailwindcss/vite`
+  - `vite-tsconfig-paths`
+  - `@tanstack/router-plugin/vite` (already in `package.json`) for file-based route generation
+- Remove `tanstackStart(...)` and `nitro()` plugins.
+- Set `base: "/"` and ensure the build outputs to `dist/`.
 
-1. Activate the workflow in n8n (your step — the production URL doesn't respond otherwise).
-2. Make the webhook URL configurable instead of hardcoded: read `VITE_LEAD_WEBHOOK_URL` (test) and a new `VITE_LEAD_WEBHOOK_PROD_URL` (production), falling back to the current localhost values for local dev. When you get a public n8n URL (n8n Cloud or a tunnel like ngrok/Cloudflare Tunnel), set those and the live site starts working with no code change.
-3. Add visible diagnostics: log each webhook's status/failure to the console with a clear tag, and track a per-endpoint result so a total failure can optionally be reported rather than silently succeeding.
-4. Skip localhost calls when the page itself is served over HTTPS, and log a one-line explanation instead of letting the browser throw an opaque mixed-content error.
+### 2. Entry points
+- Create `index.html` at the repository root pointing to `src/main.tsx`.
+- Create `src/main.tsx` as the new client entry point:
+  - Render the router into `document.getElementById("root")`.
+  - Use `RouterProvider` from `@tanstack/react-router`.
 
-## Technical notes
+### 3. Router conversion
+- Update `src/router.tsx` to use `createRouter` from `@tanstack/react-router` with default browser history and the existing `routeTree`.
+- Remove the `QueryClient` from router context if it is no longer needed, or keep it in `main.tsx` wrapping `RouterProvider`.
 
-- File: `src/components/consultation-flow.tsx`, `submit()` around lines 309-326.
-- Keep `Promise.allSettled` and keep submission non-blocking so the reward/success animation is unaffected.
-- Both existing URLs stay as the local defaults; nothing is removed.
+### 4. Root route simplification
+- Update `src/routes/__root.tsx`:
+  - Remove `shellComponent`, `HeadContent`, and `Scripts` (these are TanStack Start SSR APIs).
+  - Return a plain component that wraps children in `QueryClientProvider` and renders `<Outlet />` plus the AI chat widget.
+  - Move static `<head>` tags (charset, viewport, title, description, fonts, favicons) into `index.html`.
+  - Keep per-route `head()` metadata where supported by TanStack Router, or move critical SEO tags into `index.html` if the standard router plugin does not generate head at runtime for a static SPA.
 
-## What this does not fix
+### 5. Server files removal
+- Delete `src/server.ts` (serverless worker entry).
+- Delete `src/start.ts` (CSRF/error middleware and Start instance).
+- Remove any imports of these files.
 
-While n8n only lives on `localhost`, the published site can never reach it — no code change can bridge that. A publicly reachable n8n URL is required for the live site.
+### 6. Dependencies
+- Remove from `package.json`:
+  - `@tanstack/react-start`
+  - `nitro`
+- Keep:
+  - `@tanstack/react-router`
+  - `@tanstack/router-plugin`
+  - `@tanstack/react-query`
+  - All UI/component dependencies
+- Run install to update the lockfile.
+
+### 7. Lovable-specific code
+- Replace or guard `src/lib/lovable-error-reporting.ts` so it no-ops outside the Lovable editor (it already checks `typeof window`, but the file name and global types can be simplified).
+- Remove the `reportLovableError` call in `src/routes/__root.tsx` or make it a safe console-only fallback.
+
+### 8. Route tree
+- Keep `src/routeTree.gen.ts` as the generated route tree.
+- Configure `@tanstack/router-plugin/vite` with `routesDirectory: "src/routes"` and `generatedRouteTree: "src/routeTree.gen.ts"` so it regenerates automatically during dev/build.
+
+### 9. Static hosting behavior
+- Because Hostslinger serves the `dist/` folder as static files, deep links like `/blueprints` or `/for/tradesmen` require the host to fall back to `index.html`. The plan assumes Hostslinger provides this fallback (standard for static SPAs). If not, we can switch to hash-based history as a follow-up.
+
+## What will NOT change
+- All page content, copy, components, styling, and the AI chat widget logic.
+- The existing webhook URLs and form payloads.
+- The file-based routing convention under `src/routes/`.
+- The public assets in `public/`.
+
+## Verification
+- Run `bun install`.
+- Run `bun run build` and confirm `dist/` is produced with `index.html` and assets.
+- Run `bun run preview` and spot-check navigation across `/`, `/blueprints`, `/roadmap`, `/privacy`, `/terms`, and the `/for/*` industry pages.
+- Confirm no `@lovable.dev`, `@tanstack/react-start`, or `nitro` imports remain in the built output.
+
+## Risks / follow-ups
+- TanStack Router's `head()` API may behave differently in a pure client SPA than under Start SSR; if meta tags are missing at build time, we will move them into `index.html` or add `react-helmet-async`.
+- If Hostslinger does not provide an `index.html` fallback for deep links, we will switch the router to hash history.
