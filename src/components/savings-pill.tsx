@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Calculator } from "lucide-react";
 
 export function SavingsPill() {
   const [visible, setVisible] = useState(false);
@@ -29,13 +30,14 @@ export function SavingsPill() {
     <button
       type="button"
       onClick={() => document.getElementById("roi-calculator")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+      aria-label="Calculate my savings"
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
-      className={`fixed bottom-20 right-4 z-40 cursor-pointer rounded-full border border-electric/50 bg-electric px-5 py-3 text-sm font-extrabold text-navy shadow-lg transition-all duration-300 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric ${
+      className={`fixed bottom-6 right-4 z-40 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-electric/50 bg-electric text-navy shadow-lg shadow-electric/20 transition-all duration-300 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric ${
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0"
       }`}
     >
-      Calculate My Savings →
+      <Calculator className="h-5 w-5" strokeWidth={2.5} />
     </button>
   );
 }
