@@ -8,14 +8,20 @@ export function ElevexLogo({
   tagline?: boolean;
 }) {
   if (compact) {
-    return <img src="/elevex-x.png" alt="ELEVEX" className="h-[1em] w-auto" />;
+    return (
+      <img
+        src="/elevex-x.png"
+        alt="ELEVEX"
+        className="h-8 w-auto object-contain"
+      />
+    );
   }
   return (
     <span className="inline-flex flex-col" aria-label="ELEVEX">
       <img
         src={dark ? "/elevex-wordmark-dark.png" : "/elevex-wordmark-light.png"}
         alt="ELEVEX"
-        className="h-[1.05em] w-auto"
+        className="h-10 w-auto object-contain"
       />
       {tagline && (
         <span
