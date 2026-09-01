@@ -1,7 +1,3 @@
-import xMark from "@/assets/elevex-x.png.asset.json";
-import wordmarkLight from "@/assets/elevex-wordmark.png.asset.json";
-import wordmarkDark from "@/assets/elevex-wordmark-dark.png.asset.json";
-
 export function ElevexLogo({
   dark = true,
   compact = false,
@@ -12,13 +8,12 @@ export function ElevexLogo({
   tagline?: boolean;
 }) {
   if (compact) {
-    return <img src={xMark.url} alt="ELEVEX" className="h-[1em] w-auto" />;
+    return <img src="/elevex-x.png" alt="ELEVEX" className="h-[1em] w-auto" />;
   }
-
   return (
     <span className="inline-flex flex-col" aria-label="ELEVEX">
       <img
-        src={dark ? wordmarkDark.url : wordmarkLight.url}
+        src={dark ? "/elevex-wordmark-dark.png" : "/elevex-wordmark-light.png"}
         alt="ELEVEX"
         className="h-[1.05em] w-auto"
       />
