@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ElevexLogo } from "@/components/elevex-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useChat } from "@/components/chat-provider";
 
 const links: [string, string][] = [
   ["Solutions", "/#solutions"],
@@ -17,6 +18,7 @@ const links: [string, string][] = [
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { open, toggle } = useChat();
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-cloud/10 bg-navy/95 backdrop-blur">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
@@ -26,6 +28,16 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label={open ? "Close assistant" : "Open assistant"}
+            onClick={toggle}
+            className="relative text-cloud transition-colors hover:bg-electric/10 hover:text-electric"
+          >
+            <MessageSquare className="h-5 w-5" />
+            {!open && <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-electric" />}
+          </Button>
           <Button asChild size="sm" className="lg:hidden"><a href="/#consultation">Get My Free Demo</a></Button>
           <Button asChild className="hidden lg:inline-flex"><a href="/#consultation">Get My Free Demo</a></Button>
           <Button variant="ghost" size="icon" className="text-cloud hover:bg-cloud/10 hover:text-electric lg:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>

@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AiChatWidget } from "@/components/ai-chat-widget";
+import { ChatProvider } from "@/components/chat-provider";
 
 
 function NotFoundComponent() {
@@ -132,9 +133,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-      <AiChatWidget />
+      <ChatProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <AiChatWidget />
+      </ChatProvider>
     </QueryClientProvider>
   );
 
