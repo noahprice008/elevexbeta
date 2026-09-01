@@ -21,7 +21,7 @@ export function ElevexLogo({
       <img
         src={dark ? "/elevex-wordmark-dark.png" : "/elevex-wordmark-light.png"}
         alt="ELEVEX"
-        className="h-10 w-auto object-contain"
+        className="h-8 w-auto object-contain"
       />
       {tagline && (
         <span
