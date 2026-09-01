@@ -119,23 +119,28 @@ export function AiChatWidget() {
     setLeadError("");
     setSending(true);
     try {
-      const response = await fetch("https://n8n.elevex.digital/webhook/chatbot-contact-request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: lead.name,
-          email: lead.email,
-          message: lead.message,
-          pageContext: typeof window !== "undefined" ? window.location.href : "",
-        }),
-      });
+      const payload = {
+        name: lead.name,
+        email: lead.email,
+        message: lead.message,
+        pageContext: typeof window !== "undefined" ? window.location.href : "",
+      };
+      const [testResponse, productionResponse] = await sendToBothEndpoints(
+        chatbotContactTestWebhook,
+        chatbotContactProductionWebhook,
+        payload,
+        { swallowErrors: false },
+      );
+      const primaryResponse = productionResponse ?? testResponse;
       let confirmation = "Thanks! Our sales team will reach out shortly.";
-      try {
-        const data = (await response.clone().json()) as { message?: string; reply?: string };
-        confirmation = data.message || data.reply || confirmation;
-      } catch {
-        const text = (await response.text()).trim();
-        if (text && text.length < 300) confirmation = text;
+      if (primaryResponse) {
+        try {
+          const data = (await primaryResponse.clone().json()) as { message?: string; reply?: string };
+          confirmation = data.message || data.reply || confirmation;
+        } catch {
+          const text = (await primaryResponse.text()).trim();
+          if (text && text.length < 300) confirmation = text;
+        }
       }
       setMode("chat");
       setLead({ name: "", email: "", message: "" });
