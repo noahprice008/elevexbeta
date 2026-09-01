@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Globe, Workflow, Bot, TrendingUp, HelpCircle, Check, Sparkles, FileImage, type LucideIcon } from "lucide-react";
+import {
+  formSubmissionTestWebhook,
+  formSubmissionProductionWebhook,
+  sendToBothEndpoints,
+} from "@/lib/webhooks";
 
 /* ---------------------------------- data --------------------------------- */
 
