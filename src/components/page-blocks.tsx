@@ -160,7 +160,7 @@ export function PricingBlock({ intro, card1, card2 }: {
           </article>
         </div>
         <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <Button asChild size="lg"><a href="/#consultation">Get My Free Demo →</a></Button>
+          <Button asChild size="lg"><a href="/#consultation">Build My Free Demo →</a></Button>
           <span className="text-sm text-muted-foreground">Free 30-minute online video consultation — no obligation.</span>
         </div>
       </div>

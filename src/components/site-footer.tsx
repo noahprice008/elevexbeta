@@ -31,7 +31,7 @@ export function SiteFooter() {
             <a href="mailto:support@elevex.digital" className="mt-1 block text-sm text-cloud/60 hover:text-electric">support@elevex.digital</a>
             <span className="mt-2 block text-sm text-cloud/45">elevex.digital</span>
             <div className="mt-6 flex items-center gap-3">
-              <Button asChild><a href="/#consultation">Get My Free Demo →</a></Button>
+              <Button asChild><a href="/#consultation">Build My Free Demo →</a></Button>
               <a
                 href="/#roi-calculator"
                 aria-label="Calculate my savings"

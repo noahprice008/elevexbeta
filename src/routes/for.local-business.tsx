@@ -21,7 +21,7 @@ function LocalBusinessPage() {
         eyebrow="GROWING LOCAL BUSINESSES"
         title="Every Big Business Started as a Growing Local One."
         subtitle="You're growing, but your tools haven't caught up. ELEVEX builds practical websites, automations, and AI-powered systems that scale with you — without the agency price tag or the months-long wait."
-        primary={{ label: "Get My Free Demo →" }}
+        primary={{ label: "Claim My Free Demo →" }}
         secondary={{ label: "See How It Works" }}
         badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days."
       />
@@ -61,7 +61,7 @@ function LocalBusinessPage() {
       <FinalCta
         title="Ready to grow without the growing pains?"
         body="Whether it's your website, your admin, or your follow-ups slowing you down, ELEVEX can help you find the right place to start — free to try, before you ever pay a cent."
-        button="Get My Free Demo →"
+        button="Build My Free Demo →"
         email="sales@elevex.digital"
       />
     </AudienceLayout>
