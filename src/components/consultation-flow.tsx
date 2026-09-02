@@ -67,7 +67,7 @@ const industries = [
   "Consultants & Professional Services",
   "Security & Facilities Firms",
   "Wellness Studios & Clinics",
-  "Growing Local Businesses",
+  "Property Managers & Realtors",
 ];
 
 const bottleneckPlaceholders: Record<string, string> = {
@@ -75,7 +75,7 @@ const bottleneckPlaceholders: Record<string, string> = {
   "Consultants & Professional Services": "e.g., manually copying lead info from our landing page into our spreadsheet and sending out individual introductory emails...",
   "Security & Facilities Firms": "e.g., coordinating security staff shifts manually across multiple sites using messy group chats and sheets...",
   "Wellness Studios & Clinics": "e.g., spending half our day answering basic booking questions on the phone and manually texting appointment reminders...",
-  "Growing Local Businesses": "e.g., manually double-entering client details into separate invoices and our legacy CRM software...",
+  "Property Managers & Realtors": "e.g., manually forwarding maintenance requests to vendors over text and chasing rental applications across email and paper...",
 };
 
 

@@ -24,7 +24,7 @@ export function SiteFooter() {
             <p className="mt-5 text-sm text-cloud/60">Digital solutions built for growing businesses.</p>
           </div>
           <FooterColumn title="Navigation" items={[["Solutions", "/#solutions"], ["How We Deliver", "/#how-we-deliver"], ["Automation Blueprints", "/blueprints"], ["21-Day Trial Roadmap", "/roadmap"], ["Why ELEVEX", "/#why"], ["Pricing", "/#pricing"], ["FAQ", "/#faq"], ["Contact", "/#contact"]]} />
-          <FooterColumn title="Who We Work With" items={[["Tradesmen & Contractors", "/for/tradesmen"], ["Consultants & Professional Services", "/for/consultants"], ["Security & Facilities Firms", "/for/security"], ["Wellness Studios & Clinics", "/for/wellness"], ["Growing Local Businesses", "/for/local-business"]]} />
+          <FooterColumn title="Who We Work With" items={[["Tradesmen & Contractors", "/for/tradesmen"], ["Consultants & Professional Services", "/for/consultants"], ["Security & Facilities Firms", "/for/security"], ["Wellness Studios & Clinics", "/for/wellness"], ["Property Managers & Realtors", "/for/property-managers"]]} />
           <div>
             <h3 className="text-sm font-extrabold">Contact</h3>
             <a href="mailto:info@elevex.digital" className="mt-4 block text-sm text-cloud/60 hover:text-electric">info@elevex.digital</a>
