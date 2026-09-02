@@ -110,7 +110,7 @@ const groups: { category: string; items: QA[] }[] = [
                 ["Consultants & Professional Services", "building high-credibility digital experiences that drive a steady flow of qualified inquiries."],
                 ["Security & Facilities Firms", "setting up connected scheduling, instant reporting, and seamless client communication."],
                 ["Wellness Studios & Clinics", "implementing automated bookings, reminders, and client management systems that run themselves."],
-                ["Growing Local Businesses", "providing a robust, scalable digital foundation that expands alongside the business."],
+                ["Property Managers & Realtors", "automating maintenance requests, tenant applications, and listing follow-ups so nothing sits unanswered overnight."],
               ].map(([title, copy]) => <li key={title} className="flex gap-3"><span aria-hidden="true" className="font-bold text-primary">✓</span><span><strong className="font-extrabold text-foreground">{title}</strong> — {copy}</span></li>)}
             </ul>
           </>
