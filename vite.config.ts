@@ -14,12 +14,10 @@ export default defineConfig({
     viteReact(),
     tailwindcss(),
     nitro({
-      config: {
-        output: {
-          dir: "dist",
-          serverDir: "dist/server",
-          publicDir: "dist/client",
-        },
+      output: {
+        dir: "dist",
+        serverDir: "dist/server",
+        publicDir: "dist/client",
       },
     }),
   ],
