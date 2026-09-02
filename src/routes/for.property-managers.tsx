@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
 import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
 
-const title = "Digital Systems for Growing Local Businesses | ELEVEX";
-const description = "Stop losing leads overnight and re-typing admin by hand — systems that scale with your growing local business. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
+const title = "Digital Systems for Property Managers & Realtors | ELEVEX";
+const description = "Stop chasing tenants and buyers across five apps. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
 
 export const Route = createFileRoute("/for/property-managers")({
   head: () => ({ meta: [
@@ -11,39 +11,39 @@ export const Route = createFileRoute("/for/property-managers")({
     { property: "og:title", content: title }, { property: "og:description", content: description },
     { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
   ]}),
-  component: LocalBusinessPage,
+  component: PropertyManagersPage,
 });
 
-function LocalBusinessPage() {
+function PropertyManagersPage() {
   return (
     <AudienceLayout>
       <PageHero
-        eyebrow="GROWING LOCAL BUSINESSES"
-        title="Every Big Business Started as a Growing Local One."
-        subtitle="You're growing, but your tools haven't caught up. ELEVEX builds practical websites, automations, and AI-powered systems that scale with you — without the agency price tag or the months-long wait."
+        eyebrow="PROPERTY MANAGERS & REALTORS"
+        title="Every Missed Call Is a Tenant, Buyer, or Listing You Didn't Get."
+        subtitle="Maintenance requests, showings, applications, and follow-ups don't stop at 5pm — and neither should your response time. ELEVEX builds the systems that keep every property, listing, and client moving without you chasing it manually."
         primary={{ label: "Claim My Free Demo →" }}
         secondary={{ label: "See How It Works" }}
         badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days."
       />
       <PainPoints
-        title="Growing shouldn't feel this chaotic."
-        body="More customers should mean more momentum — not more mess. But as local businesses grow, the cracks start to show:"
+        title="Property doesn't wait for office hours."
+        body="Every unit, listing, and client relationship generates its own stream of requests — and they don't pause for the weekend:"
         items={[
-          ["The Outdated First Impression", "Your business has grown, but your website still looks like it did on day one."],
-          ["The Spreadsheet Sprawl", "Customer details, bookings, and follow-ups live across five different apps, texts, and notebooks."],
-          ["The Follow-Up You Never Get To", "New enquiries come in faster than you can respond to them, and some just slip through."],
-          ["The \u201cIs This Even Worth It\u201d Tech Fear", "You've priced out \u201cproper\u201d systems before and assumed they were built for businesses ten times your size."],
+          ["The 11pm Maintenance Call", "A tenant reports a leak at night, and by morning it's a missed message buried under twenty others."],
+          ["The Listing Going Cold", "A buyer inquiry sits unanswered for hours while they've already booked a viewing somewhere else."],
+          ["The Application Black Hole", "Rental applications, ID checks, and references get lost between email, text, and paper — and good tenants move on."],
+          ["The Spreadsheet Empire", "Units, leases, showings, and vendor contacts live across a dozen disconnected sheets and sticky notes."],
         ]}
-        closing="You don't need enterprise software. You need the right technology, sized and priced for where your business actually is."
+        closing="You don't need more software to check. You need the requests routed, answered, and tracked automatically — the first time."
       />
       <Pillars
-        title="One partner. Everything connected."
-        sub="We combine digital development, automation, AI and integrations into one system built around your business — not a generic template."
+        title="One partner. Every property, connected."
+        sub="We combine digital development, automation, AI and integrations into one system built around your portfolio — not a generic listing site."
         items={[
-          { n: "01", title: "A website that wins the job — and grows with you", copy: "A modern, responsive site that reflects the business you're building today, with room to add booking, e-commerce, or new pages as you grow." },
-          { n: "02", title: "Automation — Stop running your business from ten different apps", copy: "We connect the tools you already use and automate the repetitive admin — follow-ups, reminders, data entry — so growth doesn't mean more manual work." },
-          { n: "03", title: "AI — answers at 9pm, not 9am", copy: "Simple, useful AI where it actually helps: answering common customer questions, qualifying enquiries, or summarizing what's happening in your business." },
-          { n: "04", title: "Growth Systems — Turn steady interest into steady revenue", copy: "Capture, organize, and follow up with every enquiry automatically, so no lead falls through the cracks as volume increases." },
+          { n: "01", title: "A site and listings page that actually convert", copy: "A modern, mobile-first site and listing pages that turn browsers into booked showings and serious applicants." },
+          { n: "02", title: "Automation — maintenance requests that route themselves", copy: "Tenant requests, vendor assignments, and lease reminders handled automatically, so nothing sits in an inbox overnight." },
+          { n: "03", title: "AI — answering tenant and buyer questions at any hour", copy: "AI that answers common questions, pre-qualifies leads, and books showings while you sleep." },
+          { n: "04", title: "Growth Systems — every inquiry tracked, every follow-up sent", copy: "Every lead, application, and maintenance ticket captured and followed up automatically, so nothing falls through the cracks as your portfolio grows." },
         ]}
       />
       <StepFlow
@@ -59,8 +59,8 @@ function LocalBusinessPage() {
       />
       <PricingBlock card1={standardPricing.card1} card2={standardPricing.card2} />
       <FinalCta
-        title="Ready to grow without the growing pains?"
-        body="Whether it's your website, your admin, or your follow-ups slowing you down, ELEVEX can help you find the right place to start — free to try, before you ever pay a cent."
+        title="Ready to stop chasing tenants and leads?"
+        body="Whether it's maintenance requests, showings, or applications slowing you down, ELEVEX can help you find the right place to start — free to try, before you ever pay a cent."
         button="Build My Free Demo →"
         email="sales@elevex.digital"
       />
