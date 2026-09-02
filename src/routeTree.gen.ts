@@ -15,7 +15,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
-import { Route as ForLocalBusinessRouteImport } from './routes/for.local-business'
+import { Route as ForPropertyManagersRouteImport } from './routes/for.property-managers'
 import { Route as ForSecurityRouteImport } from './routes/for.security'
 import { Route as ForTradesmenRouteImport } from './routes/for.tradesmen'
 import { Route as ForWellnessRouteImport } from './routes/for.wellness'
@@ -50,9 +50,9 @@ const ForConsultantsRoute = ForConsultantsRouteImport.update({
   path: '/for/consultants',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ForLocalBusinessRoute = ForLocalBusinessRouteImport.update({
-  id: '/for/local-business',
-  path: '/for/local-business',
+const ForPropertyManagersRoute = ForPropertyManagersRouteImport.update({
+  id: '/for/property-managers',
+  path: '/for/property-managers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForSecurityRoute = ForSecurityRouteImport.update({
@@ -78,7 +78,7 @@ export interface FileRoutesByFullPath {
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
   '/for/consultants': typeof ForConsultantsRoute
-  '/for/local-business': typeof ForLocalBusinessRoute
+  '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
   '/for/wellness': typeof ForWellnessRoute
@@ -90,7 +90,7 @@ export interface FileRoutesByTo {
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
   '/for/consultants': typeof ForConsultantsRoute
-  '/for/local-business': typeof ForLocalBusinessRoute
+  '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
   '/for/wellness': typeof ForWellnessRoute
@@ -103,7 +103,7 @@ export interface FileRoutesById {
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
   '/for/consultants': typeof ForConsultantsRoute
-  '/for/local-business': typeof ForLocalBusinessRoute
+  '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
   '/for/tradesmen': typeof ForTradesmenRoute
   '/for/wellness': typeof ForWellnessRoute
@@ -117,7 +117,7 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/terms'
     | '/for/consultants'
-    | '/for/local-business'
+    | '/for/property-managers'
     | '/for/security'
     | '/for/tradesmen'
     | '/for/wellness'
@@ -129,7 +129,7 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/terms'
     | '/for/consultants'
-    | '/for/local-business'
+    | '/for/property-managers'
     | '/for/security'
     | '/for/tradesmen'
     | '/for/wellness'
@@ -141,7 +141,7 @@ export interface FileRouteTypes {
     | '/roadmap'
     | '/terms'
     | '/for/consultants'
-    | '/for/local-business'
+    | '/for/property-managers'
     | '/for/security'
     | '/for/tradesmen'
     | '/for/wellness'
@@ -154,7 +154,7 @@ export interface RootRouteChildren {
   RoadmapRoute: typeof RoadmapRoute
   TermsRoute: typeof TermsRoute
   ForConsultantsRoute: typeof ForConsultantsRoute
-  ForLocalBusinessRoute: typeof ForLocalBusinessRoute
+  ForPropertyManagersRoute: typeof ForPropertyManagersRoute
   ForSecurityRoute: typeof ForSecurityRoute
   ForTradesmenRoute: typeof ForTradesmenRoute
   ForWellnessRoute: typeof ForWellnessRoute
@@ -204,11 +204,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ForConsultantsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/for/local-business': {
-      id: '/for/local-business'
-      path: '/for/local-business'
-      fullPath: '/for/local-business'
-      preLoaderRoute: typeof ForLocalBusinessRouteImport
+    '/for/property-managers': {
+      id: '/for/property-managers'
+      path: '/for/property-managers'
+      fullPath: '/for/property-managers'
+      preLoaderRoute: typeof ForPropertyManagersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/for/security': {
@@ -242,7 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   RoadmapRoute: RoadmapRoute,
   TermsRoute: TermsRoute,
   ForConsultantsRoute: ForConsultantsRoute,
-  ForLocalBusinessRoute: ForLocalBusinessRoute,
+  ForPropertyManagersRoute: ForPropertyManagersRoute,
   ForSecurityRoute: ForSecurityRoute,
   ForTradesmenRoute: ForTradesmenRoute,
   ForWellnessRoute: ForWellnessRoute,

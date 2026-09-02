@@ -5,7 +5,7 @@ import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta, standa
 const title = "Digital Systems for Growing Local Businesses | ELEVEX";
 const description = "Stop losing leads overnight and re-typing admin by hand — systems that scale with your growing local business. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
 
-export const Route = createFileRoute("/for/local-business")({
+export const Route = createFileRoute("/for/property-managers")({
   head: () => ({ meta: [
     { title }, { name: "description", content: description },
     { property: "og:title", content: title }, { property: "og:description", content: description },
