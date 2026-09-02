@@ -13,7 +13,13 @@ export default defineConfig({
     }),
     viteReact(),
     tailwindcss(),
-    nitro(),
+    nitro({
+      output: {
+        dir: "dist",
+        serverDir: "dist/server",
+        publicDir: "dist/client",
+      },
+    }),
   ],
   server: {
     host: "0.0.0.0",
