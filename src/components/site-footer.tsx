@@ -36,9 +36,9 @@ export function SiteFooter() {
                 href="/#roi-calculator"
                 aria-label="Calculate my savings"
                 title="Calculate my savings"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-electric/50 bg-transparent text-electric transition-all duration-200 hover:-translate-y-0.5 hover:bg-electric/10 hover:shadow-[0_8px_24px_-10px_color-mix(in_oklab,var(--electric)_70%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-electric/30 bg-electric/5 text-electric transition-all duration-200 hover:-translate-y-0.5 hover:bg-electric/10 hover:shadow-[0_8px_24px_-12px_color-mix(in_oklab,var(--electric)_55%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
               >
-                <Calculator className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
+                <Calculator className="h-5 w-5" strokeWidth={1.9} aria-hidden="true" />
               </a>
             </div>
           </div>
