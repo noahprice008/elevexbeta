@@ -31,12 +31,12 @@ export function SiteFooter() {
             <a href="mailto:support@elevex.digital" className="mt-1 block text-sm text-cloud/60 hover:text-electric">support@elevex.digital</a>
             <span className="mt-2 block text-sm text-cloud/45">elevex.digital</span>
             <div className="mt-6 flex items-center gap-3">
-              <Button asChild><a href="/#consultation">Get My Free Demo →</a></Button>
+              <Button asChild><a href="/#consultation">Build My Free Demo →</a></Button>
               <a
                 href="/#roi-calculator"
                 aria-label="Calculate my savings"
                 title="Calculate my savings"
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-electric/50 bg-electric text-navy shadow-lg shadow-electric/20 transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-electric/50 bg-transparent text-electric transition-all duration-200 hover:-translate-y-0.5 hover:bg-electric/10 hover:shadow-[0_8px_24px_-10px_color-mix(in_oklab,var(--electric)_70%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
               >
                 <Calculator className="h-5 w-5" strokeWidth={2.5} aria-hidden="true" />
               </a>

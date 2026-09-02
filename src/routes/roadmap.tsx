@@ -31,7 +31,7 @@ function RoadmapPage() {
         eyebrow="THE 21-DAY TRIAL ROADMAP"
         title="No Mystery. Here Is Every Step From First Form to Decision Day."
         subtitle="You know what happens, when it happens and what it costs before you commit to anything. Nothing is billed until the trial is over and you have decided to keep it."
-        primary={{ label: "Get My Free Demo →", note: "Takes a few minutes. No credit card." }}
+        primary={{ label: "Claim My Free Demo →", note: "Takes a few minutes. No credit card." }}
         badge="Custom demo in 3 days. Live platform 7 days from approval. Free for 21 days. Pay only if you keep it."
       />
 
@@ -103,7 +103,7 @@ function RoadmapPage() {
 
       <FinalCta
         title="Ready to start the 21 days?"
-        button="Get My Free Demo →"
+        button="Build My Free Demo →"
         subtext="A 30-minute online video call, a fixed quote, and a working platform 7 days from approval."
         email="sales@elevex.digital"
       />

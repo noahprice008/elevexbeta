@@ -530,7 +530,7 @@ export function ConsultationFlow() {
           {step > 1 && <Button type="button" variant="ghost" onClick={goBack}>← Back</Button>}
           {step < TOTAL
             ? <Button type="button" size="lg" onClick={goNext}>Continue →</Button>
-            : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Submit Requirements & Request Demo"}</Button>}
+            : <Button type="button" size="lg" onClick={submit} disabled={submitting}>{submitting ? "Submitting…" : "Build My Free Demo →"}</Button>}
         </div>
         <p className="mt-3 text-xs text-muted-foreground">Takes less than two minutes to complete • No credit card required • No obligation</p>
       </div>

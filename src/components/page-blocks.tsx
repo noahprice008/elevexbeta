@@ -24,7 +24,7 @@ export function PageHero({ eyebrow, title, subtitle, primary, secondary, badge }
           <p className="mt-7 max-w-3xl text-lg text-cloud/75">{subtitle}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild size="lg"><a href="/#consultation">{primary.label}</a></Button>
-            {secondary && <Button asChild size="lg" variant="outline" className="border-cloud/30 bg-transparent text-cloud hover:bg-cloud hover:text-navy"><a href="/#consultation">{secondary.label}</a></Button>}
+            {secondary && <Button asChild size="lg" variant="outline"><a href="/#consultation">{secondary.label}</a></Button>}
           </div>
           <div className="mt-4 flex flex-col gap-1 text-sm font-semibold text-cloud/60">
             {primary.note && <span>{primary.note}</span>}
@@ -160,7 +160,7 @@ export function PricingBlock({ intro, card1, card2 }: {
           </article>
         </div>
         <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <Button asChild size="lg"><a href="/#consultation">Get My Free Demo →</a></Button>
+          <Button asChild size="lg"><a href="/#consultation">Build My Free Demo →</a></Button>
           <span className="text-sm text-muted-foreground">Free 30-minute online video consultation — no obligation.</span>
         </div>
       </div>
