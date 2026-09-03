@@ -256,3 +256,30 @@ html.a11y-reduce-motion *::after {
 .animate-check-fade {
   animation: check-fade 250ms ease-out both;
 }
+
+/* Sitewide network backdrop: surfaces stay the same color, just slightly
+   translucent so the shared animated network layer shows through. */
+.bg-background,
+.bg-card,
+.bg-secondary,
+.bg-muted,
+.bg-popover,
+.bg-cloud {
+  background-color: color-mix(in oklch, var(--background) 92%, transparent);
+}
+.bg-card { background-color: color-mix(in oklch, var(--card) 92%, transparent); }
+.bg-secondary { background-color: color-mix(in oklch, var(--secondary) 92%, transparent); }
+.bg-muted { background-color: color-mix(in oklch, var(--muted) 92%, transparent); }
+.bg-popover { background-color: color-mix(in oklch, var(--popover) 96%, transparent); }
+.bg-cloud { background-color: color-mix(in oklch, var(--cloud) 92%, transparent); }
+.bg-navy { background-color: color-mix(in oklch, var(--navy) 90%, transparent); }
+
+html.a11y-contrast .bg-background,
+html.a11y-contrast .bg-card,
+html.a11y-contrast .bg-secondary,
+html.a11y-contrast .bg-muted,
+html.a11y-contrast .bg-popover,
+html.a11y-contrast .bg-cloud,
+html.a11y-contrast .bg-navy {
+  background-color: initial;
+}
