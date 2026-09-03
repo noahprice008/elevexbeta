@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { NetworkVisual } from "@/components/network-visual";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { BackToTop } from "@/components/back-to-top";
@@ -37,8 +36,6 @@ export function ServiceHero({ eyebrow, title, subtitle, primary, secondary, brea
 }) {
   return (
     <section className="relative flex items-center bg-navy pt-20 text-cloud">
-      <NetworkVisual forceDark />
-      <div className="absolute inset-0 bg-navy/35" />
       <div className="relative mx-auto w-full max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
         <Breadcrumbs label={breadcrumb} />
         <div className="mt-8 max-w-4xl">
