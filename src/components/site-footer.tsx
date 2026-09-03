@@ -19,7 +19,7 @@ export function SiteFooter() {
     <footer id="contact" className="relative overflow-hidden bg-navy text-cloud">
       <NetworkVisual className="pointer-events-none absolute inset-0 h-full w-full" forceDark intensity={1.6} />
       <div className="relative z-10 mx-auto max-w-7xl border-t border-cloud/10 px-5 py-16 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div>
             <div className="text-2xl"><ElevexLogo /></div>
             <p className="mt-2 text-xs uppercase text-cloud/45">Enterprise Technology. Built for the Local Business.</p>
