@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ChatProvider } from "@/components/chat-provider";
+import { SiteBackdrop } from "@/components/site-backdrop";
 
 
 function NotFoundComponent() {
@@ -133,8 +134,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ChatProvider>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        <SiteBackdrop />
+        <div className="relative z-10">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </div>
       </ChatProvider>
     </QueryClientProvider>
   );

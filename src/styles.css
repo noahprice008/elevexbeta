@@ -256,3 +256,25 @@ html.a11y-reduce-motion *::after {
 .animate-check-fade {
   animation: check-fade 250ms ease-out both;
 }
+
+/* Sitewide network backdrop: surfaces keep their color, just slightly
+   translucent so the shared animated network layer shows through.
+   Scoped to layout elements so buttons/links stay fully opaque. */
+  :where(section, article, main, header, footer, aside, div, li, form).bg-background {
+    background-color: color-mix(in oklch, var(--background) 88%, transparent);
+  }
+  :where(section, article, main, header, footer, aside, div, li, form).bg-card {
+    background-color: color-mix(in oklch, var(--card) 88%, transparent);
+  }
+  :where(section, article, main, header, footer, aside, div, li, form).bg-secondary {
+    background-color: color-mix(in oklch, var(--secondary) 88%, transparent);
+  }
+  :where(section, article, main, header, footer, aside, div, li, form).bg-muted {
+    background-color: color-mix(in oklch, var(--muted) 88%, transparent);
+  }
+  :where(section, article, main, header, footer, aside, div, li, form).bg-cloud {
+    background-color: color-mix(in oklch, var(--cloud) 88%, transparent);
+  }
+  :where(section, article, main, header, footer, aside, div, li, form).bg-navy {
+    background-color: color-mix(in oklch, var(--navy) 90%, transparent);
+  }
