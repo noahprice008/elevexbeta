@@ -1,78 +1,36 @@
-# Plan: Make ELEVEX Hostslinger-Compatible (Standard Vite SPA)
+# Sitewide Hero Network Background
 
-## Goal
-Convert the project from a Lovable/TanStack Start full-stack build to a standard Vite + React single-page application that Hostslinger can build directly from the GitHub repository, with no Lovable-specific packages or server runtime.
+Take the animated connected-nodes effect currently behind the homepage hero and make it the background texture of the whole site — every page, section, and card — without changing any background colors.
 
-## Background
-The current `vite.config.ts` uses `@tanstack/react-start/plugin/vite` and `nitro`, which are full-stack/server-framework plugins. Hostslinger's build container cannot resolve these (and previously failed on `@lovable.dev/vite-tanstack-config`). The site is actually a static marketing SPA with no server-side data loading, so it can be simplified to a plain Vite React build.
+## How it works
 
-## What will change
+1. One shared animated layer, not many canvases.
+   A single fixed, full-viewport canvas is mounted once at the app root, sitting behind all content. Every page (current and future) inherits it automatically, with no per-page work.
 
-### 1. Build tooling
-- Replace `vite.config.ts` with a standard Vite configuration using:
-  - `@vitejs/plugin-react`
-  - `@tailwindcss/vite`
-  - `vite-tsconfig-paths`
-  - `@tanstack/router-plugin/vite` (already in `package.json`) for file-based route generation
-- Remove `tanstackStart(...)` and `nitro()` plugins.
-- Set `base: "/"` and ensure the build outputs to `dist/`.
+2. Theme-aware effect color.
+   The canvas reads the active theme:
+   - Dark surfaces (navy sections, hero, footer): current look — cool light-blue signal lines and pale nodes.
+   - Light surfaces: the same geometry drawn in soft grey/charcoal tones so the texture reads identically without introducing new colors.
+   It also follows the existing accessibility "reduce motion" preference and high-contrast mode, as the hero canvas already does.
 
-### 2. Entry points
-- Create `index.html` at the repository root pointing to `src/main.tsx`.
-- Create `src/main.tsx` as the new client entry point:
-  - Render the router into `document.getElementById("root")`.
-  - Use `RouterProvider` from `@tanstack/react-router`.
+3. Letting the effect show through sections and cards.
+   Section and card backgrounds keep the exact same colors, but get a small amount of transparency (roughly 88-94% opaque) so the moving network is visible faintly behind them. Text contrast stays unchanged at these levels. This applies to the shared section/card wrappers in `page-blocks.tsx` and the surface tokens used across pages, so future pages pick it up too.
 
-### 3. Router conversion
-- Update `src/router.tsx` to use `createRouter` from `@tanstack/react-router` with default browser history and the existing `routeTree`.
-- Remove the `QueryClient` from router context if it is no longer needed, or keep it in `main.tsx` wrapping `RouterProvider`.
+4. Hero cleanup.
+   The hero's own canvas instance is removed and it uses the shared layer, so the effect is continuous while scrolling rather than restarting per section.
 
-### 4. Root route simplification
-- Update `src/routes/__root.tsx`:
-  - Remove `shellComponent`, `HeadContent`, and `Scripts` (these are TanStack Start SSR APIs).
-  - Return a plain component that wraps children in `QueryClientProvider` and renders `<Outlet />` plus the AI chat widget.
-  - Move static `<head>` tags (charset, viewport, title, description, fonts, favicons) into `index.html`.
-  - Keep per-route `head()` metadata where supported by TanStack Router, or move critical SEO tags into `index.html` if the standard router plugin does not generate head at runtime for a static SPA.
+## Technical notes
 
-### 5. Server files removal
-- Delete `src/server.ts` (serverless worker entry).
-- Delete `src/start.ts` (CSRF/error middleware and Start instance).
-- Remove any imports of these files.
+- `src/components/network-visual.tsx`: add a `fixed` variant, resolve stroke/fill colors from CSS variables (`--electric`, `--foreground`, `--muted-foreground`) instead of hardcoded rgba, and re-resolve on theme change (observe the `dark` class + existing `elevex-a11y-change` event). Density/link distance scale to the viewport.
+- New `src/components/site-backdrop.tsx` renders the fixed canvas at `z-[-1]` (or `z-0` with content at `z-10`), `pointer-events-none`, `aria-hidden`.
+- Mount once in `src/routes/__root.tsx` inside the root component, above `<Outlet />`.
+- Transparency applied via existing utility classes on section/card wrappers (`bg-background/92`, `bg-navy/92`, `bg-card/92`) — token values in `styles.css` are untouched.
+- Performance: single RAF loop, DPR capped at 2, animation paused when the tab is hidden.
 
-### 6. Dependencies
-- Remove from `package.json`:
-  - `@tanstack/react-start`
-  - `nitro`
-- Keep:
-  - `@tanstack/react-router`
-  - `@tanstack/router-plugin`
-  - `@tanstack/react-query`
-  - All UI/component dependencies
-- Run install to update the lockfile.
+## Files touched
 
-### 7. Lovable-specific code
-- Replace or guard `src/lib/lovable-error-reporting.ts` so it no-ops outside the Lovable editor (it already checks `typeof window`, but the file name and global types can be simplified).
-- Remove the `reportLovableError` call in `src/routes/__root.tsx` or make it a safe console-only fallback.
-
-### 8. Route tree
-- Keep `src/routeTree.gen.ts` as the generated route tree.
-- Configure `@tanstack/router-plugin/vite` with `routesDirectory: "src/routes"` and `generatedRouteTree: "src/routeTree.gen.ts"` so it regenerates automatically during dev/build.
-
-### 9. Static hosting behavior
-- Because Hostslinger serves the `dist/` folder as static files, deep links like `/blueprints` or `/for/tradesmen` require the host to fall back to `index.html`. The plan assumes Hostslinger provides this fallback (standard for static SPAs). If not, we can switch to hash-based history as a follow-up.
-
-## What will NOT change
-- All page content, copy, components, styling, and the AI chat widget logic.
-- The existing webhook URLs and form payloads.
-- The file-based routing convention under `src/routes/`.
-- The public assets in `public/`.
-
-## Verification
-- Run `bun install`.
-- Run `bun run build` and confirm `dist/` is produced with `index.html` and assets.
-- Run `bun run preview` and spot-check navigation across `/`, `/blueprints`, `/roadmap`, `/privacy`, `/terms`, and the `/for/*` industry pages.
-- Confirm no `@lovable.dev`, `@tanstack/react-start`, or `nitro` imports remain in the built output.
-
-## Risks / follow-ups
-- TanStack Router's `head()` API may behave differently in a pure client SPA than under Start SSR; if meta tags are missing at build time, we will move them into `index.html` or add `react-helmet-async`.
-- If Hostslinger does not provide an `index.html` fallback for deep links, we will switch the router to hash history.
+- `src/components/network-visual.tsx` (theme-aware, reusable)
+- `src/components/site-backdrop.tsx` (new)
+- `src/routes/__root.tsx` (mount backdrop)
+- `src/routes/index.tsx` (remove hero-local canvas)
+- `src/components/page-blocks.tsx` and other section/card wrappers (add translucency only)
