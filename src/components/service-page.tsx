@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { NetworkVisual } from "@/components/network-visual";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { BackToTop } from "@/components/back-to-top";
@@ -35,8 +36,9 @@ export function ServiceHero({ eyebrow, title, subtitle, primary, secondary, brea
   eyebrow: string; title: string; subtitle: string; primary: string; secondary: string; breadcrumb: string;
 }) {
   return (
-    <section className="relative flex items-center bg-navy pt-20 text-cloud">
-      <div className="relative mx-auto w-full max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
+    <section className="relative flex items-center overflow-hidden bg-navy pt-20 text-cloud">
+      <NetworkVisual className="pointer-events-none absolute inset-0 h-full w-full" forceDark intensity={1.4} />
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-24 lg:px-8 lg:py-28">
         <Breadcrumbs label={breadcrumb} />
         <div className="mt-8 max-w-4xl">
           <p className="text-xs font-extrabold uppercase tracking-widest text-electric">{eyebrow}</p>

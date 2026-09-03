@@ -1,4 +1,3 @@
-import { NetworkVisual } from "@/components/network-visual";
 import { useEffect, useRef, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
@@ -82,17 +81,16 @@ export function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-cloud/10 bg-navy/95 backdrop-blur">
-      <NetworkVisual className="pointer-events-none absolute inset-0 h-full w-full" forceDark intensity={1.6} />
-      <div className="relative z-10 mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
+      <div className="relative z-10 mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-10">
         <a
           href="/"
           aria-label="ELEVEX home"
-          className="text-xl transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-electric"
+          className="shrink-0 text-xl transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-electric"
         >
           <ElevexLogo />
         </a>
 
-        <div className="flex items-center gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-2 sm:gap-3">
           <div className="relative">
             <button
               ref={triggerRef}
@@ -163,8 +161,9 @@ export function SiteHeader() {
 
           <ThemeToggle />
           <AccessibilityMenu />
+          <span aria-hidden="true" className="mx-0.5 hidden h-6 w-px bg-cloud/12 sm:block" />
 
-          <Button asChild size="sm" className="ml-0.5">
+          <Button asChild size="sm">
             <a href="/#consultation">Claim My Free Demo</a>
           </Button>
         </div>
