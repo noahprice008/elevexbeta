@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { NetworkVisual } from "@/components/network-visual";
 import { ConsultationFlow } from "@/components/consultation-flow";
 import { BackToTop } from "@/components/back-to-top";
-import { AccessibilityWidget } from "@/components/accessibility-widget";
 import { FaqSection } from "@/components/faq-section";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -72,7 +71,6 @@ function Index() {
     <SiteFooter />
     <BackToTop />
     <SavingsPill />
-    <AccessibilityWidget />
   </main>;
 }
 function Section({ children }: { children: React.ReactNode }) { return <section className="bg-secondary py-24 md:py-32"><div className="mx-auto max-w-7xl px-5 lg:px-8">{children}</div></section>; }

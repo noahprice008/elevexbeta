@@ -5,7 +5,6 @@ import { NetworkVisual } from "@/components/network-visual";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { BackToTop } from "@/components/back-to-top";
-import { AccessibilityWidget } from "@/components/accessibility-widget";
 import { ConsultationFlow } from "@/components/consultation-flow";
 import { FaqSection } from "@/components/faq-section";
 import { StepFlow, PricingBlock, standardPricing, Check } from "@/components/page-blocks";
@@ -131,7 +130,6 @@ export function ServicePage({ hero, explanation, serviceFocus, ctaLabel, path }:
       </section>
       <SiteFooter />
       <BackToTop />
-      <AccessibilityWidget />
     </main>
   );
 }

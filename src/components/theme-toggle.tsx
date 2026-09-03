@@ -27,9 +27,11 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-pressed={dark}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex min-h-10 min-w-10 cursor-pointer items-center justify-center rounded-md text-cloud/75 transition-colors hover:bg-cloud/10 hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+      title={dark ? "Switch to light mode" : "Switch to dark mode"}
+      className="flex size-9 cursor-pointer items-center justify-center rounded-full border border-cloud/15 bg-cloud/5 text-cloud/70 transition-all duration-200 hover:border-electric/40 hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
     >
-      {dark ? <Sun className="size-4" aria-hidden="true" /> : <Moon className="size-4" aria-hidden="true" />}
+      {dark ? <Sun className="size-4" strokeWidth={1.9} aria-hidden="true" /> : <Moon className="size-4" strokeWidth={1.9} aria-hidden="true" />}
     </button>
+
   );
 }
