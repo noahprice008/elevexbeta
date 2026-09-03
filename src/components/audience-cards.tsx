@@ -16,16 +16,28 @@ export function AudienceCards() {
         <Link
           key={to}
           to={to}
-          className="group flex flex-col rounded-md border border-cloud/15 bg-navy/95 p-7 text-cloud transition-all duration-200 hover:-translate-y-1 hover:border-electric/60 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric md:p-8"
+          className="group relative flex flex-col overflow-hidden rounded-xl border border-cloud/15 bg-navy/95 p-7 text-cloud shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset] transition-all duration-300 hover:-translate-y-1.5 hover:border-electric/60 hover:shadow-[0_24px_48px_-24px_rgba(56,189,248,0.55)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric md:p-8"
         >
-          <span className="flex h-12 w-12 items-center justify-center rounded-md border border-electric/30 bg-electric/10 text-electric transition-colors group-hover:bg-electric/20" aria-hidden="true">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-[radial-gradient(60%_100%_at_50%_100%,rgba(56,189,248,0.22),transparent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute inset-x-0 top-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-electric to-transparent transition-transform duration-300 group-hover:scale-x-100"
+          />
+          <span className="relative flex h-12 w-12 items-center justify-center rounded-lg border border-electric/30 bg-electric/10 text-electric transition-all duration-300 group-hover:scale-110 group-hover:border-electric/60 group-hover:bg-electric/20" aria-hidden="true">
             <Icon className="h-6 w-6" />
           </span>
-          <h3 className="mt-6 text-lg font-extrabold leading-snug">{title}</h3>
-          <p className="mt-3 flex-1 text-sm text-cloud/65">{copy}</p>
-          <span className="mt-7 text-sm font-bold text-cloud/55 transition-colors group-hover:text-electric">Learn more →</span>
+          <h3 className="relative mt-6 text-lg font-extrabold leading-snug transition-colors group-hover:text-electric">{title}</h3>
+          <p className="relative mt-3 flex-1 text-sm text-cloud/65">{copy}</p>
+          <span className="relative mt-7 inline-flex items-center gap-1.5 text-sm font-bold text-cloud/55 transition-colors group-hover:text-electric">
+            Learn more
+            <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </span>
         </Link>
       ))}
     </div>
+
   );
 }
