@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ElevexLogo } from "@/components/elevex-logo";
 import { Calculator } from "lucide-react";
-import { NetworkVisual } from "@/components/network-visual";
 
 function FooterColumn({ title, items }: { title: string; items: [string, string][] }) {
   return (
@@ -17,7 +16,6 @@ function FooterColumn({ title, items }: { title: string; items: [string, string]
 export function SiteFooter() {
   return (
     <footer id="contact" className="relative overflow-hidden bg-navy text-cloud">
-      <NetworkVisual className="pointer-events-none absolute inset-0 h-full w-full" forceDark intensity={1.6} />
       <div className="relative z-10 mx-auto max-w-7xl border-t border-cloud/10 px-5 py-16 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div>

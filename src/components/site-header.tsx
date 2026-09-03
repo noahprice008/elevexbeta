@@ -1,4 +1,3 @@
-import { NetworkVisual } from "@/components/network-visual";
 import { useEffect, useRef, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
@@ -82,7 +81,6 @@ export function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-cloud/10 bg-navy/95 backdrop-blur">
-      <NetworkVisual className="pointer-events-none absolute inset-0 h-full w-full" forceDark intensity={1.6} />
       <div className="relative z-10 mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
         <a
           href="/"
