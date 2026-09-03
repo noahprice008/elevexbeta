@@ -16,6 +16,7 @@ import { Route as BlueprintsRouteImport } from './routes/blueprints'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WebsiteDesignRouteImport } from './routes/website-design'
 import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
 import { Route as ForPropertyManagersRouteImport } from './routes/for.property-managers'
 import { Route as ForSecurityRouteImport } from './routes/for.security'
@@ -57,6 +58,11 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WebsiteDesignRoute = WebsiteDesignRouteImport.update({
+  id: '/website-design',
+  path: '/website-design',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForConsultantsRoute = ForConsultantsRouteImport.update({
   id: '/for/consultants',
   path: '/for/consultants',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
+  '/website-design': typeof WebsiteDesignRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
+  '/website-design': typeof WebsiteDesignRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
+  '/website-design': typeof WebsiteDesignRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/roadmap'
     | '/terms'
+    | '/website-design'
     | '/for/consultants'
     | '/for/property-managers'
     | '/for/security'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/roadmap'
     | '/terms'
+    | '/website-design'
     | '/for/consultants'
     | '/for/property-managers'
     | '/for/security'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/roadmap'
     | '/terms'
+    | '/website-design'
     | '/for/consultants'
     | '/for/property-managers'
     | '/for/security'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   RoadmapRoute: typeof RoadmapRoute
   TermsRoute: typeof TermsRoute
+  WebsiteDesignRoute: typeof WebsiteDesignRoute
   ForConsultantsRoute: typeof ForConsultantsRoute
   ForPropertyManagersRoute: typeof ForPropertyManagersRoute
   ForSecurityRoute: typeof ForSecurityRoute
@@ -237,6 +250,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/website-design': {
+      id: '/website-design'
+      path: '/website-design'
+      fullPath: '/website-design'
+      preLoaderRoute: typeof WebsiteDesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/for/consultants': {
       id: '/for/consultants'
       path: '/for/consultants'
@@ -283,6 +303,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   RoadmapRoute: RoadmapRoute,
   TermsRoute: TermsRoute,
+  WebsiteDesignRoute: WebsiteDesignRoute,
   ForConsultantsRoute: ForConsultantsRoute,
   ForPropertyManagersRoute: ForPropertyManagersRoute,
   ForSecurityRoute: ForSecurityRoute,
