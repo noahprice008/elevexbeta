@@ -33,23 +33,25 @@ export function SiteFooter() {
             <a href="mailto:info@elevex.digital" className="mt-4 block text-sm text-cloud/60 hover:text-electric">info@elevex.digital</a>
             <a href="mailto:support@elevex.digital" className="mt-1 block text-sm text-cloud/60 hover:text-electric">support@elevex.digital</a>
             <span className="mt-2 block text-sm text-cloud/45">elevex.digital</span>
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-6 flex flex-col items-start gap-3">
               <Button asChild><a href="/#consultation">Build My Free Demo →</a></Button>
               <a
                 href="/#roi-calculator"
                 aria-label="Calculate my savings"
                 title="Calculate my savings"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-electric/30 bg-electric/5 text-electric transition-all duration-200 hover:-translate-y-0.5 hover:bg-electric/10 hover:shadow-[0_8px_24px_-12px_color-mix(in_oklab,var(--electric)_55%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+                className="inline-flex items-center gap-2 rounded-full border border-electric/40 bg-electric/10 px-4 py-2 text-sm font-semibold text-electric transition-all duration-200 hover:-translate-y-0.5 hover:border-electric/70 hover:bg-electric/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
               >
-                <Calculator className="h-5 w-5" strokeWidth={1.9} aria-hidden="true" />
+                <Calculator className="h-4 w-4" strokeWidth={1.9} aria-hidden="true" />
+                Calculate My Savings
               </a>
             </div>
           </div>
         </div>
-        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-cloud/10 pb-14 pt-6 pr-16 text-xs text-cloud/45 sm:flex-row">
+        <div className="mt-14 flex flex-col justify-between gap-4 border-t border-cloud/10 pb-14 pt-6 text-xs text-cloud/45 sm:flex-row">
           <p>© 2026 ELEVEX. All rights reserved.</p>
           <div className="flex gap-5"><a href="/privacy" className="hover:text-electric">Privacy Policy</a><a href="/terms" className="hover:text-electric">Terms of Service</a></div>
         </div>
+
       </div>
     </footer>
   );
