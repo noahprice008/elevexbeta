@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Accessibility, Minus, Plus, RotateCcw, X } from "lucide-react";
+import { Accessibility, Minus, Plus, RotateCcw } from "lucide-react";
 
 const STORAGE_KEY = "elevex-a11y";
 
@@ -39,7 +39,8 @@ function apply(settings: Settings) {
   window.dispatchEvent(new CustomEvent("elevex-a11y-change", { detail: settings }));
 }
 
-export function AccessibilityWidget() {
+/** Compact, header-mounted accessibility control. */
+export function AccessibilityMenu() {
   const [open, setOpen] = useState(false);
   const [settings, setSettings] = useState<Settings>(DEFAULTS);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -112,58 +113,56 @@ export function AccessibilityWidget() {
   ];
 
   return (
-    <div className="fixed bottom-4 left-4 z-50">
+    <div className="relative">
+      <button
+        ref={buttonRef}
+        type="button"
+        aria-label="Accessibility options"
+        title="Accessibility options"
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        onClick={() => setOpen((value) => !value)}
+        className={`flex size-9 cursor-pointer items-center justify-center rounded-full border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric ${
+          open
+            ? "border-electric/40 bg-electric/10 text-electric"
+            : "border-cloud/15 bg-cloud/5 text-cloud/70 hover:border-electric/40 hover:text-electric"
+        }`}
+      >
+        <Accessibility className="size-4" strokeWidth={1.9} aria-hidden="true" />
+      </button>
+
       {open && (
         <div
           ref={panelRef}
           role="dialog"
           aria-label="Accessibility options"
           aria-modal="false"
-          className="mb-3 w-[17.5rem] rounded-md border border-electric/30 bg-navy p-4 text-cloud shadow-lg"
+          className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[17.5rem] origin-top-right animate-in fade-in-0 zoom-in-95 slide-in-from-top-1 rounded-xl border border-cloud/12 bg-navy/95 p-4 text-cloud shadow-[0_24px_60px_-24px_rgba(0,0,0,0.75)] backdrop-blur-xl duration-150"
         >
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-extrabold uppercase text-electric">Accessibility</h2>
+          <span className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-cloud/45">Text size</span>
+          <div className="mt-2 flex items-center gap-2">
             <button
               type="button"
-              aria-label="Close accessibility options"
-              onClick={() => {
-                setOpen(false);
-                buttonRef.current?.focus();
-              }}
-              className="flex size-8 cursor-pointer items-center justify-center rounded-sm text-cloud/70 transition-colors hover:bg-cloud/10 hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+              aria-label="Decrease text size"
+              onClick={() => update({ fontScale: Math.max(90, settings.fontScale - 10) })}
+              className="flex min-h-10 min-w-10 cursor-pointer items-center justify-center rounded-lg border border-cloud/15 text-cloud transition-colors hover:border-electric hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
             >
-              <X className="size-4" aria-hidden="true" />
+              <Minus className="size-4" aria-hidden="true" />
+            </button>
+            <output aria-live="polite" className="min-w-14 text-center text-sm font-bold">
+              {settings.fontScale}%
+            </output>
+            <button
+              type="button"
+              aria-label="Increase text size"
+              onClick={() => update({ fontScale: Math.min(150, settings.fontScale + 10) })}
+              className="flex min-h-10 min-w-10 cursor-pointer items-center justify-center rounded-lg border border-cloud/15 text-cloud transition-colors hover:border-electric hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+            >
+              <Plus className="size-4" aria-hidden="true" />
             </button>
           </div>
 
-          <div className="mt-4">
-            <span id="a11y-text-size" className="text-xs font-bold uppercase text-cloud/55">
-              Text size
-            </span>
-            <div className="mt-2 flex items-center gap-2">
-              <button
-                type="button"
-                aria-label="Decrease text size"
-                onClick={() => update({ fontScale: Math.max(90, settings.fontScale - 10) })}
-                className="flex min-h-10 min-w-10 cursor-pointer items-center justify-center rounded-sm border border-cloud/20 text-cloud transition-colors hover:border-electric hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
-              >
-                <Minus className="size-4" aria-hidden="true" />
-              </button>
-              <output aria-live="polite" className="min-w-14 text-center text-sm font-bold">
-                {settings.fontScale}%
-              </output>
-              <button
-                type="button"
-                aria-label="Increase text size"
-                onClick={() => update({ fontScale: Math.min(150, settings.fontScale + 10) })}
-                className="flex min-h-10 min-w-10 cursor-pointer items-center justify-center rounded-sm border border-cloud/20 text-cloud transition-colors hover:border-electric hover:text-electric focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
-              >
-                <Plus className="size-4" aria-hidden="true" />
-              </button>
-            </div>
-          </div>
-
-          <ul className="mt-4 space-y-1">
+          <ul className="mt-4 space-y-0.5">
             {toggles.map((item) => {
               const active = settings[item.key] as boolean;
               return (
@@ -173,7 +172,7 @@ export function AccessibilityWidget() {
                     role="switch"
                     aria-checked={active}
                     onClick={() => update({ [item.key]: !active } as Partial<Settings>)}
-                    className="flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-sm px-2 text-left text-sm font-semibold text-cloud/85 transition-colors hover:bg-cloud/10 hover:text-cloud focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+                    className="flex min-h-11 w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-2 text-left text-sm font-medium text-cloud/80 transition-colors hover:bg-cloud/10 hover:text-cloud focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
                   >
                     <span>{item.label}</span>
                     <span
@@ -193,24 +192,13 @@ export function AccessibilityWidget() {
           <button
             type="button"
             onClick={reset}
-            className="mt-4 flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-sm border border-electric/40 text-sm font-bold text-electric transition-colors hover:bg-electric hover:text-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
+            className="mt-3 flex min-h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-electric/30 bg-electric/5 text-sm font-semibold text-electric transition-colors hover:bg-electric/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
           >
             <RotateCcw className="size-4" aria-hidden="true" />
             Reset to default
           </button>
         </div>
       )}
-
-      <button
-        ref={buttonRef}
-        type="button"
-        aria-label="Accessibility options"
-        aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
-        className="flex size-12 cursor-pointer items-center justify-center rounded-full border border-electric/40 bg-navy text-electric shadow-lg transition-colors hover:bg-navy/90 hover:text-cloud focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-electric"
-      >
-        <Accessibility className="size-5" aria-hidden="true" />
-      </button>
     </div>
   );
 }
