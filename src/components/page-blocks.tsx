@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { NetworkVisual } from "@/components/network-visual";
 
 export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return <p className={`text-xs font-extrabold uppercase ${dark ? "text-electric" : "text-primary"}`}>{children}</p>;
@@ -15,8 +16,9 @@ export function PageHero({ eyebrow, title, subtitle, primary, secondary, badge }
   primary: { label: string; note?: string }; secondary?: { label: string; note?: string }; badge: string;
 }) {
   return (
-    <section className="bg-navy pt-20 text-cloud">
-      <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+    <section className="relative overflow-hidden bg-navy pt-20 text-cloud">
+      <NetworkVisual className="pointer-events-none absolute inset-0 h-full w-full" forceDark intensity={1.4} />
+      <div className="relative z-10 mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
         <Link to="/" className="text-xs font-bold uppercase text-cloud/50 hover:text-electric">← Back to ELEVEX</Link>
         <div className="mt-8 max-w-4xl">
           <Eyebrow dark>{eyebrow}</Eyebrow>
