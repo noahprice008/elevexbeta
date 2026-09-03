@@ -10,10 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiAutomationRouteImport } from './routes/ai-automation'
+import { Route as AppDevelopmentRouteImport } from './routes/app-development'
+import { Route as AutomationConsultingRouteImport } from './routes/automation-consulting'
 import { Route as BlueprintsRouteImport } from './routes/blueprints'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as WebsiteDesignRouteImport } from './routes/website-design'
 import { Route as ForConsultantsRouteImport } from './routes/for.consultants'
 import { Route as ForPropertyManagersRouteImport } from './routes/for.property-managers'
 import { Route as ForSecurityRouteImport } from './routes/for.security'
@@ -23,6 +27,21 @@ import { Route as ForWellnessRouteImport } from './routes/for.wellness'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiAutomationRoute = AiAutomationRouteImport.update({
+  id: '/ai-automation',
+  path: '/ai-automation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppDevelopmentRoute = AppDevelopmentRouteImport.update({
+  id: '/app-development',
+  path: '/app-development',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AutomationConsultingRoute = AutomationConsultingRouteImport.update({
+  id: '/automation-consulting',
+  path: '/automation-consulting',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlueprintsRoute = BlueprintsRouteImport.update({
@@ -43,6 +62,11 @@ const RoadmapRoute = RoadmapRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebsiteDesignRoute = WebsiteDesignRouteImport.update({
+  id: '/website-design',
+  path: '/website-design',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForConsultantsRoute = ForConsultantsRouteImport.update({
@@ -73,10 +97,14 @@ const ForWellnessRoute = ForWellnessRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-automation': typeof AiAutomationRoute
+  '/app-development': typeof AppDevelopmentRoute
+  '/automation-consulting': typeof AutomationConsultingRoute
   '/blueprints': typeof BlueprintsRoute
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
+  '/website-design': typeof WebsiteDesignRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
@@ -85,10 +113,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-automation': typeof AiAutomationRoute
+  '/app-development': typeof AppDevelopmentRoute
+  '/automation-consulting': typeof AutomationConsultingRoute
   '/blueprints': typeof BlueprintsRoute
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
+  '/website-design': typeof WebsiteDesignRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
@@ -98,10 +130,14 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-automation': typeof AiAutomationRoute
+  '/app-development': typeof AppDevelopmentRoute
+  '/automation-consulting': typeof AutomationConsultingRoute
   '/blueprints': typeof BlueprintsRoute
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
   '/terms': typeof TermsRoute
+  '/website-design': typeof WebsiteDesignRoute
   '/for/consultants': typeof ForConsultantsRoute
   '/for/property-managers': typeof ForPropertyManagersRoute
   '/for/security': typeof ForSecurityRoute
@@ -112,10 +148,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-automation'
+    | '/app-development'
+    | '/automation-consulting'
     | '/blueprints'
     | '/privacy'
     | '/roadmap'
     | '/terms'
+    | '/website-design'
     | '/for/consultants'
     | '/for/property-managers'
     | '/for/security'
@@ -124,10 +164,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-automation'
+    | '/app-development'
+    | '/automation-consulting'
     | '/blueprints'
     | '/privacy'
     | '/roadmap'
     | '/terms'
+    | '/website-design'
     | '/for/consultants'
     | '/for/property-managers'
     | '/for/security'
@@ -136,10 +180,14 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/ai-automation'
+    | '/app-development'
+    | '/automation-consulting'
     | '/blueprints'
     | '/privacy'
     | '/roadmap'
     | '/terms'
+    | '/website-design'
     | '/for/consultants'
     | '/for/property-managers'
     | '/for/security'
@@ -149,10 +197,14 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiAutomationRoute: typeof AiAutomationRoute
+  AppDevelopmentRoute: typeof AppDevelopmentRoute
+  AutomationConsultingRoute: typeof AutomationConsultingRoute
   BlueprintsRoute: typeof BlueprintsRoute
   PrivacyRoute: typeof PrivacyRoute
   RoadmapRoute: typeof RoadmapRoute
   TermsRoute: typeof TermsRoute
+  WebsiteDesignRoute: typeof WebsiteDesignRoute
   ForConsultantsRoute: typeof ForConsultantsRoute
   ForPropertyManagersRoute: typeof ForPropertyManagersRoute
   ForSecurityRoute: typeof ForSecurityRoute
@@ -167,6 +219,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-automation': {
+      id: '/ai-automation'
+      path: '/ai-automation'
+      fullPath: '/ai-automation'
+      preLoaderRoute: typeof AiAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app-development': {
+      id: '/app-development'
+      path: '/app-development'
+      fullPath: '/app-development'
+      preLoaderRoute: typeof AppDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/automation-consulting': {
+      id: '/automation-consulting'
+      path: '/automation-consulting'
+      fullPath: '/automation-consulting'
+      preLoaderRoute: typeof AutomationConsultingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blueprints': {
@@ -195,6 +268,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/website-design': {
+      id: '/website-design'
+      path: '/website-design'
+      fullPath: '/website-design'
+      preLoaderRoute: typeof WebsiteDesignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/for/consultants': {
@@ -237,10 +317,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiAutomationRoute: AiAutomationRoute,
+  AppDevelopmentRoute: AppDevelopmentRoute,
+  AutomationConsultingRoute: AutomationConsultingRoute,
   BlueprintsRoute: BlueprintsRoute,
   PrivacyRoute: PrivacyRoute,
   RoadmapRoute: RoadmapRoute,
   TermsRoute: TermsRoute,
+  WebsiteDesignRoute: WebsiteDesignRoute,
   ForConsultantsRoute: ForConsultantsRoute,
   ForPropertyManagersRoute: ForPropertyManagersRoute,
   ForSecurityRoute: ForSecurityRoute,

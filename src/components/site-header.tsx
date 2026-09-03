@@ -6,6 +6,7 @@ import { ElevexLogo } from "@/components/elevex-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const links: [string, string][] = [
+  ["Services", "/#choose-your-path"],
   ["Solutions", "/#solutions"],
   ["Blueprints", "/blueprints"],
   ["Roadmap", "/roadmap"],

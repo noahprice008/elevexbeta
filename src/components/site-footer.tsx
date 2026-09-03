@@ -19,13 +19,14 @@ export function SiteFooter() {
     <footer id="contact" className="relative overflow-hidden bg-navy text-cloud">
       <NetworkVisual className="pointer-events-none absolute inset-0 h-full w-full" forceDark intensity={1.6} />
       <div className="relative z-10 mx-auto max-w-7xl border-t border-cloud/10 px-5 py-16 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div>
             <div className="text-2xl"><ElevexLogo /></div>
             <p className="mt-2 text-xs uppercase text-cloud/45">Enterprise Technology. Built for the Local Business.</p>
             <p className="mt-5 text-sm text-cloud/60">Digital solutions built for growing businesses.</p>
           </div>
           <FooterColumn title="Navigation" items={[["Solutions", "/#solutions"], ["How We Deliver", "/#how-we-deliver"], ["Automation Blueprints", "/blueprints"], ["21-Day Trial Roadmap", "/roadmap"], ["Why ELEVEX", "/#why"], ["Pricing", "/#pricing"], ["FAQ", "/#faq"], ["Contact", "/#contact"]]} />
+          <FooterColumn title="Services" items={[["AI Automation", "/ai-automation"], ["Automation Consulting", "/automation-consulting"], ["Website Design", "/website-design"], ["App Development", "/app-development"]]} />
           <FooterColumn title="Who We Work With" items={[["Tradesmen & Contractors", "/for/tradesmen"], ["Consultants & Professional Services", "/for/consultants"], ["Security & Facilities Firms", "/for/security"], ["Wellness Studios & Clinics", "/for/wellness"], ["Property Managers & Realtors", "/for/property-managers"]]} />
           <div>
             <h3 className="text-sm font-extrabold">Contact</h3>

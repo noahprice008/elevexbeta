@@ -260,7 +260,7 @@ function Field({ label, value, onChange, type = "text", placeholder, error, requ
 
 const TOTAL = 5;
 
-export function ConsultationFlow() {
+export function ConsultationFlow({ serviceFocus }: { serviceFocus?: string } = {}) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialData);
   const [error, setError] = useState("");
@@ -311,7 +311,7 @@ export function ConsultationFlow() {
   const submit = async () => {
     if (!validateProfile()) { setError("Please fix the highlighted fields."); return; }
     setError(""); setSubmitting(true);
-    const payload = { ...formData, submittedAt: new Date().toISOString() };
+    const payload = { ...formData, serviceFocus: serviceFocus ?? "", submittedAt: new Date().toISOString() };
     try {
       await sendToBothEndpoints(
         formSubmissionTestWebhook,
