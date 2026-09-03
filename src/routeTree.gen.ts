@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiAutomationRouteImport } from './routes/ai-automation'
 import { Route as BlueprintsRouteImport } from './routes/blueprints'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RoadmapRouteImport } from './routes/roadmap'
@@ -23,6 +24,11 @@ import { Route as ForWellnessRouteImport } from './routes/for.wellness'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiAutomationRoute = AiAutomationRouteImport.update({
+  id: '/ai-automation',
+  path: '/ai-automation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlueprintsRoute = BlueprintsRouteImport.update({
@@ -73,6 +79,7 @@ const ForWellnessRoute = ForWellnessRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-automation': typeof AiAutomationRoute
   '/blueprints': typeof BlueprintsRoute
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-automation': typeof AiAutomationRoute
   '/blueprints': typeof BlueprintsRoute
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-automation': typeof AiAutomationRoute
   '/blueprints': typeof BlueprintsRoute
   '/privacy': typeof PrivacyRoute
   '/roadmap': typeof RoadmapRoute
@@ -112,6 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-automation'
     | '/blueprints'
     | '/privacy'
     | '/roadmap'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-automation'
     | '/blueprints'
     | '/privacy'
     | '/roadmap'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/ai-automation'
     | '/blueprints'
     | '/privacy'
     | '/roadmap'
@@ -149,6 +161,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiAutomationRoute: typeof AiAutomationRoute
   BlueprintsRoute: typeof BlueprintsRoute
   PrivacyRoute: typeof PrivacyRoute
   RoadmapRoute: typeof RoadmapRoute
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-automation': {
+      id: '/ai-automation'
+      path: '/ai-automation'
+      fullPath: '/ai-automation'
+      preLoaderRoute: typeof AiAutomationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blueprints': {
@@ -237,6 +257,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiAutomationRoute: AiAutomationRoute,
   BlueprintsRoute: BlueprintsRoute,
   PrivacyRoute: PrivacyRoute,
   RoadmapRoute: RoadmapRoute,
