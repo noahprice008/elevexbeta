@@ -260,7 +260,6 @@ html.a11y-reduce-motion *::after {
 /* Sitewide network backdrop: surfaces keep their color, just slightly
    translucent so the shared animated network layer shows through.
    Scoped to layout elements so buttons/links stay fully opaque. */
-@layer base {
   :where(section, article, main, header, footer, aside, div, li, form).bg-background {
     background-color: color-mix(in oklch, var(--background) 92%, transparent);
   }
@@ -279,4 +278,3 @@ html.a11y-reduce-motion *::after {
   :where(section, article, main, header, footer, aside, div, li, form).bg-navy {
     background-color: color-mix(in oklch, var(--navy) 90%, transparent);
   }
-}
