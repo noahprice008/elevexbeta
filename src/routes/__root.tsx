@@ -133,8 +133,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ChatProvider>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        <SiteBackdrop />
+        <div className="relative z-10">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </div>
       </ChatProvider>
     </QueryClientProvider>
   );
