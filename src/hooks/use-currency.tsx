@@ -123,3 +123,10 @@ export function Price({ usd, suffix }: { usd: number; suffix?: string }) {
   const { price } = useLocalizedPrice();
   return <>{price(usd)}{suffix}</>;
 }
+
+/** Small "billed in USD" note, rendered only for non-USD visitors. */
+export function UsdNote({ className }: { className?: string }) {
+  const { billingNote } = useLocalizedPrice();
+  if (!billingNote) return null;
+  return <span className={className ?? "text-xs font-semibold opacity-70"}>{billingNote}</span>;
+}
