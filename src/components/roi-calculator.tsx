@@ -2,24 +2,30 @@ import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLocalizedPrice } from "@/hooks/use-currency";
 
 const MIN_SUBSCRIPTION = 199;
 const MAX_SUBSCRIPTION = 999;
 const SUBSCRIPTION_STEP = 100;
 const WEEKS_PER_MONTH = 4.3;
+const DEFAULT_RATE_USD = 30;
 const subscriptionOptions = Array.from({ length: 9 }, (_, index) => MIN_SUBSCRIPTION + index * SUBSCRIPTION_STEP);
 
-const money = (value: number) => `$${Math.round(value).toLocaleString("en-US")}`;
-
 export function RoiCalculator() {
+  const { price, convert, toUsd, symbol, billingNote } = useLocalizedPrice();
+  // All math stays in USD; conversion happens at display time only.
+  const money = (usdValue: number) => price(Math.round(usdValue));
+
   const [hours, setHours] = useState(8);
-  const [rate, setRate] = useState(30);
+  const [rate, setRate] = useState(DEFAULT_RATE_USD);
   const [subscription, setSubscription] = useState(MIN_SUBSCRIPTION);
 
   const reclaimed = hours * WEEKS_PER_MONTH;
   const value = reclaimed * rate;
   const net = value - subscription;
   const barWidth = value > 0 ? Math.min(100, Math.max(8, (subscription / value) * 100)) : 100;
+  const displayedRate = Math.round(convert(rate));
+
 
   return (
     <section id="roi-calculator" className="border-t border-cloud/10 bg-navy py-24 text-cloud md:py-32">
@@ -49,15 +55,15 @@ export function RoiCalculator() {
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
               <label htmlFor="roi-rate" className="text-sm font-bold text-cloud/80">What is your time worth to your business?</label>
-              <p className="mt-1 text-xs leading-relaxed text-cloud/45">We've pre-set this to a basic admin rate of $30/hr. If you're a specialized tradesman, consultant, or clinic owner, your billable rate is likely much higher.</p>
+              <p className="mt-1 text-xs leading-relaxed text-cloud/45">We've pre-set this to a basic admin rate of {money(DEFAULT_RATE_USD)}/hr. If you're a specialized tradesman, consultant, or clinic owner, your billable rate is likely much higher.</p>
               <div className="mt-3 flex items-center gap-3">
-                <span className="text-lg font-extrabold text-cloud/70">$</span>
+                <span className="text-lg font-extrabold text-cloud/70">{symbol}</span>
                 <Input
                   id="roi-rate"
                   type="number"
                   min={0}
-                  value={rate}
-                  onChange={(e) => setRate(Math.max(0, Number(e.target.value) || 0))}
+                  value={displayedRate}
+                  onChange={(e) => setRate(Math.max(0, toUsd(Number(e.target.value) || 0)))}
                   className="h-12 w-28 border-cloud/20 bg-cloud/5 text-base font-bold text-cloud focus-visible:border-electric"
                 />
                 <span className="text-sm font-semibold text-cloud/60">/hour</span>
@@ -66,7 +72,7 @@ export function RoiCalculator() {
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
               <label htmlFor="roi-subscription" className="text-sm font-bold text-cloud/80">Estimated ELEVEX Investment</label>
-              <p className="mt-3 text-sm font-bold text-cloud/60">Our core platform starts at just $199/month — less than a single day of part-time admin help. Our systems work 24/7, never call in sick, and never let a hot lead go cold.</p>
+              <p className="mt-3 text-sm font-bold text-cloud/60">Our core platform starts at just {money(MIN_SUBSCRIPTION)}/month — less than a single day of part-time admin help. Our systems work 24/7, never call in sick, and never let a hot lead go cold.</p>
               <p className="mt-1 text-4xl font-extrabold text-electric">{money(subscription)}<span className="ml-2 text-lg font-bold text-cloud/60">/month selected</span></p>
               <input
                 id="roi-subscription"
@@ -133,7 +139,7 @@ export function RoiCalculator() {
 
             <Button asChild size="lg" className="mt-8 w-full sm:w-auto"><a href="#consultation">Build My Free Demo →</a></Button>
             <p className="mt-5 text-xs leading-relaxed text-cloud/45">
-              Estimates are for illustration based on your inputs. Your actual custom setup and subscription rate will be quoted transparently on your discovery call based on your workflow complexity.
+              Estimates are for illustration based on your inputs. Your actual custom setup and subscription rate will be quoted transparently on your discovery call based on your workflow complexity.{billingNote ? ` ${billingNote}` : ""}
             </p>
           </div>
         </div>

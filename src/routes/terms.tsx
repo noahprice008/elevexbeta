@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
+import { Price, UsdNote } from "@/hooks/use-currency";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
@@ -56,7 +57,7 @@ function TermsPage() {
             <div>
               <h2 className="text-2xl font-bold text-navy dark:text-cloud">3. Continuing After Your Trial</h2>
               <p className="mt-4">
-                If you choose to continue using your platform after the trial, you will be charged the monthly rate quoted to you during your discovery call (starting from $199/month, depending on the complexity of your build). There is no long-term contract — you may cancel at any time.
+                If you choose to continue using your platform after the trial, you will be charged the monthly rate quoted to you during your discovery call (starting from <Price usd={199} suffix="/month" />, depending on the complexity of your build). There is no long-term contract — you may cancel at any time.{" "}<UsdNote />
               </p>
             </div>
 

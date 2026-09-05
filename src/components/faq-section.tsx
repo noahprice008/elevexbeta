@@ -1,3 +1,4 @@
+import { Price, useLocalizedPrice } from "@/hooks/use-currency";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 type QA = { q: string; a: React.ReactNode };
@@ -43,7 +44,7 @@ const groups: { category: string; items: QA[] }[] = [
             <p>We keep the line clear so there are never surprise invoices. Anything that keeps your existing systems healthy and current is included. Anything that builds something new is scoped and quoted before we start.</p>
             <div className="mt-4 grid gap-5 sm:grid-cols-2">
               <div>
-                <p className="text-xs font-extrabold uppercase tracking-wide text-primary">Included in your plan (from $199/month)</p>
+                <p className="text-xs font-extrabold uppercase tracking-wide text-primary">Included in your plan (from <Price usd={199} suffix="/month" />)</p>
                 <ul className="mt-3 space-y-2">
                   {[
                     "Hosting and secure infrastructure",
@@ -123,6 +124,7 @@ const groups: { category: string; items: QA[] }[] = [
 ];
 
 export function FaqSection() {
+  const { text } = useLocalizedPrice();
   return (
     <section id="faq" className="bg-background py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
@@ -136,8 +138,8 @@ export function FaqSection() {
               <Accordion type="single" collapsible className="mt-4">
                 {group.items.map((item) => (
                   <AccordionItem key={item.q} value={item.q}>
-                    <AccordionTrigger className="text-left text-base font-extrabold hover:text-primary">{item.q}</AccordionTrigger>
-                    <AccordionContent className="text-sm text-muted-foreground">{item.a}</AccordionContent>
+                    <AccordionTrigger className="text-left text-base font-extrabold hover:text-primary">{text(item.q)}</AccordionTrigger>
+                    <AccordionContent className="text-sm text-muted-foreground">{typeof item.a === "string" ? text(item.a) : item.a}</AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
