@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
-import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta } from "@/components/page-blocks";
+import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, ConsultationSection, FinalCta } from "@/components/page-blocks";
 
 const title = "Digital Systems for Wellness Studios & Clinics | ELEVEX";
 const description = "Automated bookings, reminders, digital intake and client management for wellness studios and clinics. Custom demo in 3 days, live platform 7 days from approval, free for 21 days.";
@@ -59,6 +59,7 @@ function WellnessPage() {
         card1={{ label: "Start here", title: "Free Consultation & Discovery", price: "$0", copy: "A structured 30-minute online video call about your wellness studio's unique workflows, challenges, and client experience, followed by a clear recommendation and fixed quote.", items: ["No card required to start", "No obligation, no commitment", "21 days entirely free before you pay anything", "Live platform delivered 7 days from approval"] }}
         card2={{ label: "After your free trial", title: "After Your 21-Day Free Trial", price: "From $199", priceSuffix: "/month", copy: "Less than the revenue from a couple of recovered no-shows each month. The single, fixed price quoted on your call is exactly what you pay to keep your studio running smoothly, with zero surprise fees and no contracts.", items: ["Premium hosting & secure client databases", "Ongoing platform maintenance and security updates", "Rapid support from our team", "Continuous optimization and minor edits", "Room to scale up automation and custom AI over time"] }}
       />
+      <ConsultationSection industry="Wellness Studios & Clinics" />
       <FinalCta
         title="Let's make your studio run beautifully."
         body="Keep your energy where it matters most: with your community. Let ELEVEX build the digital foundation that works in the background so your studio can grow."

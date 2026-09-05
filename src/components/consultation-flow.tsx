@@ -260,9 +260,9 @@ function Field({ label, value, onChange, type = "text", placeholder, error, requ
 
 const TOTAL = 5;
 
-export function ConsultationFlow({ serviceFocus }: { serviceFocus?: string } = {}) {
+export function ConsultationFlow({ serviceFocus, industry }: { serviceFocus?: string | undefined; industry?: string | undefined } = {}) {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>(initialData);
+  const [formData, setFormData] = useState<FormData>(industry ? { ...initialData, industry } : initialData);
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [submitting, setSubmitting] = useState(false);

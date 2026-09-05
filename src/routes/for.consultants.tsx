@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
-import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta } from "@/components/page-blocks";
+import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, ConsultationSection, FinalCta } from "@/components/page-blocks";
 
 const title = "Digital Systems for Consultants & Professional Services | ELEVEX";
 const description = "Stop fielding unqualified enquiries — a site that sells your authority and screens leads for you. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
@@ -61,6 +61,7 @@ function ConsultantsPage() {
         card1={{ label: "Start here", title: "The Build & Setup", price: "$0", copy: "Everything needed to get your practice's platform designed, integrated and live — free until you decide to stay.", items: ["Premium site design tailored to professional services", "Custom lead qualification form and onboarding flow", "Full setup of calendar scheduling & CRM integrations", "21 days of free trial usage"] }}
         card2={{ label: "After your free trial", title: "Growth & Maintenance Support", price: "From $199", priceSuffix: "/month", copy: "Roughly an hour of your billable time each month, for a system that qualifies leads around the clock. Quoted live based on your workflow complexity — no contracts, cancel anytime.", items: ["Premium hosting and secure infrastructure", "Ongoing maintenance, patches and backups", "Continuous optimization and copy adjustments", "Priority support", "Room to expand with AI assistants and advanced automations"] }}
       />
+      <ConsultationSection industry="Consultants & Professional Services" />
       <FinalCta
         title="Ready to reclaim your calendar and scale your firm?"
         body="Your next high-ticket client is out there. Stop losing them to clunky web pages, manual back-and-forths, or slow responses. Let ELEVEX build a digital foundation that works as hard as you do."

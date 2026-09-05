@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
-import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
+import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, ConsultationSection, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Security & Facilities Firms | ELEVEX";
 const description = "Connected scheduling, automated field reporting and real-time client updates for security and facilities firms. Custom demo in 3 days, live platform 7 days from approval, free for 21 days.";
@@ -65,6 +65,7 @@ function SecurityPage() {
         callout="Try it free for 21 days. Only pay if you keep it."
       />
       <PricingBlock card1={standardPricing.card1} card2={standardPricing.card2} />
+      <ConsultationSection industry="Security & Facilities Firms" />
       <FinalCta
         title="Ready to run a tighter, more profitable operation?"
         body="Stop chasing rosters and chasing down paper incident reports. Let us build a modern digital foundation that scales alongside your business."
