@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
-import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
+import { PageHero, PainPoints, Pillars, StepFlow, QaStrip, PricingBlock, ConsultationSection, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Tradesmen & Contractors | ELEVEX";
 const description = "Stop missing quotes while you are on the tools — automated booking and instant quoting for tradesmen. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
@@ -69,6 +69,7 @@ function TradesmenPage() {
         card1={{ ...standardPricing.card1, copy: "A structured 30-minute online video call about your trade, your admin bottlenecks and where automation saves you the most time — followed by a clear recommendation and a fixed quote." }}
         card2={standardPricing.card2}
       />
+      <ConsultationSection industry="Tradesmen & Contractors" />
       <FinalCta
         title="Stop wasting your weekends on admin. Let's automate your trade."
         button="Build My Free Demo →"

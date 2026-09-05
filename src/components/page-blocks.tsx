@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { NetworkVisual } from "@/components/network-visual";
 import { useLocalizedPrice } from "@/hooks/use-currency";
+import { ConsultationFlow } from "@/components/consultation-flow";
 
 export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return <p className={`text-xs font-extrabold uppercase ${dark ? "text-electric" : "text-primary"}`}>{children}</p>;
@@ -26,8 +27,8 @@ export function PageHero({ eyebrow, title, subtitle, primary, secondary, badge }
           <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] md:text-5xl lg:text-6xl">{title}</h1>
           <p className="mt-7 max-w-3xl text-lg text-cloud/75">{subtitle}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild size="lg"><a href="/#consultation">{primary.label}</a></Button>
-            {secondary && <Button asChild size="lg" variant="outline"><a href="/#consultation">{secondary.label}</a></Button>}
+            <Button asChild size="lg"><a href="#consultation">{primary.label}</a></Button>
+            {secondary && <Button asChild size="lg" variant="outline"><a href="#consultation">{secondary.label}</a></Button>}
           </div>
           <div className="mt-4 flex flex-col gap-1 text-sm font-semibold text-cloud/60">
             {primary.note && <span>{primary.note}</span>}
@@ -166,7 +167,7 @@ export function PricingBlock({ intro, card1, card2 }: {
           </article>
         </div>
         <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <Button asChild size="lg"><a href="/#consultation">Build My Free Demo →</a></Button>
+          <Button asChild size="lg"><a href="#consultation">Build My Free Demo →</a></Button>
           <span className="text-sm text-muted-foreground">Free 30-minute online video consultation — no obligation.</span>
         </div>
       </div>
@@ -183,9 +184,24 @@ export function FinalCta({ title, body, button, subtext, email }: {
         <Eyebrow dark>READY TO MOVE FORWARD?</Eyebrow>
         <h2 className="mt-5 text-4xl font-extrabold md:text-5xl">{title}</h2>
         {body && <p className="mx-auto mt-6 max-w-3xl text-lg text-cloud/65">{body}</p>}
-        <div className="mt-9 flex justify-center"><Button asChild size="lg"><a href="/#consultation">{button}</a></Button></div>
+        <div className="mt-9 flex justify-center"><Button asChild size="lg"><a href="#consultation">{button}</a></Button></div>
         {subtext && <p className="mt-5 text-sm text-cloud/60">{subtext}</p>}
         {email && <p className="mt-3 text-sm text-cloud/60">Prefer email? <a href={`mailto:${email}`} className="font-semibold text-electric hover:underline">{email}</a></p>}
+      </div>
+    </section>
+  );
+}
+
+export function ConsultationSection({ industry, heading = "Build my free demo." }: { industry?: string; heading?: string }) {
+  return (
+    <section id="consultation" className="py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 lg:px-8">
+        <Eyebrow>REQUEST A CUSTOM DEMO</Eyebrow>
+        <h2 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl">{heading}</h2>
+        <p className="mt-4 max-w-2xl text-sm font-semibold text-muted-foreground">
+          Takes a couple of minutes. No sales pressure, no card required. Prefer email? <a href="mailto:sales@elevex.digital" className="text-primary hover:text-electric">sales@elevex.digital</a>
+        </p>
+        <div className="mt-12"><ConsultationFlow industry={industry} /></div>
       </div>
     </section>
   );

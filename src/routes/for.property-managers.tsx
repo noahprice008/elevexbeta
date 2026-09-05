@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
-import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, FinalCta, standardPricing } from "@/components/page-blocks";
+import { PageHero, PainPoints, Pillars, StepFlow, PricingBlock, ConsultationSection, FinalCta, standardPricing } from "@/components/page-blocks";
 
 const title = "Digital Systems for Property Managers & Realtors | ELEVEX";
 const description = "Stop chasing tenants and buyers across five apps. Custom demo in 3 days, live platform 7 days from approval, free for 21 days, from $199/month after.";
@@ -58,6 +58,7 @@ function PropertyManagersPage() {
         callout="Try it free for 21 days. Only pay if you keep it."
       />
       <PricingBlock card1={standardPricing.card1} card2={standardPricing.card2} />
+      <ConsultationSection industry="Property Managers & Realtors" />
       <FinalCta
         title="Ready to stop chasing tenants and leads?"
         body="Whether it's maintenance requests, showings, or applications slowing you down, ELEVEX can help you find the right place to start — free to try, before you ever pay a cent."
