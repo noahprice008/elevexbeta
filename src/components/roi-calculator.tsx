@@ -139,7 +139,7 @@ export function RoiCalculator() {
 
             <Button asChild size="lg" className="mt-8 w-full sm:w-auto"><a href="#consultation">Build My Free Demo →</a></Button>
             <p className="mt-5 text-xs leading-relaxed text-cloud/45">
-              Estimates are for illustration based on your inputs. Your actual custom setup and subscription rate will be quoted transparently on your discovery call based on your workflow complexity.
+              Estimates are for illustration based on your inputs. Your actual custom setup and subscription rate will be quoted transparently on your discovery call based on your workflow complexity.{billingNote ? ` ${billingNote}` : ""}
             </p>
           </div>
         </div>
