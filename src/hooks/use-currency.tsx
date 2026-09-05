@@ -117,3 +117,9 @@ export function useLocalizedPrice(): LocalizedPrice {
     };
   }, [currency]);
 }
+
+/** Inline localized price, e.g. <Price usd={199} suffix="/month" />. */
+export function Price({ usd, suffix }: { usd: number; suffix?: string }) {
+  const { price } = useLocalizedPrice();
+  return <>{price(usd)}{suffix}</>;
+}
