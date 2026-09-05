@@ -141,26 +141,28 @@ export function PricingBlock({ intro, card1, card2 }: {
   card1: { label: string; title: string; price: string; copy: string; items: string[] };
   card2: { label: string; title: string; price: string; priceSuffix?: string; copy: string; items: string[] };
 }) {
+  const { text, billingNote } = useLocalizedPrice();
   return (
     <section id="pricing" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <Eyebrow>SIMPLE, HONEST PRICING</Eyebrow>
         <h2 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl">Straightforward pricing. Built around your project.</h2>
-        {intro && <p className="mt-6 max-w-3xl text-lg text-muted-foreground">{intro}</p>}
+        {intro && <p className="mt-6 max-w-3xl text-lg text-muted-foreground">{text(intro)}</p>}
         <div className="mt-14 grid gap-8 lg:grid-cols-2">
           <article className="rounded-md border bg-secondary p-8 md:p-10">
             <span className="text-xs font-extrabold uppercase text-primary">{card1.label}</span>
             <h3 className="mt-4 text-3xl font-extrabold">{card1.title}</h3>
-            <p className="mt-2 text-4xl font-extrabold text-primary">{card1.price}</p>
-            <p className="mt-5 text-muted-foreground">{card1.copy}</p>
-            <ul className="mt-6 space-y-3 text-sm">{card1.items.map((i) => <Check key={i}>{i}</Check>)}</ul>
+            <p className="mt-2 text-4xl font-extrabold text-primary">{text(card1.price)}</p>
+            <p className="mt-5 text-muted-foreground">{text(card1.copy)}</p>
+            <ul className="mt-6 space-y-3 text-sm">{card1.items.map((i) => <Check key={i}>{text(i)}</Check>)}</ul>
           </article>
           <article className="rounded-md border border-primary bg-background p-8 md:p-10">
             <span className="text-xs font-extrabold uppercase text-primary">{card2.label}</span>
             <h3 className="mt-4 text-3xl font-extrabold">{card2.title}</h3>
-            <p className="mt-2 text-4xl font-extrabold">{card2.price}{card2.priceSuffix && <span className="text-lg font-bold text-muted-foreground">{card2.priceSuffix}</span>}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{card2.copy}</p>
-            <ul className="mt-6 grid gap-3 text-sm sm:grid-cols-2">{card2.items.map((i) => <Check key={i}>{i}</Check>)}</ul>
+            <p className="mt-2 text-4xl font-extrabold">{text(card2.price)}{card2.priceSuffix && <span className="text-lg font-bold text-muted-foreground">{card2.priceSuffix}</span>}</p>
+            {billingNote && <p className="mt-1 text-xs font-semibold text-muted-foreground">{billingNote}</p>}
+            <p className="mt-1 text-sm text-muted-foreground">{text(card2.copy)}</p>
+            <ul className="mt-6 grid gap-3 text-sm sm:grid-cols-2">{card2.items.map((i) => <Check key={i}>{text(i)}</Check>)}</ul>
           </article>
         </div>
         <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
