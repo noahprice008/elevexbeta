@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { MessageSquare, Send, X } from "lucide-react";
 import { useChat } from "@/components/chat-provider";
+import { useLocalizedPrice } from "@/hooks/use-currency";
 import {
   chatbotContactTestWebhook,
   chatbotContactProductionWebhook,
