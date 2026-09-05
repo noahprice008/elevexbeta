@@ -175,7 +175,7 @@ export function AiChatWidget() {
             {messages.map((msg, index) => (
               <div key={index} className={msg.role === "user" ? "flex justify-end" : "flex justify-start"}>
                 <div className={`max-w-[85%] rounded-lg px-3.5 py-2.5 text-sm leading-relaxed ${msg.role === "user" ? "bg-electric font-semibold text-navy" : "bg-cloud/8 text-cloud/85 ring-1 ring-cloud/10"}`}>
-                  <p>{msg.text}</p>
+                  <p>{text(msg.text)}</p>
                   {msg.link && (
                     <a href={msg.link.href} onClick={() => setOpen(false)} className="mt-2 inline-block text-xs font-extrabold text-electric hover:underline">
                       {msg.link.label}
