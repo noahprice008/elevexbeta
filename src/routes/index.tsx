@@ -4,6 +4,7 @@ import { NetworkVisual } from "@/components/network-visual";
 import { ConsultationFlow } from "@/components/consultation-flow";
 import { BackToTop } from "@/components/back-to-top";
 import { FaqSection } from "@/components/faq-section";
+import { useLocalizedPrice } from "@/hooks/use-currency";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { AudienceCards } from "@/components/audience-cards";
@@ -44,6 +45,7 @@ const included = ["Hosting and secure infrastructure", "Ongoing maintenance and 
 
 
 function Index() {
+  const { price, billingNote } = useLocalizedPrice();
   return <main id="top" className="overflow-hidden">
     <SiteHeader />
     <ChooseYourPath />
