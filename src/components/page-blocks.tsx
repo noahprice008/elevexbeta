@@ -94,6 +94,7 @@ export function StepFlow({ title, sub, steps, callout }: {
   title: string; sub?: string; steps: { n: string; title: string; copy: string; highlight?: boolean; badge?: string }[]; callout?: string;
 }) {
   const cols = steps.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-5";
+  const { text } = useLocalizedPrice();
   return (
     <section id="how-we-deliver" className="border-y bg-secondary py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
@@ -106,7 +107,7 @@ export function StepFlow({ title, sub, steps, callout }: {
               <span className="text-sm font-extrabold text-primary">{step.n}</span>
               {step.badge && <span className="absolute -top-3 right-4 rounded-full bg-electric px-3 py-1 text-xs font-extrabold text-navy">{step.badge}</span>}
               <h3 className="mt-4 text-xl font-extrabold">{step.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{step.copy}</p>
+              <p className="mt-3 text-sm text-muted-foreground">{text(step.copy)}</p>
             </article>
           ))}
         </div>
