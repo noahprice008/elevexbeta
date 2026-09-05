@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ChatProvider } from "@/components/chat-provider";
+import { CurrencyProvider } from "@/hooks/use-currency";
 
 
 function NotFoundComponent() {
