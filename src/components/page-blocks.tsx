@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { NetworkVisual } from "@/components/network-visual";
+import { useLocalizedPrice } from "@/hooks/use-currency";
 
 export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return <p className={`text-xs font-extrabold uppercase ${dark ? "text-electric" : "text-primary"}`}>{children}</p>;
