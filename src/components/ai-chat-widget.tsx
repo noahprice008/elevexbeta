@@ -91,6 +91,7 @@ function findAnswer(input: string): Msg {
 
 export function AiChatWidget() {
   const { open, setOpen } = useChat();
+  const { text } = useLocalizedPrice();
   const [messages, setMessages] = useState<Msg[]>([GREETING]);
   const [input, setInput] = useState("");
   const [mode, setMode] = useState<"chat" | "lead">("chat");
