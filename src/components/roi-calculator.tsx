@@ -55,15 +55,15 @@ export function RoiCalculator() {
 
             <div className="mt-8 border-t border-cloud/12 pt-6">
               <label htmlFor="roi-rate" className="text-sm font-bold text-cloud/80">What is your time worth to your business?</label>
-              <p className="mt-1 text-xs leading-relaxed text-cloud/45">We've pre-set this to a basic admin rate of $30/hr. If you're a specialized tradesman, consultant, or clinic owner, your billable rate is likely much higher.</p>
+              <p className="mt-1 text-xs leading-relaxed text-cloud/45">We've pre-set this to a basic admin rate of {money(DEFAULT_RATE_USD)}/hr. If you're a specialized tradesman, consultant, or clinic owner, your billable rate is likely much higher.</p>
               <div className="mt-3 flex items-center gap-3">
-                <span className="text-lg font-extrabold text-cloud/70">$</span>
+                <span className="text-lg font-extrabold text-cloud/70">{symbol}</span>
                 <Input
                   id="roi-rate"
                   type="number"
                   min={0}
-                  value={rate}
-                  onChange={(e) => setRate(Math.max(0, Number(e.target.value) || 0))}
+                  value={displayedRate}
+                  onChange={(e) => setRate(Math.max(0, toUsd(Number(e.target.value) || 0)))}
                   className="h-12 w-28 border-cloud/20 bg-cloud/5 text-base font-bold text-cloud focus-visible:border-electric"
                 />
                 <span className="text-sm font-semibold text-cloud/60">/hour</span>
