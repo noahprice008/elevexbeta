@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AudienceLayout } from "@/components/audience-layout";
-import { Price, useLocalizedPrice } from "@/hooks/use-currency";
+import { Price } from "@/hooks/use-currency";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
