@@ -2,24 +2,30 @@ import { useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useLocalizedPrice } from "@/hooks/use-currency";
 
 const MIN_SUBSCRIPTION = 199;
 const MAX_SUBSCRIPTION = 999;
 const SUBSCRIPTION_STEP = 100;
 const WEEKS_PER_MONTH = 4.3;
+const DEFAULT_RATE_USD = 30;
 const subscriptionOptions = Array.from({ length: 9 }, (_, index) => MIN_SUBSCRIPTION + index * SUBSCRIPTION_STEP);
 
-const money = (value: number) => `$${Math.round(value).toLocaleString("en-US")}`;
-
 export function RoiCalculator() {
+  const { price, convert, toUsd, symbol, billingNote } = useLocalizedPrice();
+  // All math stays in USD; conversion happens at display time only.
+  const money = (usdValue: number) => price(Math.round(usdValue));
+
   const [hours, setHours] = useState(8);
-  const [rate, setRate] = useState(30);
+  const [rate, setRate] = useState(DEFAULT_RATE_USD);
   const [subscription, setSubscription] = useState(MIN_SUBSCRIPTION);
 
   const reclaimed = hours * WEEKS_PER_MONTH;
   const value = reclaimed * rate;
   const net = value - subscription;
   const barWidth = value > 0 ? Math.min(100, Math.max(8, (subscription / value) * 100)) : 100;
+  const displayedRate = Math.round(convert(rate));
+
 
   return (
     <section id="roi-calculator" className="border-t border-cloud/10 bg-navy py-24 text-cloud md:py-32">
